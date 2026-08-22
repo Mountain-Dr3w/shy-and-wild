@@ -7,7 +7,7 @@
     <title>Shy & Wild Photography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
     <style>
       :root {
         color-scheme: dark;
@@ -78,12 +78,17 @@
 
       .wordmark {
         color: var(--paper);
-        font: 500 24px/1 "Newsreader", Georgia, serif;
-        letter-spacing: -0.02em;
+        font: 500 18px/1 "Newsreader", Georgia, serif;
+        font-variant-caps: all-small-caps;
+        font-feature-settings: "smcp" 1, "c2sc" 1;
+        letter-spacing: 0.2em;
         text-decoration: none;
       }
 
-      .wordmark em { font-weight: 300; }
+      .wordmark em {
+        font-weight: 400;
+        font-style: normal;
+      }
 
       .nav-list {
         margin: 0;
@@ -97,7 +102,6 @@
       .nav-list a,
       .menu-toggle,
       .eyebrow,
-      .caption,
       .status,
       .footer-meta {
         color: var(--umber);
@@ -117,42 +121,97 @@
       .mobile-menu { display: none; }
 
       .hero {
+        position: relative;
+        isolation: isolate;
         min-height: min(790px, calc(100dvh - 96px));
         padding-block: clamp(72px, 11vw, 150px) 56px;
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-template-rows: auto 1fr auto;
         column-gap: 28px;
+        overflow: hidden;
         border-bottom: 1px solid var(--sepia);
       }
 
-      .hero .eyebrow { grid-column: 1 / 4; }
+      .hero > :not(.hero-decoration) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-decoration {
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        color: var(--umber);
+      }
+
+      .hero-decoration svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .hero-wildflowers {
+        right: 18%;
+        bottom: -120px;
+        width: clamp(260px, 29vw, 410px);
+        opacity: 0.3;
+        transform: rotate(2deg);
+      }
+
+      .hero-moth {
+        top: 20%;
+        right: 22%;
+        width: clamp(72px, 8vw, 112px);
+        opacity: 0.34;
+        transform: rotate(-9deg);
+      }
+
+      .hero-copy {
+        grid-column: 1 / 10;
+        grid-row: 2;
+        align-self: center;
+      }
 
       .hero-title {
-        grid-column: 1 / 11;
-        align-self: center;
-        margin: 36px 0 48px;
+        margin: 36px 0 0;
         color: var(--paper);
-        font: 300 clamp(76px, 13vw, 186px) / 0.76 "Newsreader", Georgia, serif;
-        letter-spacing: -0.065em;
+        font: 400 clamp(78px, 12vw, 172px) / 0.78 "Playfair Display", Didot, "Bodoni 72", serif;
+        font-optical-sizing: auto;
+        letter-spacing: -0.055em;
       }
 
       .hero-title span { display: block; }
 
       .hero-title em {
-        margin-left: 0.43em;
-        font-weight: 300;
+        margin-left: 0.14em;
+        font-weight: 400;
+        font-style: normal;
       }
 
-      .hero-mark {
-        grid-column: 11 / 13;
+      .hero-subtitle {
+        margin: 28px 0 48px;
+        color: var(--umber);
+        font: 500 15px/1.2 "Newsreader", Georgia, serif;
+        font-variant-caps: all-small-caps;
+        font-feature-settings: "smcp" 1, "c2sc" 1;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .hero-image {
+        grid-column: 10 / 13;
         grid-row: 2;
         align-self: center;
-        margin: 0;
-        color: var(--paper);
-        text-align: right;
-        font: 300 italic clamp(100px, 13vw, 190px) / 0.8 "Newsreader", Georgia, serif;
+        justify-self: end;
+        width: min(100%, 210px);
+        aspect-ratio: 1;
+        overflow: hidden;
+        background: var(--bark);
       }
+
+      .hero-image img { object-position: 50% 48%; }
 
       .hero-footer {
         grid-column: 1 / 13;
@@ -196,19 +255,20 @@
         margin-top: clamp(88px, 12vw, 170px);
       }
 
+      .work-portrait-secondary {
+        grid-column: 3 / 8;
+        margin-top: clamp(-28px, -2vw, -12px);
+      }
+
+      .work-portrait-tertiary {
+        grid-column: 8 / 13;
+        margin-top: clamp(96px, 13vw, 180px);
+      }
+
       .image-landscape,
       .image-portrait { overflow: hidden; background: var(--bark); }
       .image-landscape { aspect-ratio: 16 / 10; }
       .image-portrait { aspect-ratio: 3 / 4; }
-
-      .caption {
-        margin-top: 16px;
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-      }
-
-      .caption span:last-child { text-align: right; }
 
       .about {
         background: var(--paper);
@@ -224,14 +284,48 @@
       }
 
       .about-mark {
+        position: relative;
         grid-column: 1 / 5;
+        width: 100%;
+        max-width: 340px;
+        aspect-ratio: 1.16;
         margin: 0;
         color: var(--sepia);
-        font: 300 italic clamp(180px, 24vw, 340px) / 0.75 "Newsreader", Georgia, serif;
+        font: 400 clamp(118px, 13vw, 180px) / 0.78 "Playfair Display", Didot, "Bodoni 72", serif;
+        font-optical-sizing: auto;
+        letter-spacing: -0.06em;
+      }
+
+      .about-mark span {
+        position: absolute;
+        display: block;
+      }
+
+      .about-mark-s {
+        top: 0;
+        left: 0;
+        transform: rotate(-3deg);
+      }
+
+      .about-mark-amp {
+        top: 30%;
+        left: 34%;
+        font-size: 0.64em;
+        transform: rotate(-1deg);
+      }
+
+      .about-mark-w {
+        right: -0.02em;
+        bottom: 0;
+        transform: rotate(2deg);
       }
 
       .about-copy { grid-column: 7 / 13; }
-      .about .section-heading { color: var(--walnut); }
+      .about .section-heading {
+        color: var(--walnut);
+        font-size: clamp(42px, 5vw, 64px);
+        line-height: 1;
+      }
 
       .about-text {
         max-width: 510px;
@@ -256,16 +350,31 @@
         font: 300 25px/1.28 "Newsreader", Georgia, serif;
       }
 
-      .contact-placeholder {
-        display: inline-block;
+      .contact-links {
         margin-top: 32px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--umber);
+        border-top: 1px solid var(--sepia);
+      }
+
+      .contact-link {
+        min-height: 48px;
+        padding-block: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+        border-bottom: 1px solid var(--sepia);
         color: var(--umber);
         font: 400 11px/1.4 "Archivo", system-ui, sans-serif;
         letter-spacing: 0.12em;
+        text-decoration: none;
         text-transform: uppercase;
+        transition: color 160ms ease, transform 160ms ease;
       }
+
+      .contact-link span:last-child { text-align: right; }
+      .contact-link:hover,
+      .contact-link:focus-visible { color: var(--paper); }
+      .contact-link:active { transform: translateY(1px); }
 
       .site-footer { padding-block: 28px 40px; }
 
@@ -282,7 +391,10 @@
       .footer-wordmark {
         margin: 0;
         color: var(--paper);
-        font: 400 20px/1 "Newsreader", Georgia, serif;
+        font: 500 18px/1.2 "Newsreader", Georgia, serif;
+        font-variant-caps: all-small-caps;
+        font-feature-settings: "smcp" 1, "c2sc" 1;
+        letter-spacing: 0.2em;
       }
 
       :focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
@@ -334,18 +446,41 @@
           column-gap: 16px;
         }
 
-        .hero .eyebrow { grid-column: 1 / 4; }
-
-        .hero-title {
-          grid-column: 1 / 5;
-          margin-block: 48px;
-          font-size: clamp(70px, 25vw, 108px);
-          line-height: 0.8;
+        .hero-wildflowers {
+          right: -82px;
+          bottom: 76px;
+          width: 270px;
+          opacity: 0.24;
         }
 
-        .hero-title em { margin-left: 0.18em; }
-        .hero-mark { display: none; }
-        .hero-footer { grid-column: 1 / 5; }
+        .hero-moth {
+          top: 88px;
+          right: 20px;
+          width: 68px;
+          opacity: 0.3;
+        }
+
+        .hero-copy { grid-column: 1 / 5; }
+
+        .hero-title {
+          margin: 48px 0 0;
+          font-size: clamp(68px, 23vw, 98px);
+          line-height: 0.82;
+        }
+
+        .hero-title em { margin-left: 0.08em; }
+        .hero-subtitle { margin: 24px 0 48px; }
+
+        .hero-image {
+          grid-column: 2 / 5;
+          grid-row: 3;
+          width: 100%;
+          max-width: 280px;
+          margin: 0 0 48px auto;
+          aspect-ratio: 4 / 3;
+        }
+
+        .hero-footer { grid-column: 1 / 5; grid-row: 4; }
         .hero-rule { height: 4px; }
 
         .work-heading,
@@ -360,6 +495,8 @@
         .work-heading .section-heading,
         .work-landscape,
         .work-portrait,
+        .work-portrait-secondary,
+        .work-portrait-tertiary,
         .about-copy,
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
@@ -371,12 +508,23 @@
           margin: 16px 0 0 auto;
         }
 
+        .work-portrait-secondary {
+          width: 78%;
+          margin: 0 auto 0 0;
+        }
+
+        .work-portrait-tertiary {
+          width: 82%;
+          margin: 32px 0 0 auto;
+        }
+
         .about-grid { min-height: auto; padding-block: 96px; }
 
         .about-mark {
           grid-column: 1 / 5;
+          width: min(100%, 300px);
           margin-bottom: 72px;
-          font-size: 190px;
+          font-size: 132px;
         }
 
         .about-text { margin-top: 28px; }
@@ -397,7 +545,7 @@
   <body id="home">
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home">Shy <em>&amp;</em> Wild</a>
+        <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home">SHY <em>&amp;</em> WILD</a>
 
         <nav class="desktop-nav" aria-label="Primary navigation">
           <ul class="nav-list">
@@ -424,12 +572,106 @@
 
     <main>
       <section class="shell hero" aria-labelledby="hero-title">
-        <p class="eyebrow">Photography</p>
-        <h1 class="hero-title" id="hero-title">
-          <span>Shy</span>
-          <span><em>&amp;</em> Wild</span>
-        </h1>
-        <p class="hero-mark" aria-hidden="true">&amp;</p>
+        <div class="hero-decoration hero-wildflowers" aria-hidden="true">
+          <svg viewBox="0 0 420 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+              <path d="M202 560C200 479 196 371 190 164" />
+              <path d="M258 560C255 468 267 357 302 243" />
+              <path d="M148 560C143 467 121 372 77 286" />
+              <path d="M316 560C309 487 328 419 370 364" />
+              <path d="M190 392C164 363 141 353 117 358C133 378 156 391 190 392Z" />
+              <path d="M194 331C219 300 245 287 269 291C254 314 231 329 194 331Z" />
+              <path d="M149 449C123 423 98 415 76 422C94 441 117 451 149 449Z" />
+              <path d="M256 417C278 385 304 372 329 376C315 399 291 415 256 417Z" />
+              <path d="M316 473C340 446 364 438 387 445C370 465 348 475 316 473Z" />
+              <path d="M117 358C101 329 87 307 77 286" />
+              <path d="M190 392C173 383 151 375 130 372" />
+              <path d="M194 331C218 322 239 309 254 296" />
+
+              <ellipse cx="190" cy="155" rx="10" ry="7.5" />
+              <path d="M188 147C181 129 183 115 192 103C200 116 199 132 193 147" />
+              <path d="M196 149C205 132 217 124 231 125C228 140 216 149 200 153" />
+              <path d="M199 157C218 153 232 158 240 169C226 176 211 170 198 162" />
+              <path d="M194 162C207 177 209 191 202 203C188 194 185 178 189 163" />
+              <path d="M186 162C181 180 171 191 158 194C153 179 163 167 182 159" />
+              <path d="M181 157C163 164 148 161 138 151C150 140 164 142 182 151" />
+              <path d="M183 150C169 140 163 127 167 114C181 117 188 130 188 147" />
+              <path d="M183 156C188 153 193 152 198 155" />
+
+              <path d="M302 243C302 214 291 190 270 171" />
+              <path d="M302 243C309 210 328 187 357 176" />
+              <path d="M295 211C282 203 269 201 256 204" />
+              <path d="M310 211C323 201 337 198 350 201" />
+              <circle cx="270" cy="171" r="4.5" />
+              <circle cx="258" cy="162" r="3.5" />
+              <circle cx="281" cy="157" r="3" />
+              <circle cx="357" cy="176" r="4" />
+              <circle cx="370" cy="168" r="3" />
+              <circle cx="348" cy="161" r="3.5" />
+              <circle cx="256" cy="204" r="2.5" />
+              <circle cx="350" cy="201" r="2.5" />
+
+              <path d="M77 286C61 260 48 235 39 208" />
+              <path d="M69 270C51 256 35 251 20 255C31 270 47 276 69 270Z" />
+              <path d="M60 247C74 226 89 218 105 220C97 237 82 247 60 247Z" />
+              <path d="M50 226C35 214 21 210 9 215C19 227 32 231 50 226Z" />
+              <path d="M43 207C53 190 65 183 78 184C72 198 60 206 43 207Z" />
+              <path d="M35 190C24 180 15 177 6 180C13 191 23 194 35 190Z" />
+              <path d="M39 208C37 194 37 181 41 168" />
+              <path d="M20 255C34 259 49 264 63 271" />
+              <path d="M105 220C87 227 72 237 61 247" />
+
+              <path d="M370 364C374 333 369 303 355 275" />
+              <path d="M355 275C345 258 337 245 333 232" />
+              <path d="M355 275C367 256 377 243 388 237" />
+              <path d="M333 232C323 221 319 209 322 198C334 202 339 214 333 232Z" />
+              <path d="M388 237C397 224 407 220 416 223C412 235 402 240 388 237Z" />
+              <path d="M361 301C375 286 388 280 401 283C393 296 380 303 361 301Z" />
+              <path d="M353 324C337 309 322 304 309 309C320 323 334 329 353 324Z" />
+            </g>
+          </svg>
+        </div>
+        <div class="hero-decoration hero-moth" aria-hidden="true">
+          <svg viewBox="0 0 180 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+              <path d="M89 43C84 29 74 18 61 11" />
+              <path d="M91 43C96 29 106 18 119 11" />
+              <path d="M61 11C55 8 50 8 46 11" />
+              <path d="M119 11C125 8 130 8 134 11" />
+              <path d="M87 48C70 25 42 18 17 31C20 55 41 71 77 74C61 83 50 97 45 118C60 115 77 101 88 77Z" fill="currentColor" fill-opacity="0.025" />
+              <path d="M93 48C110 25 138 18 163 31C160 55 139 71 103 74C119 83 130 97 135 118C120 115 103 101 92 77Z" fill="currentColor" fill-opacity="0.025" />
+              <path d="M87 49C75 37 60 30 43 29" />
+              <path d="M85 57C67 53 50 53 31 58" />
+              <path d="M83 66C66 68 55 78 48 94" />
+              <path d="M93 49C105 37 120 30 137 29" />
+              <path d="M95 57C113 53 130 53 149 58" />
+              <path d="M97 66C114 68 125 78 132 94" />
+              <path d="M72 36C66 45 62 55 62 66" />
+              <path d="M108 36C114 45 118 55 118 66" />
+              <path d="M59 78C64 88 70 95 79 100" />
+              <path d="M121 78C116 88 110 95 101 100" />
+              <ellipse cx="55" cy="48" rx="7" ry="5" />
+              <ellipse cx="125" cy="48" rx="7" ry="5" />
+              <ellipse cx="55" cy="48" rx="2.2" ry="1.6" fill="currentColor" />
+              <ellipse cx="125" cy="48" rx="2.2" ry="1.6" fill="currentColor" />
+              <path d="M90 44C84 54 84 75 90 91C96 75 96 54 90 44Z" fill="currentColor" fill-opacity="0.05" />
+              <path d="M90 90C87 98 87 104 90 111C93 104 93 98 90 90Z" />
+              <circle cx="90" cy="43" r="3.5" />
+              <path d="M46 111C40 116 36 121 35 126" />
+              <path d="M134 111C140 116 144 121 145 126" />
+            </g>
+          </svg>
+        </div>
+        <div class="hero-copy">
+          <h1 class="hero-title" id="hero-title">
+            <span>Shy</span>
+            <span><em>&amp;</em> Wild</span>
+          </h1>
+          <p class="hero-subtitle">Portraits and stories</p>
+        </div>
+        <div class="hero-image">
+          <img src="/images/woodland-mirror.jpg" alt="Young child reaching toward her reflection in a mirror beside a woodland tree" width="1594" height="2400" decoding="async" fetchpriority="high" />
+        </div>
         <div class="hero-footer" aria-hidden="true">
           <span class="hero-rule"></span>
           <span class="status">Site in progress</span>
@@ -439,33 +681,47 @@
       <section class="shell section" id="work" aria-labelledby="work-title">
         <div class="work-heading">
           <p class="eyebrow">Portfolio</p>
-          <h2 class="section-heading" id="work-title">Selected work</h2>
+          <h2 class="section-heading" id="work-title">Stories</h2>
         </div>
 
         <div class="work-grid">
           <figure class="work-landscape">
             <div class="image-landscape">
-              <img src="/images/siblings-at-home.jpg" alt="Two children running through tall grass beside a house" width="1800" height="1200" />
+              <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
             </div>
-            <figcaption class="caption"><span>Placeholder image</span><span>01</span></figcaption>
           </figure>
 
           <figure class="work-portrait">
             <div class="image-portrait">
-              <img src="/images/kitchen-morning.jpg" alt="A parent and young child sitting together on a kitchen floor" width="1440" height="1800" />
+              <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
             </div>
-            <figcaption class="caption"><span>Placeholder image</span><span>02</span></figcaption>
+          </figure>
+
+          <figure class="work-portrait-secondary">
+            <div class="image-portrait">
+              <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            </div>
+          </figure>
+
+          <figure class="work-portrait-tertiary">
+            <div class="image-portrait">
+              <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            </div>
           </figure>
         </div>
       </section>
 
       <section class="about" id="about" aria-labelledby="about-title">
         <div class="shell about-grid">
-          <p class="about-mark" aria-hidden="true">&amp;</p>
+          <p class="about-mark" aria-hidden="true">
+            <span class="about-mark-s">S</span>
+            <span class="about-mark-amp">&amp;</span>
+            <span class="about-mark-w">W</span>
+          </p>
           <div class="about-copy">
             <p class="eyebrow">About</p>
-            <h2 class="section-heading" id="about-title">A place for an introduction.</h2>
-            <p class="about-text">A short note about Shy &amp; Wild can go here.</p>
+            <h2 class="section-heading" id="about-title">The best pictures.</h2>
+            <p class="about-text">They aren’t always the ones where everyone is looking at the camera. The best photos come in those real, shy, and wild moments.</p>
           </div>
         </div>
       </section>
@@ -477,8 +733,11 @@
             <h2 class="section-heading" id="contact-title">Start here.</h2>
           </div>
           <div class="contact-copy">
-            <p class="contact-text">Booking information will go here.</p>
-            <span class="contact-placeholder">Contact details coming soon</span>
+            <p class="contact-text">For bookings and questions, get in touch.</p>
+            <div class="contact-links" aria-label="Contact links">
+              <a class="contact-link" href="mailto:contact@shyandwild.com"><span>Email</span><span>contact@shyandwild.com</span></a>
+              <a class="contact-link" href="https://www.facebook.com/profile.php?id=61593374291630" aria-label="Shy and Wild Photography on Facebook"><span>Facebook</span><span>View profile</span></a>
+            </div>
           </div>
         </div>
       </section>
@@ -486,7 +745,7 @@
 
     <footer class="site-footer">
       <div class="shell footer-inner">
-        <p class="footer-wordmark">Shy &amp; Wild Photography</p>
+        <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
         <p class="footer-meta">Site in progress</p>
       </div>
     </footer>

@@ -4,9 +4,9 @@ A tiny, production-ready starting point for the Shy & Wild photography website.
 
 ## Change the page
 
-Open `index.html`. The public site is intentionally a minimal holding page so its owner can decide what the finished portfolio becomes.
+Open `index.html`. The public site includes a responsive navigation, homepage hero, selected-work layout, About section, and Contact section. The copy stays intentionally neutral so its owner can decide what the finished portfolio becomes.
 
-The supplied visual system is documented in `DESIGN-SYSTEM.md`. Photographs can be added under `public/images` when they are ready.
+The supplied visual system is documented in `DESIGN-SYSTEM.md`. The photographs under `public/images` are replaceable placeholders, not client work.
 
 ## Preview it
 

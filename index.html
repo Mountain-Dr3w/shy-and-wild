@@ -7,109 +7,285 @@
     <title>Shy & Wild Photography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet" />
     <style>
       :root {
         color-scheme: dark;
         --walnut: #1a130e;
+        --bark: #241a11;
         --sepia: #3a2d21;
         --umber: #8a7a64;
         --paper: #efe5d3;
+        --warm: #cbbca3;
+        --page-width: 1360px;
+        --page-gutter: clamp(20px, 4.5vw, 64px);
         background: var(--walnut);
         color: var(--paper);
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
 
       body {
         margin: 0;
+        min-width: 320px;
         min-height: 100dvh;
-        overflow: hidden;
+        overflow-x: hidden;
         background: var(--walnut);
+        color: var(--warm);
+        font-family: "Newsreader", Georgia, serif;
         -webkit-font-smoothing: antialiased;
       }
 
       body::after {
         position: fixed;
+        z-index: 10;
         inset: -50%;
         pointer-events: none;
         content: "";
-        opacity: 0.05;
+        opacity: 0.04;
         mix-blend-mode: soft-light;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
         animation: grain 900ms steps(1) infinite;
       }
 
-      .page {
-        width: min(100%, 1360px);
-        min-height: 100dvh;
+      a { color: inherit; }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(14%) saturate(92%) contrast(102%);
+      }
+
+      .shell {
+        width: min(100%, var(--page-width));
         margin: 0 auto;
-        padding: 32px 64px 40px;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
+        padding-inline: var(--page-gutter);
       }
 
-      header,
-      footer {
+      .site-header { position: relative; z-index: 20; }
+
+      .header-inner {
+        min-height: 96px;
         display: flex;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
+        gap: 32px;
+        border-bottom: 1px solid var(--sepia);
       }
 
-      header {
-        padding-bottom: 24px;
-        border-bottom: 2px solid var(--sepia);
+      .wordmark {
+        color: var(--paper);
+        font: 500 24px/1 "Newsreader", Georgia, serif;
+        letter-spacing: -0.02em;
+        text-decoration: none;
       }
 
-      h1 {
+      .wordmark em { font-weight: 300; }
+
+      .nav-list {
         margin: 0;
-        font: 500 21px/1 "Newsreader", Georgia, serif;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: clamp(24px, 3vw, 48px);
+        list-style: none;
       }
 
-      h1 em {
-        font-weight: 400;
-      }
-
-      .label {
-        margin: 0;
+      .nav-list a,
+      .menu-toggle,
+      .eyebrow,
+      .caption,
+      .status,
+      .footer-meta {
         color: var(--umber);
-        font: 400 12px/1.6 "Archivo", system-ui, sans-serif;
+        font: 400 11px/1.4 "Archivo", system-ui, sans-serif;
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
-      main {
+      .nav-list a {
+        padding-block: 10px;
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+
+      .nav-list a:hover,
+      .nav-list a:focus-visible { color: var(--paper); }
+      .mobile-menu { display: none; }
+
+      .hero {
+        min-height: min(790px, calc(100dvh - 96px));
+        padding-block: clamp(72px, 11vw, 150px) 56px;
         display: grid;
-        place-items: center;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: auto 1fr auto;
+        column-gap: 28px;
+        border-bottom: 1px solid var(--sepia);
       }
 
-      .mark {
-        width: min(52vw, 440px);
-        text-align: center;
+      .hero .eyebrow { grid-column: 1 / 4; }
+
+      .hero-title {
+        grid-column: 1 / 11;
+        align-self: center;
+        margin: 36px 0 48px;
+        color: var(--paper);
+        font: 300 clamp(76px, 13vw, 186px) / 0.76 "Newsreader", Georgia, serif;
+        letter-spacing: -0.065em;
       }
 
-      .ampersand {
-        display: block;
-        font: 300 italic clamp(180px, 34vw, 420px) / 0.82 "Newsreader", Georgia, serif;
+      .hero-title span { display: block; }
+
+      .hero-title em {
+        margin-left: 0.43em;
+        font-weight: 300;
       }
 
-      .rule {
-        display: block;
-        width: 100%;
-        height: 6px;
-        margin-top: 44px;
-        background: var(--sepia);
+      .hero-mark {
+        grid-column: 11 / 13;
+        grid-row: 2;
+        align-self: center;
+        margin: 0;
+        color: var(--paper);
+        text-align: right;
+        font: 300 italic clamp(100px, 13vw, 190px) / 0.8 "Newsreader", Georgia, serif;
       }
 
-      footer {
-        padding-top: 24px;
+      .hero-footer {
+        grid-column: 1 / 13;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .hero-rule { flex: 1; height: 5px; background: var(--sepia); }
+      .section { padding-block: clamp(88px, 11vw, 150px); }
+
+      .section-heading {
+        margin: 0;
+        color: var(--paper);
+        font: 300 clamp(52px, 7vw, 96px) / 0.95 "Newsreader", Georgia, serif;
+        letter-spacing: -0.045em;
+      }
+
+      .work-heading {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        margin-bottom: clamp(48px, 7vw, 96px);
+      }
+
+      .work-heading .eyebrow { grid-column: 1 / 4; padding-top: 13px; }
+      .work-heading .section-heading { grid-column: 5 / 13; }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: clamp(48px, 7vw, 96px) 28px;
+        align-items: start;
+      }
+
+      figure { margin: 0; }
+      .work-landscape { grid-column: 1 / 9; }
+
+      .work-portrait {
+        grid-column: 9 / 13;
+        margin-top: clamp(88px, 12vw, 170px);
+      }
+
+      .image-landscape,
+      .image-portrait { overflow: hidden; background: var(--bark); }
+      .image-landscape { aspect-ratio: 16 / 10; }
+      .image-portrait { aspect-ratio: 3 / 4; }
+
+      .caption {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .caption span:last-child { text-align: right; }
+
+      .about {
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .about-grid {
+        min-height: 560px;
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        align-items: center;
+      }
+
+      .about-mark {
+        grid-column: 1 / 5;
+        margin: 0;
+        color: var(--sepia);
+        font: 300 italic clamp(180px, 24vw, 340px) / 0.75 "Newsreader", Georgia, serif;
+      }
+
+      .about-copy { grid-column: 7 / 13; }
+      .about .section-heading { color: var(--walnut); }
+
+      .about-text {
+        max-width: 510px;
+        margin: 40px 0 0;
+        font: 300 clamp(25px, 3vw, 38px) / 1.18 "Newsreader", Georgia, serif;
+        letter-spacing: -0.02em;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        align-items: end;
+      }
+
+      .contact-title { grid-column: 1 / 8; }
+      .contact-copy { grid-column: 9 / 13; padding-bottom: 7px; }
+
+      .contact-text {
+        margin: 24px 0 0;
+        color: var(--warm);
+        font: 300 25px/1.28 "Newsreader", Georgia, serif;
+      }
+
+      .contact-placeholder {
+        display: inline-block;
+        margin-top: 32px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--umber);
+        color: var(--umber);
+        font: 400 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .site-footer { padding-block: 28px 40px; }
+
+      .footer-inner {
+        min-height: 64px;
+        padding-top: 28px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
         border-top: 1px solid var(--sepia);
       }
+
+      .footer-wordmark {
+        margin: 0;
+        color: var(--paper);
+        font: 400 20px/1 "Newsreader", Georgia, serif;
+      }
+
+      :focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
 
       @keyframes grain {
         0%, 100% { transform: translate3d(0, 0, 0); }
@@ -118,45 +294,201 @@
         75% { transform: translate3d(1%, 3%, 0); }
       }
 
-      @media (max-width: 700px) {
-        .page {
-          padding: 28px 20px 32px;
+      @media (max-width: 760px) {
+        .desktop-nav { display: none; }
+        .header-inner { min-height: 80px; }
+        .mobile-menu { display: block; }
+
+        .menu-toggle {
+          cursor: pointer;
+          list-style: none;
         }
 
-        .mark {
-          width: min(76vw, 360px);
+        .menu-toggle::-webkit-details-marker { display: none; }
+        .menu-toggle::after { content: " +"; }
+        .mobile-menu[open] .menu-toggle::after { content: " −"; }
+
+        .mobile-menu .nav-list {
+          position: absolute;
+          top: 80px;
+          left: var(--page-gutter);
+          right: var(--page-gutter);
+          padding: 24px 0 32px;
+          display: grid;
+          gap: 4px;
+          border-bottom: 1px solid var(--sepia);
+          background: var(--walnut);
         }
 
-        .rule {
-          height: 4px;
-          margin-top: 28px;
+        .mobile-menu .nav-list a {
+          display: block;
+          padding-block: 11px;
+          color: var(--paper);
+          font-size: 14px;
+        }
+
+        .hero {
+          min-height: calc(100dvh - 80px);
+          padding-block: 72px 32px;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 16px;
+        }
+
+        .hero .eyebrow { grid-column: 1 / 4; }
+
+        .hero-title {
+          grid-column: 1 / 5;
+          margin-block: 48px;
+          font-size: clamp(70px, 25vw, 108px);
+          line-height: 0.8;
+        }
+
+        .hero-title em { margin-left: 0.18em; }
+        .hero-mark { display: none; }
+        .hero-footer { grid-column: 1 / 5; }
+        .hero-rule { height: 4px; }
+
+        .work-heading,
+        .work-grid,
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 16px;
+        }
+
+        .work-heading .eyebrow,
+        .work-heading .section-heading,
+        .work-landscape,
+        .work-portrait,
+        .about-copy,
+        .contact-title,
+        .contact-copy { grid-column: 1 / 5; }
+
+        .work-heading .section-heading { margin-top: 32px; }
+
+        .work-portrait {
+          width: 78%;
+          margin: 16px 0 0 auto;
+        }
+
+        .about-grid { min-height: auto; padding-block: 96px; }
+
+        .about-mark {
+          grid-column: 1 / 5;
+          margin-bottom: 72px;
+          font-size: 190px;
+        }
+
+        .about-text { margin-top: 28px; }
+        .contact-copy { margin-top: 56px; }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        body::after {
-          animation: none;
-        }
+        html { scroll-behavior: auto; }
+        body::after { animation: none; }
       }
     </style>
   </head>
-  <body>
-    <div class="page">
-      <header>
-        <h1>Shy <em>&amp;</em> Wild</h1>
-        <p class="label">Photography</p>
-      </header>
+  <body id="home">
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home">Shy <em>&amp;</em> Wild</a>
 
-      <main aria-label="Shy and Wild Photography">
-        <div class="mark" aria-hidden="true">
-          <span class="ampersand">&amp;</span>
-          <span class="rule"></span>
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <details class="mobile-menu">
+          <summary class="menu-toggle">Menu</summary>
+          <nav aria-label="Mobile navigation">
+            <ul class="nav-list">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#work">Work</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main>
+      <section class="shell hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Photography</p>
+        <h1 class="hero-title" id="hero-title">
+          <span>Shy</span>
+          <span><em>&amp;</em> Wild</span>
+        </h1>
+        <p class="hero-mark" aria-hidden="true">&amp;</p>
+        <div class="hero-footer" aria-hidden="true">
+          <span class="hero-rule"></span>
+          <span class="status">Site in progress</span>
         </div>
-      </main>
+      </section>
 
-      <footer>
-        <p class="label">Site in progress</p>
-      </footer>
-    </div>
+      <section class="shell section" id="work" aria-labelledby="work-title">
+        <div class="work-heading">
+          <p class="eyebrow">Portfolio</p>
+          <h2 class="section-heading" id="work-title">Selected work</h2>
+        </div>
+
+        <div class="work-grid">
+          <figure class="work-landscape">
+            <div class="image-landscape">
+              <img src="/images/siblings-at-home.jpg" alt="Two children running through tall grass beside a house" width="1800" height="1200" />
+            </div>
+            <figcaption class="caption"><span>Placeholder image</span><span>01</span></figcaption>
+          </figure>
+
+          <figure class="work-portrait">
+            <div class="image-portrait">
+              <img src="/images/kitchen-morning.jpg" alt="A parent and young child sitting together on a kitchen floor" width="1440" height="1800" />
+            </div>
+            <figcaption class="caption"><span>Placeholder image</span><span>02</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="shell about-grid">
+          <p class="about-mark" aria-hidden="true">&amp;</p>
+          <div class="about-copy">
+            <p class="eyebrow">About</p>
+            <h2 class="section-heading" id="about-title">A place for an introduction.</h2>
+            <p class="about-text">A short note about Shy &amp; Wild can go here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-grid">
+          <div class="contact-title">
+            <p class="eyebrow">Contact</p>
+            <h2 class="section-heading" id="contact-title">Start here.</h2>
+          </div>
+          <div class="contact-copy">
+            <p class="contact-text">Booking information will go here.</p>
+            <span class="contact-placeholder">Contact details coming soon</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p class="footer-wordmark">Shy &amp; Wild Photography</p>
+        <p class="footer-meta">Site in progress</p>
+      </div>
+    </footer>
   </body>
 </html>

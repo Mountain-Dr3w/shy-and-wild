@@ -6,12 +6,12 @@ This is the working contract extracted from the supplied style-sheet export. It 
 
 - Walnut `#1A130E`: primary page background.
 - Bark `#241A11`: secondary dark surface.
-- Sepia `#3A2D21`: rules and underlines.
+- Sepia `#3A2D21`: rules, underlines, and the approved primary accent.
 - Umber `#8A7A64`: captions and annotations.
 - Paper `#EFE5D3`: primary type and the single inverted surface allowed per page.
 - Warm body `#CBBCA3`: long-form copy on walnut.
-- Bottle `#3D5245`: default accent, used once per screen.
-- Approved alternate accents: amber `#C87A2E` and oxblood `#7C2B22`.
+- Bottle green from the source export is retired from the public palette.
+- Amber `#C87A2E` and oxblood `#7C2B22` remain reference options only; neither is active by default.
 
 ## Type
 

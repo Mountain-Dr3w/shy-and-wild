@@ -6,6 +6,7 @@ ENV PORT=3000
 WORKDIR /app
 
 COPY --chown=node:node package.json server.mjs index.html ./
+COPY --chown=node:node public ./public
 
 USER node
 EXPOSE 3000

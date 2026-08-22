@@ -3,39 +3,557 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Shy & Wild Photography" />
-    <title>Shy & Wild Photography</title>
+    <meta
+      name="description"
+      content="Shy & Wild photographs children and families as they are, at home."
+    />
+    <title>Shy & Wild — Children & family photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        color-scheme: light;
-        font-family: Georgia, "Times New Roman", serif;
-        background: #f3efe7;
-        color: #292c25;
+        color-scheme: dark;
+        --walnut: #1a130e;
+        --bark: #241a11;
+        --sepia: #3a2d21;
+        --umber: #8a7a64;
+        --paper: #efe5d3;
+        --body: #cbbca3;
+        --soft-paper: #dccfb8;
+        --bottle: #3d5245;
+        background: var(--walnut);
+        color: var(--paper);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        min-height: 100dvh;
+        overflow-x: hidden;
+        background: var(--walnut);
+        font-family: "Newsreader", Georgia, serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::after {
+        position: fixed;
+        inset: -50%;
+        z-index: 10;
+        pointer-events: none;
+        content: "";
+        opacity: 0.05;
+        mix-blend-mode: soft-light;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        animation: grain 900ms steps(1) infinite;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        filter: sepia(14%) saturate(92%) contrast(102%);
+      }
+
+      .page-shell {
+        width: min(100%, 1360px);
+        margin: 0 auto;
+        padding-inline: 64px;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        padding-block: 32px 24px;
+        border-bottom: 2px solid var(--sepia);
+      }
+
+      .brand {
+        font-size: 21px;
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .brand em {
+        font-weight: 400;
+      }
+
+      nav {
+        display: flex;
+        gap: 28px;
+      }
+
+      nav a,
+      .eyebrow,
+      figcaption,
+      .detail-label,
+      .button,
+      .footer-meta {
+        font: 400 12px/1.6 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      nav a {
+        padding-block: 4px;
+        color: var(--umber);
+        border-bottom: 1px solid transparent;
+        transition: color 240ms ease, border-color 240ms ease;
+      }
+
+      nav a:hover,
+      nav a:focus-visible {
+        color: var(--paper);
+        border-bottom-color: var(--bottle);
+      }
+
+      .hero {
+        min-height: calc(100dvh - 82px);
         display: grid;
-        place-items: center;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 28px;
+        align-items: center;
+        padding-block: 72px 120px;
       }
 
-      main {
-        padding: 2rem;
-        text-align: center;
+      .hero-copy {
+        grid-column: 2 / span 5;
+        grid-row: 1;
+        position: relative;
+        z-index: 1;
       }
 
+      .eyebrow {
+        margin: 0 0 28px;
+        color: var(--umber);
+      }
+
+      h1,
+      h2,
       p {
-        margin: 0.5rem 0 0;
-        color: #65705d;
-        font-family: system-ui, sans-serif;
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 40px;
+        font-size: clamp(72px, 9.2vw, 126px);
+        font-weight: 200;
+        line-height: 0.92;
+        letter-spacing: -0.015em;
+      }
+
+      h1 em,
+      h2 em {
+        font-weight: 300;
+      }
+
+      .lead {
+        max-width: 34ch;
+        margin-bottom: 0;
+        color: var(--soft-paper);
+        font-size: clamp(22px, 2.25vw, 30px);
+        font-weight: 300;
+        line-height: 1.45;
+      }
+
+      .hero-figure {
+        grid-column: 7 / -1;
+        grid-row: 1;
+        margin: 64px -64px 0 -28px;
+      }
+
+      .hero-figure img {
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      figcaption {
+        margin-top: 14px;
+        color: var(--umber);
+      }
+
+      .paper-section {
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .paper-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 28px;
+        align-items: center;
+        padding-block: 150px;
+      }
+
+      .paper-copy {
+        grid-column: 7 / span 5;
+      }
+
+      .paper-copy .eyebrow,
+      .paper-section figcaption {
+        color: #6d5d4c;
+      }
+
+      h2 {
+        margin-bottom: 32px;
+        font-size: clamp(52px, 6vw, 78px);
+        font-weight: 200;
+        line-height: 1.02;
+        letter-spacing: -0.01em;
+      }
+
+      .body-copy {
+        max-width: 52ch;
+        margin-bottom: 0;
+        color: #5a4634;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .portrait-figure {
+        grid-column: 2 / span 4;
+        margin: 0;
+      }
+
+      .portrait-figure img {
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+      }
+
+      .sessions,
+      .contact {
+        padding-block: 150px;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 48px;
+        align-items: end;
+        margin: 0 8.333% 72px;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+      }
+
+      .section-heading p {
+        margin: 0;
+        color: var(--body);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .session-list {
+        margin-inline: 8.333%;
+        border-top: 1px solid var(--sepia);
+      }
+
+      .session-row {
+        display: grid;
+        grid-template-columns: 1fr 0.8fr 120px;
+        gap: 28px;
+        align-items: baseline;
+        padding-block: 28px;
+        border-bottom: 1px solid var(--sepia);
+        transition: color 240ms ease;
+      }
+
+      .session-row:hover {
+        color: #a7b8aa;
+      }
+
+      .session-name {
+        font-size: clamp(30px, 3.4vw, 44px);
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .session-aside {
+        color: var(--umber);
+        font-size: 19px;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 1.3;
+      }
+
+      .session-time {
+        color: var(--umber);
+        font: 400 12px/1.6 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.12em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 28px;
+        border-top: 1px solid var(--sepia);
+      }
+
+      .contact-copy {
+        grid-column: 2 / span 7;
+      }
+
+      .contact-copy p {
+        max-width: 42ch;
+        margin-bottom: 40px;
+        color: var(--body);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 20px 52px;
+        background: var(--paper);
+        color: var(--bark);
+        transition: background 240ms ease, color 240ms ease, transform 120ms ease;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        background: var(--bottle);
+        color: var(--paper);
+      }
+
+      .button:active {
+        transform: translateY(1px);
+      }
+
+      .button[aria-disabled="true"] {
+        cursor: default;
+      }
+
+      .button[aria-disabled="true"]:hover {
+        background: var(--paper);
+        color: var(--bark);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-block: 28px 40px;
+        border-top: 1px solid var(--sepia);
+      }
+
+      .footer-mark {
+        font-size: 64px;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .footer-meta {
+        color: var(--umber);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--bottle);
+        outline-offset: 4px;
+      }
+
+      ::selection {
+        background: var(--bottle);
+        color: var(--paper);
+      }
+
+      @keyframes grain {
+        0%, 100% { transform: translate3d(0, 0, 0); }
+        25% { transform: translate3d(2%, -2%, 0); }
+        50% { transform: translate3d(-3%, 1%, 0); }
+        75% { transform: translate3d(1%, 3%, 0); }
+      }
+
+      @media (max-width: 800px) {
+        .page-shell {
+          padding-inline: 20px;
+        }
+
+        .site-header {
+          padding-top: 24px;
+        }
+
+        nav {
+          gap: 14px;
+        }
+
+        nav a:nth-child(2) {
+          display: none;
+        }
+
+        .hero {
+          display: block;
+          min-height: auto;
+          padding-block: 72px 88px;
+        }
+
+        .hero-copy {
+          position: relative;
+          z-index: 1;
+        }
+
+        h1 {
+          font-size: clamp(66px, 21vw, 96px);
+        }
+
+        .hero-figure {
+          margin: 64px -20px 0 28px;
+        }
+
+        .paper-grid {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: stretch;
+          padding-block: 88px;
+        }
+
+        .portrait-figure {
+          width: 84%;
+          margin-top: 48px;
+        }
+
+        .sessions,
+        .contact {
+          padding-block: 96px;
+        }
+
+        .section-heading {
+          display: block;
+          margin: 0 0 48px;
+        }
+
+        .section-heading p {
+          margin-top: 24px;
+        }
+
+        .session-list {
+          margin: 0;
+        }
+
+        .session-row {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .session-time {
+          text-align: left;
+        }
+
+        .contact {
+          display: block;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        body::after {
+          animation: none;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Hello, world.</h1>
-      <p>Shy & Wild Photography is getting ready.</p>
+    <header class="site-header page-shell">
+      <a class="brand" href="#top" aria-label="Shy and Wild home">Shy <em>&amp;</em> Wild</a>
+      <nav aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#sessions">Sessions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero page-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Children &amp; family photography</p>
+          <h1 id="hero-title">The ones who will not <em>sit still.</em></h1>
+          <p class="lead">An hour at your house. The children do what they do.</p>
+        </div>
+        <figure class="hero-figure">
+          <img
+            src="/images/siblings-at-home.jpg"
+            alt="Two children running through long grass beside a weathered house"
+            width="1800"
+            height="1200"
+          />
+          <figcaption>Sample frame — replace in public/images</figcaption>
+        </figure>
+      </section>
+
+      <section class="paper-section" id="work" aria-labelledby="work-title">
+        <div class="paper-grid page-shell">
+          <figure class="portrait-figure">
+            <img
+              src="/images/kitchen-morning.jpg"
+              alt="A parent and toddler sitting together on a worn kitchen floor"
+              width="1440"
+              height="1800"
+              loading="lazy"
+            />
+            <figcaption>Sample frame — replace in public/images</figcaption>
+          </figure>
+          <div class="paper-copy">
+            <p class="eyebrow">The work</p>
+            <h2 id="work-title">Photographs you can <em>hold.</em></h2>
+            <p class="body-copy">
+              The site is scaffolded and ready for real photographs, names, and stories. Replace the two sample images and edit this copy directly in index.html.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sessions page-shell" id="sessions" aria-labelledby="sessions-title">
+        <div class="section-heading">
+          <h2 id="sessions-title">A place for the <em>practical things.</em></h2>
+          <p>These rows are ready for session names, prices, timing, or whatever needs explaining.</p>
+        </div>
+        <div class="session-list">
+          <div class="session-row">
+            <span class="session-name">Children, at home</span>
+            <span class="session-aside">no directions, no matching clothes</span>
+            <span class="session-time">About an hour</span>
+          </div>
+          <div class="session-row">
+            <span class="session-name">A new baby</span>
+            <span class="session-aside">the house as it is</span>
+            <span class="session-time">Slow morning</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact page-shell" id="contact" aria-labelledby="contact-title">
+        <div class="contact-copy">
+          <p class="eyebrow">Next frame</p>
+          <h2 id="contact-title">The site is up. The rest can come <em>when it is ready.</em></h2>
+          <p>Add the real contact address to this button when it is time to hear from families.</p>
+          <span class="button" aria-disabled="true">Contact coming soon</span>
+        </div>
+      </section>
     </main>
+
+    <footer class="page-shell">
+      <span class="footer-mark" aria-hidden="true">&amp;</span>
+      <span class="footer-meta">Shy &amp; Wild — starter site</span>
+    </footer>
   </body>
 </html>

@@ -1,14 +1,51 @@
 import { createReadStream } from "node:fs";
+import { stat } from "node:fs/promises";
 import { createServer } from "node:http";
+import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const port = Number.parseInt(process.env.PORT ?? "3000", 10);
 const indexPath = fileURLToPath(new URL("./index.html", import.meta.url));
+const publicPath = fileURLToPath(new URL("./public", import.meta.url));
 
-const server = createServer((request, response) => {
+const contentTypes = {
+  ".jpg": "image/jpeg",
+  ".png": "image/png",
+  ".svg": "image/svg+xml",
+  ".webp": "image/webp",
+};
+
+const server = createServer(async (request, response) => {
   if (request.url === "/health") {
     response.writeHead(200, { "content-type": "application/json; charset=utf-8" });
     response.end(JSON.stringify({ status: "ok" }));
+    return;
+  }
+
+  if (request.url?.startsWith("/images/")) {
+    const assetPath = resolve(publicPath, `.${decodeURIComponent(request.url)}`);
+
+    if (!assetPath.startsWith(`${publicPath}/`)) {
+      response.writeHead(400, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Invalid path");
+      return;
+    }
+
+    try {
+      const assetStat = await stat(assetPath);
+      if (!assetStat.isFile()) throw new Error("Not a file");
+    } catch {
+      response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Not found");
+      return;
+    }
+
+    const contentType = contentTypes[extname(assetPath)] ?? "application/octet-stream";
+    response.writeHead(200, {
+      "content-type": contentType,
+      "cache-control": "public, max-age=31536000, immutable",
+    });
+    createReadStream(assetPath).pipe(response);
     return;
   }
 

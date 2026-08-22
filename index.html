@@ -101,9 +101,7 @@
 
       .nav-list a,
       .menu-toggle,
-      .eyebrow,
-      .status,
-      .footer-meta {
+      .eyebrow {
         color: var(--umber);
         font: 400 11px/1.4 "Archivo", system-ui, sans-serif;
         letter-spacing: 0.16em;
@@ -213,14 +211,6 @@
 
       .hero-image img { object-position: 50% 48%; }
 
-      .hero-footer {
-        grid-column: 1 / 13;
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
-
-      .hero-rule { flex: 1; height: 5px; background: var(--sepia); }
       .section { padding-block: clamp(88px, 11vw, 150px); }
 
       .section-heading {
@@ -383,8 +373,6 @@
         padding-top: 28px;
         display: flex;
         align-items: flex-end;
-        justify-content: space-between;
-        gap: 32px;
         border-top: 1px solid var(--sepia);
       }
 
@@ -480,9 +468,6 @@
           aspect-ratio: 4 / 3;
         }
 
-        .hero-footer { grid-column: 1 / 5; grid-row: 4; }
-        .hero-rule { height: 4px; }
-
         .work-heading,
         .work-grid,
         .about-grid,
@@ -530,10 +515,6 @@
         .about-text { margin-top: 28px; }
         .contact-copy { margin-top: 56px; }
 
-        .footer-inner {
-          align-items: flex-start;
-          flex-direction: column;
-        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -672,10 +653,6 @@
         <div class="hero-image">
           <img src="/images/woodland-mirror.jpg" alt="Young child reaching toward her reflection in a mirror beside a woodland tree" width="1594" height="2400" decoding="async" fetchpriority="high" />
         </div>
-        <div class="hero-footer" aria-hidden="true">
-          <span class="hero-rule"></span>
-          <span class="status">Site in progress</span>
-        </div>
       </section>
 
       <section class="shell section" id="work" aria-labelledby="work-title">
@@ -746,7 +723,6 @@
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
-        <p class="footer-meta">Site in progress</p>
       </div>
     </footer>
   </body>

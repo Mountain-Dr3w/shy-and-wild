@@ -3,11 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Shy & Wild photographs children and families as they are, at home."
-    />
-    <title>Shy & Wild — Children & family photography</title>
+    <meta name="description" content="Shy & Wild Photography" />
+    <title>Shy & Wild Photography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,12 +15,9 @@
       :root {
         color-scheme: dark;
         --walnut: #1a130e;
-        --bark: #241a11;
         --sepia: #3a2d21;
         --umber: #8a7a64;
         --paper: #efe5d3;
-        --body: #cbbca3;
-        --soft-paper: #dccfb8;
         --bottle: #3d5245;
         background: var(--walnut);
         color: var(--paper);
@@ -33,22 +27,17 @@
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         margin: 0;
-        overflow-x: hidden;
+        min-height: 100dvh;
+        overflow: hidden;
         background: var(--walnut);
-        font-family: "Newsreader", Georgia, serif;
         -webkit-font-smoothing: antialiased;
       }
 
       body::after {
         position: fixed;
         inset: -50%;
-        z-index: 10;
         pointer-events: none;
         content: "";
         opacity: 0.05;
@@ -57,321 +46,70 @@
         animation: grain 900ms steps(1) infinite;
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      img {
-        display: block;
-        width: 100%;
-        filter: sepia(14%) saturate(92%) contrast(102%);
-      }
-
-      .page-shell {
+      .page {
         width: min(100%, 1360px);
+        min-height: 100dvh;
         margin: 0 auto;
-        padding-inline: 64px;
+        padding: 32px 64px 40px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
       }
 
-      .site-header {
+      header,
+      footer {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        padding-block: 32px 24px;
+      }
+
+      header {
+        padding-bottom: 24px;
         border-bottom: 2px solid var(--sepia);
       }
 
-      .brand {
-        font-size: 21px;
-        font-weight: 500;
-        line-height: 1;
+      h1 {
+        margin: 0;
+        font: 500 21px/1 "Newsreader", Georgia, serif;
       }
 
-      .brand em {
+      h1 em {
         font-weight: 400;
       }
 
-      nav {
-        display: flex;
-        gap: 28px;
-      }
-
-      nav a,
-      .eyebrow,
-      figcaption,
-      .detail-label,
-      .button,
-      .footer-meta {
+      .label {
+        margin: 0;
+        color: var(--umber);
         font: 400 12px/1.6 "Archivo", system-ui, sans-serif;
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
 
-      nav a {
-        padding-block: 4px;
-        color: var(--umber);
-        border-bottom: 1px solid transparent;
-        transition: color 240ms ease, border-color 240ms ease;
-      }
-
-      nav a:hover,
-      nav a:focus-visible {
-        color: var(--paper);
-        border-bottom-color: var(--bottle);
-      }
-
-      .hero {
-        min-height: calc(100dvh - 82px);
+      main {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 28px;
-        align-items: center;
-        padding-block: 72px 120px;
+        place-items: center;
       }
 
-      .hero-copy {
-        grid-column: 2 / span 5;
-        grid-row: 1;
-        position: relative;
-        z-index: 1;
+      .mark {
+        width: min(52vw, 440px);
+        text-align: center;
       }
 
-      .eyebrow {
-        margin: 0 0 28px;
-        color: var(--umber);
+      .ampersand {
+        display: block;
+        font: 300 italic clamp(180px, 34vw, 420px) / 0.82 "Newsreader", Georgia, serif;
       }
 
-      h1,
-      h2,
-      p {
-        margin-top: 0;
-      }
-
-      h1 {
-        margin-bottom: 40px;
-        font-size: clamp(72px, 9.2vw, 126px);
-        font-weight: 200;
-        line-height: 0.92;
-        letter-spacing: -0.015em;
-      }
-
-      h1 em,
-      h2 em {
-        font-weight: 300;
-      }
-
-      .lead {
-        max-width: 34ch;
-        margin-bottom: 0;
-        color: var(--soft-paper);
-        font-size: clamp(22px, 2.25vw, 30px);
-        font-weight: 300;
-        line-height: 1.45;
-      }
-
-      .hero-figure {
-        grid-column: 7 / -1;
-        grid-row: 1;
-        margin: 64px -64px 0 -28px;
-      }
-
-      .hero-figure img {
-        aspect-ratio: 3 / 2;
-        object-fit: cover;
-      }
-
-      figcaption {
-        margin-top: 14px;
-        color: var(--umber);
-      }
-
-      .paper-section {
-        background: var(--paper);
-        color: var(--walnut);
-      }
-
-      .paper-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 28px;
-        align-items: center;
-        padding-block: 150px;
-      }
-
-      .paper-copy {
-        grid-column: 7 / span 5;
-      }
-
-      .paper-copy .eyebrow,
-      .paper-section figcaption {
-        color: #6d5d4c;
-      }
-
-      h2 {
-        margin-bottom: 32px;
-        font-size: clamp(52px, 6vw, 78px);
-        font-weight: 200;
-        line-height: 1.02;
-        letter-spacing: -0.01em;
-      }
-
-      .body-copy {
-        max-width: 52ch;
-        margin-bottom: 0;
-        color: #5a4634;
-        font-size: 18px;
-        line-height: 1.7;
-      }
-
-      .portrait-figure {
-        grid-column: 2 / span 4;
-        margin: 0;
-      }
-
-      .portrait-figure img {
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-      }
-
-      .sessions,
-      .contact {
-        padding-block: 150px;
-      }
-
-      .section-heading {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 48px;
-        align-items: end;
-        margin: 0 8.333% 72px;
-      }
-
-      .section-heading h2 {
-        margin: 0;
-      }
-
-      .section-heading p {
-        margin: 0;
-        color: var(--body);
-        font-size: 18px;
-        line-height: 1.7;
-      }
-
-      .session-list {
-        margin-inline: 8.333%;
-        border-top: 1px solid var(--sepia);
-      }
-
-      .session-row {
-        display: grid;
-        grid-template-columns: 1fr 0.8fr 120px;
-        gap: 28px;
-        align-items: baseline;
-        padding-block: 28px;
-        border-bottom: 1px solid var(--sepia);
-        transition: color 240ms ease;
-      }
-
-      .session-row:hover {
-        color: #a7b8aa;
-      }
-
-      .session-name {
-        font-size: clamp(30px, 3.4vw, 44px);
-        font-weight: 300;
-        line-height: 1;
-      }
-
-      .session-aside {
-        color: var(--umber);
-        font-size: 19px;
-        font-style: italic;
-        font-weight: 300;
-        line-height: 1.3;
-      }
-
-      .session-time {
-        color: var(--umber);
-        font: 400 12px/1.6 "Archivo", system-ui, sans-serif;
-        letter-spacing: 0.12em;
-        text-align: right;
-        text-transform: uppercase;
-      }
-
-      .contact {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 28px;
-        border-top: 1px solid var(--sepia);
-      }
-
-      .contact-copy {
-        grid-column: 2 / span 7;
-      }
-
-      .contact-copy p {
-        max-width: 42ch;
-        margin-bottom: 40px;
-        color: var(--body);
-        font-size: 18px;
-        line-height: 1.7;
-      }
-
-      .button {
-        display: inline-block;
-        padding: 20px 52px;
-        background: var(--paper);
-        color: var(--bark);
-        transition: background 240ms ease, color 240ms ease, transform 120ms ease;
-      }
-
-      .button:hover,
-      .button:focus-visible {
+      .rule {
+        display: block;
+        width: 100%;
+        height: 6px;
+        margin-top: 44px;
         background: var(--bottle);
-        color: var(--paper);
-      }
-
-      .button:active {
-        transform: translateY(1px);
-      }
-
-      .button[aria-disabled="true"] {
-        cursor: default;
-      }
-
-      .button[aria-disabled="true"]:hover {
-        background: var(--paper);
-        color: var(--bark);
       }
 
       footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        padding-block: 28px 40px;
+        padding-top: 24px;
         border-top: 1px solid var(--sepia);
-      }
-
-      .footer-mark {
-        font-size: 64px;
-        font-style: italic;
-        font-weight: 300;
-        line-height: 1;
-      }
-
-      .footer-meta {
-        color: var(--umber);
-      }
-
-      :focus-visible {
-        outline: 2px solid var(--bottle);
-        outline-offset: 4px;
-      }
-
-      ::selection {
-        background: var(--bottle);
-        color: var(--paper);
       }
 
       @keyframes grain {
@@ -381,91 +119,22 @@
         75% { transform: translate3d(1%, 3%, 0); }
       }
 
-      @media (max-width: 800px) {
-        .page-shell {
-          padding-inline: 20px;
+      @media (max-width: 700px) {
+        .page {
+          padding: 28px 20px 32px;
         }
 
-        .site-header {
-          padding-top: 24px;
+        .mark {
+          width: min(76vw, 360px);
         }
 
-        nav {
-          gap: 14px;
-        }
-
-        nav a:nth-child(2) {
-          display: none;
-        }
-
-        .hero {
-          display: block;
-          min-height: auto;
-          padding-block: 72px 88px;
-        }
-
-        .hero-copy {
-          position: relative;
-          z-index: 1;
-        }
-
-        h1 {
-          font-size: clamp(66px, 21vw, 96px);
-        }
-
-        .hero-figure {
-          margin: 64px -20px 0 28px;
-        }
-
-        .paper-grid {
-          display: flex;
-          flex-direction: column-reverse;
-          align-items: stretch;
-          padding-block: 88px;
-        }
-
-        .portrait-figure {
-          width: 84%;
-          margin-top: 48px;
-        }
-
-        .sessions,
-        .contact {
-          padding-block: 96px;
-        }
-
-        .section-heading {
-          display: block;
-          margin: 0 0 48px;
-        }
-
-        .section-heading p {
-          margin-top: 24px;
-        }
-
-        .session-list {
-          margin: 0;
-        }
-
-        .session-row {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-
-        .session-time {
-          text-align: left;
-        }
-
-        .contact {
-          display: block;
+        .rule {
+          height: 4px;
+          margin-top: 28px;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
         body::after {
           animation: none;
         }
@@ -473,87 +142,22 @@
     </style>
   </head>
   <body>
-    <header class="site-header page-shell">
-      <a class="brand" href="#top" aria-label="Shy and Wild home">Shy <em>&amp;</em> Wild</a>
-      <nav aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#sessions">Sessions</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    <div class="page">
+      <header>
+        <h1>Shy <em>&amp;</em> Wild</h1>
+        <p class="label">Photography</p>
+      </header>
 
-    <main id="top">
-      <section class="hero page-shell" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Children &amp; family photography</p>
-          <h1 id="hero-title">Nothing to <em>perform.</em></h1>
-          <p class="lead">I come to your house for an hour. The children keep playing. I make the photographs.</p>
+      <main aria-label="Shy and Wild Photography">
+        <div class="mark" aria-hidden="true">
+          <span class="ampersand">&amp;</span>
+          <span class="rule"></span>
         </div>
-        <figure class="hero-figure">
-          <img
-            src="/images/siblings-at-home.jpg"
-            alt="Two children running through long grass beside a weathered house"
-            width="1800"
-            height="1200"
-          />
-          <figcaption>Sample image — not client work</figcaption>
-        </figure>
-      </section>
+      </main>
 
-      <section class="paper-section" id="work" aria-labelledby="work-title">
-        <div class="paper-grid page-shell">
-          <figure class="portrait-figure">
-            <img
-              src="/images/kitchen-morning.jpg"
-              alt="A parent and toddler sitting together on a worn kitchen floor"
-              width="1440"
-              height="1800"
-              loading="lazy"
-            />
-            <figcaption>Sample image — not client work</figcaption>
-          </figure>
-          <div class="paper-copy">
-            <p class="eyebrow">At home</p>
-            <h2 id="work-title">The house is part of the <em>photograph.</em></h2>
-            <p class="body-copy">
-              The half-finished breakfast, the favorite blanket, the hallway they run down every morning. I photograph the details that belong to this part of your life.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="sessions page-shell" id="sessions" aria-labelledby="sessions-title">
-        <div class="section-heading">
-          <h2 id="sessions-title">You do not have to get everyone <em>ready.</em></h2>
-          <p>Sessions happen at home and last about an hour. No directions, no matching clothes, no need for a clean house.</p>
-        </div>
-        <div class="session-list">
-          <div class="session-row">
-            <span class="session-name">Children, at home</span>
-            <span class="session-aside">whatever they were already doing</span>
-            <span class="session-time">About an hour</span>
-          </div>
-          <div class="session-row">
-            <span class="session-name">A new baby</span>
-            <span class="session-aside">feedings, pacing, the house as it is</span>
-            <span class="session-time">Slow morning</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact page-shell" id="contact" aria-labelledby="contact-title">
-        <div class="contact-copy">
-          <p class="eyebrow">Next frame</p>
-          <h2 id="contact-title">Bookings will open <em>here.</em></h2>
-          <p>When they do, send the names, ages, where you live, and anything the children cannot stop talking about.</p>
-          <span class="button" aria-disabled="true">Bookings coming soon</span>
-        </div>
-      </section>
-    </main>
-
-    <footer class="page-shell">
-      <span class="footer-mark" aria-hidden="true">&amp;</span>
-      <span class="footer-meta">Children &amp; family photography</span>
-    </footer>
+      <footer>
+        <p class="label">Site in progress</p>
+      </footer>
+    </div>
   </body>
 </html>

@@ -4,9 +4,9 @@ A tiny, production-ready starting point for the Shy & Wild photography website.
 
 ## Change the page
 
-Open `index.html`. All visible copy and layout live in that one file. Replace the two starter photographs in `public/images` while keeping the filenames, or change the image paths in `index.html`.
+Open `index.html`. The public site is intentionally a minimal holding page so its owner can decide what the finished portfolio becomes.
 
-The current photographs are AI-generated samples made for this scaffold. Replace them with the photographer's work before treating the site as a finished portfolio.
+The supplied visual system is documented in `DESIGN-SYSTEM.md`. Photographs can be added under `public/images` when they are ready.
 
 ## Preview it
 

@@ -65,7 +65,18 @@
         padding-inline: var(--page-gutter);
       }
 
-      .site-header { position: relative; z-index: 20; }
+      .site-header {
+        position: sticky;
+        z-index: 20;
+        top: 0;
+        background: rgba(26, 19, 14, 0.94);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      #work,
+      #about,
+      #contact { scroll-margin-top: 96px; }
 
       .header-inner {
         min-height: 96px;
@@ -226,13 +237,8 @@
       }
 
       .work-heading .eyebrow {
-        margin: 0 0 12px;
+        margin: 0;
         color: var(--paper);
-      }
-
-      .work-heading .section-heading {
-        color: var(--paper);
-        font-size: clamp(52px, 7vw, 96px);
       }
 
       .work-stream {
@@ -387,16 +393,11 @@
       }
 
       .about-copy { grid-column: 7 / 13; }
-      .about .section-heading {
-        color: var(--walnut);
-        font-size: clamp(42px, 5vw, 64px);
-        line-height: 1;
-      }
 
       .about-text {
         max-width: 510px;
-        margin: 40px 0 0;
-        font: 300 clamp(25px, 3vw, 38px) / 1.18 "Newsreader", Georgia, serif;
+        margin: 0;
+        font: 300 clamp(28px, 3.2vw, 42px) / 1.18 "Newsreader", Georgia, serif;
         letter-spacing: -0.02em;
       }
 
@@ -550,8 +551,6 @@
           left: var(--page-gutter);
         }
 
-        .work-heading .eyebrow { margin-bottom: 8px; }
-        .work-heading .section-heading { font-size: clamp(48px, 16vw, 68px); }
         .work-stream { height: clamp(430px, 72svh, 660px); }
         .work-controls {
           right: var(--page-gutter);
@@ -571,8 +570,10 @@
           font-size: 132px;
         }
 
-        .about-text { margin-top: 28px; }
         .contact-copy { margin-top: 56px; }
+        #work,
+        #about,
+        #contact { scroll-margin-top: 80px; }
 
       }
 
@@ -714,8 +715,7 @@
 
       <section class="work-section" id="work" aria-labelledby="work-title">
         <div class="work-heading">
-          <p class="eyebrow">Portfolio</p>
-          <h2 class="section-heading" id="work-title">Stories</h2>
+          <p class="eyebrow" id="work-title">Stories</p>
         </div>
 
         <div class="work-controls" aria-label="Story navigation">
@@ -763,7 +763,7 @@
         </div>
       </section>
 
-      <section class="about" id="about" aria-labelledby="about-title">
+      <section class="about" id="about" aria-label="About Shyanna and Shy &amp; Wild">
         <div class="shell about-grid">
           <p class="about-mark" aria-hidden="true">
             <span class="about-mark-s">S</span>
@@ -771,9 +771,7 @@
             <span class="about-mark-w">W</span>
           </p>
           <div class="about-copy">
-            <p class="eyebrow">About</p>
-            <h2 class="section-heading" id="about-title">The best pictures.</h2>
-            <p class="about-text">They aren’t always the ones where everyone is looking at the camera. The best photos come in those real, shy, and wild moments.</p>
+            <p class="about-text">hi, I’m Shyanna and this is Shy &amp; Wild. I believe the best photos aren’t always the ones where everyone is looking at the camera. The best photos come in the in-between moments. The full of laughter, tender, shy, and wild moments.</p>
           </div>
         </div>
       </section>

@@ -220,45 +220,134 @@
         letter-spacing: -0.045em;
       }
 
+      .work-section {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        background: var(--walnut);
+        overflow: hidden;
+      }
+
       .work-heading {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        gap: 28px;
-        margin-bottom: clamp(48px, 7vw, 96px);
+        position: absolute;
+        z-index: 2;
+        top: clamp(34px, 5vw, 72px);
+        left: var(--page-gutter);
+        margin: 0;
+        color: var(--paper);
+        text-shadow: 0 2px 24px rgba(26, 19, 14, 0.72);
       }
 
-      .work-heading .eyebrow { grid-column: 1 / 4; padding-top: 13px; }
-      .work-heading .section-heading { grid-column: 5 / 13; }
-
-      .work-grid {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        gap: clamp(48px, 7vw, 96px) 28px;
-        align-items: start;
+      .work-heading .eyebrow {
+        margin: 0 0 12px;
+        color: var(--paper);
       }
+
+      .work-heading .section-heading {
+        color: var(--paper);
+        font-size: clamp(52px, 7vw, 96px);
+      }
+
+      .work-stream {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        height: clamp(560px, 78svh, 880px);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-inline: contain;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .work-stream::-webkit-scrollbar { display: none; }
 
       figure { margin: 0; }
-      .work-landscape { grid-column: 1 / 9; }
 
-      .work-portrait {
-        grid-column: 9 / 13;
-        margin-top: clamp(88px, 12vw, 170px);
+      .work-frame {
+        position: relative;
+        flex: 0 0 auto;
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+        line-height: 0;
+        background: var(--bark);
+        scroll-snap-align: start;
       }
 
-      .work-portrait-secondary {
-        grid-column: 3 / 8;
-        margin-top: clamp(-28px, -2vw, -12px);
+      .work-frame:first-child::after {
+        position: absolute;
+        inset: 0 0 auto;
+        height: min(42%, 360px);
+        pointer-events: none;
+        content: "";
+        background: linear-gradient(to bottom, rgba(26, 19, 14, 0.68), transparent);
       }
 
-      .work-portrait-tertiary {
-        grid-column: 8 / 13;
-        margin-top: clamp(96px, 13vw, 180px);
+      .work-frame img {
+        display: block;
+        width: auto;
+        height: 100%;
+        max-width: none;
+        object-fit: cover;
       }
 
-      .image-landscape,
-      .image-portrait { overflow: hidden; background: var(--bark); }
-      .image-landscape { aspect-ratio: 16 / 10; }
-      .image-portrait { aspect-ratio: 3 / 4; }
+      .work-controls {
+        position: absolute;
+        z-index: 3;
+        right: var(--page-gutter);
+        bottom: clamp(24px, 4vw, 54px);
+        display: flex;
+        gap: 10px;
+      }
+
+      .work-arrow {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        place-items: center;
+        border: 1px solid rgba(244, 237, 220, 0.52);
+        border-radius: 50%;
+        color: var(--paper);
+        background: rgba(26, 19, 14, 0.5);
+        box-shadow: 0 8px 28px rgba(15, 10, 7, 0.2);
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, opacity 180ms ease;
+      }
+
+      .work-arrow:hover {
+        border-color: var(--paper);
+        background: rgba(26, 19, 14, 0.76);
+        transform: translateY(-2px);
+      }
+
+      .work-arrow:focus-visible {
+        outline: 2px solid var(--paper);
+        outline-offset: 3px;
+      }
+
+      .work-arrow:disabled {
+        opacity: 0;
+        cursor: default;
+        pointer-events: none;
+        transform: none;
+      }
+
+      .work-arrow svg {
+        width: 21px;
+        height: 21px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5;
+      }
 
       .about {
         background: var(--paper);
@@ -468,39 +557,31 @@
           aspect-ratio: 4 / 3;
         }
 
-        .work-heading,
-        .work-grid,
         .about-grid,
         .contact-grid {
           grid-template-columns: repeat(4, minmax(0, 1fr));
           column-gap: 16px;
         }
 
-        .work-heading .eyebrow,
-        .work-heading .section-heading,
-        .work-landscape,
-        .work-portrait,
-        .work-portrait-secondary,
-        .work-portrait-tertiary,
         .about-copy,
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
 
-        .work-heading .section-heading { margin-top: 32px; }
-
-        .work-portrait {
-          width: 78%;
-          margin: 16px 0 0 auto;
+        .work-heading {
+          top: 28px;
+          left: var(--page-gutter);
         }
 
-        .work-portrait-secondary {
-          width: 78%;
-          margin: 0 auto 0 0;
+        .work-heading .eyebrow { margin-bottom: 8px; }
+        .work-heading .section-heading { font-size: clamp(48px, 16vw, 68px); }
+        .work-stream { height: clamp(430px, 72svh, 660px); }
+        .work-controls {
+          right: var(--page-gutter);
+          bottom: 20px;
         }
-
-        .work-portrait-tertiary {
-          width: 82%;
-          margin: 32px 0 0 auto;
+        .work-arrow {
+          width: 46px;
+          height: 46px;
         }
 
         .about-grid { min-height: auto; padding-block: 96px; }
@@ -519,6 +600,7 @@
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
+        .work-stream { scroll-behavior: auto; }
         body::after { animation: none; }
       }
     </style>
@@ -655,35 +737,56 @@
         </div>
       </section>
 
-      <section class="shell section" id="work" aria-labelledby="work-title">
+      <section class="work-section" id="work" aria-labelledby="work-title">
         <div class="work-heading">
           <p class="eyebrow">Portfolio</p>
           <h2 class="section-heading" id="work-title">Stories</h2>
         </div>
 
-        <div class="work-grid">
-          <figure class="work-landscape">
-            <div class="image-landscape">
-              <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
-            </div>
+        <div class="work-controls" aria-label="Story navigation">
+          <button class="work-arrow" type="button" data-work-direction="previous" aria-label="Previous story image">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" /></svg>
+          </button>
+          <button class="work-arrow" type="button" data-work-direction="next" aria-label="Next story image">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" /></svg>
+          </button>
+        </div>
+
+        <div class="work-stream" role="region" aria-label="Stories photo filmstrip" tabindex="0">
+          <figure class="work-frame">
+            <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="lazy" decoding="async" />
           </figure>
 
-          <figure class="work-portrait">
-            <div class="image-portrait">
-              <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
-            </div>
+          <figure class="work-frame">
+            <img src="/images/hands-portrait.jpg" alt="Close portrait of a couple holding hands" width="1602" height="2400" loading="lazy" decoding="async" />
           </figure>
 
-          <figure class="work-portrait-secondary">
-            <div class="image-portrait">
-              <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
-            </div>
+          <figure class="work-frame">
+            <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
           </figure>
 
-          <figure class="work-portrait-tertiary">
-            <div class="image-portrait">
-              <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
-            </div>
+          <figure class="work-frame">
+            <img src="/images/chapel-portrait.jpg" alt="Couple standing in the doorway of a woodland stone chapel" width="1602" height="2400" loading="lazy" decoding="async" />
+          </figure>
+
+          <figure class="work-frame">
+            <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
+          </figure>
+
+          <figure class="work-frame">
+            <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
+          </figure>
+
+          <figure class="work-frame">
+            <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+          </figure>
+
+          <figure class="work-frame">
+            <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+          </figure>
+
+          <figure class="work-frame">
+            <img src="/images/woodland-mirror.jpg" alt="Young child reaching toward her reflection in a mirror beside a woodland tree" width="1594" height="2400" loading="lazy" decoding="async" />
           </figure>
         </div>
       </section>
@@ -725,5 +828,50 @@
         <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
       </div>
     </footer>
+    <script>
+      const workStream = document.querySelector(".work-stream");
+      const workFrames = Array.from(document.querySelectorAll(".work-frame"));
+      const previousWork = document.querySelector('[data-work-direction="previous"]');
+      const nextWork = document.querySelector('[data-work-direction="next"]');
+
+      const updateWorkArrows = () => {
+        const maxScroll = workStream.scrollWidth - workStream.clientWidth;
+        previousWork.disabled = workStream.scrollLeft <= 2;
+        nextWork.disabled = workStream.scrollLeft >= maxScroll - 2;
+      };
+
+      const moveWork = (direction) => {
+        const currentLeft = workStream.scrollLeft;
+        const frameOffsets = workFrames.map((frame) => frame.offsetLeft);
+        let targetIndex;
+
+        if (direction > 0) {
+          targetIndex = frameOffsets.findIndex((offset) => offset > currentLeft + 4);
+          if (targetIndex === -1) targetIndex = workFrames.length - 1;
+        } else {
+          targetIndex = 0;
+          for (let index = frameOffsets.length - 1; index >= 0; index -= 1) {
+            if (frameOffsets[index] < currentLeft - 4) {
+              targetIndex = index;
+              break;
+            }
+          }
+        }
+
+        workStream.scrollTo({ left: frameOffsets[targetIndex], behavior: "smooth" });
+      };
+
+      previousWork.addEventListener("click", () => moveWork(-1));
+      nextWork.addEventListener("click", () => moveWork(1));
+      workStream.addEventListener("scroll", updateWorkArrows, { passive: true });
+      workStream.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          moveWork(event.key === "ArrowRight" ? 1 : -1);
+        }
+      });
+      window.addEventListener("resize", updateWorkArrows);
+      updateWorkArrows();
+    </script>
   </body>
 </html>

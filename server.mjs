@@ -5,6 +5,7 @@ import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const port = Number.parseInt(process.env.PORT ?? "3000", 10);
+const modulePath = fileURLToPath(import.meta.url);
 const indexPath = fileURLToPath(new URL("./index.html", import.meta.url));
 const publicPath = fileURLToPath(new URL("./public", import.meta.url));
 
@@ -15,15 +16,39 @@ const contentTypes = {
   ".webp": "image/webp",
 };
 
-const server = createServer(async (request, response) => {
-  if (request.url === "/health") {
+export function createAppServer() {
+  return createServer(handleRequest);
+}
+
+async function handleRequest(request, response) {
+  let pathname;
+
+  try {
+    pathname = new URL(request.url ?? "/", "http://localhost").pathname;
+  } catch {
+    response.writeHead(400, { "content-type": "text/plain; charset=utf-8" });
+    response.end("Invalid URL");
+    return;
+  }
+
+  if (pathname === "/health") {
     response.writeHead(200, { "content-type": "application/json; charset=utf-8" });
     response.end(JSON.stringify({ status: "ok" }));
     return;
   }
 
-  if (request.url?.startsWith("/images/")) {
-    const assetPath = resolve(publicPath, `.${decodeURIComponent(request.url)}`);
+  if (pathname.startsWith("/images/")) {
+    let decodedPathname;
+
+    try {
+      decodedPathname = decodeURIComponent(pathname);
+    } catch {
+      response.writeHead(400, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Invalid path");
+      return;
+    }
+
+    const assetPath = resolve(publicPath, `.${decodedPathname}`);
 
     if (!assetPath.startsWith(`${publicPath}/`)) {
       response.writeHead(400, { "content-type": "text/plain; charset=utf-8" });
@@ -49,7 +74,7 @@ const server = createServer(async (request, response) => {
     return;
   }
 
-  if (request.url !== "/" && request.url !== "/index.html") {
+  if (pathname !== "/" && pathname !== "/index.html") {
     response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
     response.end("Not found");
     return;
@@ -60,15 +85,19 @@ const server = createServer(async (request, response) => {
     "cache-control": "no-cache",
   });
   createReadStream(indexPath).pipe(response);
-});
-
-server.listen(port, "0.0.0.0", () => {
-  console.log(`Shy & Wild is listening on port ${port}`);
-});
-
-function shutdown() {
-  server.close(() => process.exit(0));
 }
 
-process.on("SIGTERM", shutdown);
-process.on("SIGINT", shutdown);
+if (resolve(process.argv[1] ?? "") === modulePath) {
+  const server = createAppServer();
+
+  server.listen(port, "0.0.0.0", () => {
+    console.log(`Shy & Wild is listening on port ${port}`);
+  });
+
+  function shutdown() {
+    server.close(() => process.exit(0));
+  }
+
+  process.on("SIGTERM", shutdown);
+  process.on("SIGINT", shutdown);
+}

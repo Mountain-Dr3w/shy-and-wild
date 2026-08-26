@@ -12,13 +12,16 @@
     <meta property="og:title" content="Dickson TN Portrait Photographer | Shy & Wild Photography" />
     <meta property="og:description" content="Honest, story-driven portrait photography in Dickson and across Middle Tennessee." />
     <meta property="og:url" content="https://shyandwild.com/" />
-    <meta property="og:image" content="https://shyandwild.com/images/woodland-couple.jpg" />
-    <meta property="og:image:alt" content="A couple standing together in a green woodland clearing" />
+    <meta property="og:image" content="https://shyandwild.com/images/social-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Shy & Wild Photography, portraits and stories in Dickson, Tennessee" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dickson TN Portrait Photographer | Shy & Wild Photography" />
     <meta name="twitter:description" content="Honest, story-driven portrait photography in Dickson and across Middle Tennessee." />
-    <meta name="twitter:image" content="https://shyandwild.com/images/woodland-couple.jpg" />
+    <meta name="twitter:image" content="https://shyandwild.com/images/social-share.jpg" />
     <title>Dickson TN Portrait Photographer | Shy &amp; Wild</title>
+    <script>document.documentElement.classList.add("reveal-ready");</script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -156,6 +159,21 @@
       }
 
       body.lightbox-open { overflow: hidden; }
+      body.menu-open { overflow: hidden; }
+
+      .skip-link {
+        position: fixed;
+        z-index: 100;
+        top: 12px;
+        left: 12px;
+        padding: 12px 16px;
+        color: var(--walnut);
+        background: var(--paper);
+        font: 500 12px/1.2 "Archivo", system-ui, sans-serif;
+        transform: translateY(-160%);
+      }
+
+      .skip-link:focus { transform: translateY(0); }
 
       body::after {
         position: fixed;
@@ -274,6 +292,8 @@
       .nav-list a:hover,
       .nav-list a:focus-visible { color: var(--paper); }
 
+      .nav-list a[aria-current="location"] { color: var(--paper); }
+
       .nav-list .booking-link {
         padding: 11px 17px;
         border: 1px solid rgba(239, 229, 211, 0.58);
@@ -377,6 +397,29 @@
         font: 300 clamp(52px, 7vw, 96px) / 0.95 "Newsreader", Georgia, serif;
         letter-spacing: -0.045em;
       }
+
+      main > section:not(.hero) { position: relative; }
+      main > section:not(.hero)::before {
+        position: absolute;
+        z-index: 2;
+        top: -4px;
+        left: 50%;
+        width: 7px;
+        height: 7px;
+        border: 1px solid currentColor;
+        color: var(--umber);
+        background: inherit;
+        content: "";
+        transform: translateX(-50%) rotate(45deg);
+      }
+
+      .reveal-ready [data-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
 
       .mini-session {
         padding-block: clamp(72px, 9vw, 124px);
@@ -533,8 +576,9 @@
       }
 
       .work-stream {
-        column-count: 2;
-        column-gap: clamp(16px, 2.2vw, 32px);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(16px, 2.2vw, 32px);
         margin: 0;
         padding: 0;
       }
@@ -544,13 +588,15 @@
       .work-frame {
         position: relative;
         width: 100%;
-        margin: 0 0 clamp(16px, 2.2vw, 32px);
+        margin: 0;
         overflow: hidden;
         line-height: 0;
         background: var(--bark);
         break-inside: avoid;
         cursor: zoom-in;
       }
+
+      .work-frame-wide { grid-column: 1 / -1; }
 
       .work-frame:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
       .work-frame picture { display: block; }
@@ -706,6 +752,8 @@
         align-items: start;
       }
 
+      .testimonial-list { grid-column: 6 / 13; display: grid; gap: 36px; }
+
       .testimonial-label { grid-column: 1 / 4; }
 
       .testimonial-label .eyebrow {
@@ -714,8 +762,9 @@
       }
 
       .testimonial-quote {
-        grid-column: 6 / 13;
         margin: 0;
+        padding-bottom: 36px;
+        border-bottom: 1px solid rgba(58, 45, 33, 0.28);
       }
 
       .testimonial-text {
@@ -830,6 +879,15 @@
         font-variant-caps: all-small-caps;
         font-feature-settings: "smcp" 1, "c2sc" 1;
         letter-spacing: 0.2em;
+      }
+
+      .footer-link {
+        margin-left: auto;
+        color: var(--umber);
+        font: 400 10px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
       }
 
       :focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
@@ -954,6 +1012,7 @@
         .services-heading,
         .services-copy,
         .testimonial-label,
+        .testimonial-list,
         .testimonial-quote,
         .faq-heading,
         .faq-list,
@@ -973,7 +1032,8 @@
         .service-number { margin-bottom: 32px; }
 
         .work-section { padding-block: 80px; }
-        .work-stream { column-count: 1; column-gap: 0; }
+        .work-stream { grid-template-columns: 1fr; }
+        .work-frame-wide { grid-column: 1; }
 
         .about-grid { min-height: auto; padding-block: 96px; }
 
@@ -999,10 +1059,12 @@
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
         body::after { animation: none; }
+        .reveal-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
       }
     </style>
   </head>
   <body id="home">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <aside class="announcement" aria-label="Current promotion">
       <a class="announcement-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener" data-track="fall_mini_booking"><span>Fall mini sessions · September 26</span><span>Book now</span></a>
     </aside>
@@ -1038,7 +1100,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="shell hero" aria-labelledby="hero-title">
         <div class="hero-decoration hero-wildflowers" aria-hidden="true">
           <svg viewBox="0 0 420 560" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1147,7 +1209,7 @@
               <img src="/images/fall-mini-sessions.jpg" alt="Fall mini sessions at Montgomery Bell State Park on September 26: 15 minutes, five images, $75" width="1600" height="1068" loading="eager" decoding="async" />
             </picture>
           </figure>
-          <div class="mini-details">
+          <div class="mini-details" data-reveal>
             <p class="eyebrow">Limited seasonal sessions</p>
             <h2 class="mini-title" id="fall-minis-title">Fall minis are booking now.</h2>
             <ul class="mini-meta">
@@ -1164,7 +1226,7 @@
 
       <section class="services section" id="services" aria-labelledby="services-title">
         <div class="shell">
-          <div class="services-intro">
+          <div class="services-intro" data-reveal>
             <div class="services-heading">
               <p class="eyebrow">Portrait sessions</p>
               <h2 class="section-heading" id="services-title">Photographs that feel like you.</h2>
@@ -1173,20 +1235,23 @@
           </div>
 
           <div class="service-list" aria-label="Photography services">
-            <article class="service-item">
+            <article class="service-item" data-reveal>
               <p class="service-number">01</p>
               <h3 class="service-title">Families</h3>
               <p class="service-description">The closeness, laughter, movement, and little details that tell the story of the season your family is in right now.</p>
+              <a class="contact-link" href="/family-photography"><span>Explore families</span><span>View service</span></a>
             </article>
-            <article class="service-item">
+            <article class="service-item" data-reveal>
               <p class="service-number">02</p>
               <h3 class="service-title">Couples</h3>
               <p class="service-description">Relaxed portraits centered on the way you naturally connect—warm, playful, tender, and entirely your own.</p>
+              <a class="contact-link" href="/couples-photography"><span>Explore couples</span><span>View service</span></a>
             </article>
-            <article class="service-item">
+            <article class="service-item" data-reveal>
               <p class="service-number">03</p>
               <h3 class="service-title">Motherhood</h3>
               <p class="service-description">A loving record of the bond, soft gestures, and fleeting everyday moments shared between mother and child.</p>
+              <a class="contact-link" href="/motherhood-photography"><span>Explore motherhood</span><span>View service</span></a>
             </article>
           </div>
 
@@ -1196,90 +1261,90 @@
 
       <section class="work-section" id="work" aria-labelledby="work-title">
         <div class="shell">
-        <div class="work-heading">
+        <div class="work-heading" data-reveal>
           <p class="eyebrow">Selected work</p>
           <h2 class="section-heading" id="work-title">Stories in the in-between.</h2>
         </div>
 
         <div class="work-stream" aria-label="Selected portrait photography">
-          <figure class="work-frame">
+          <figure class="work-frame work-frame-wide" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/woodland-couple-900.webp 900w, /images/woodland-couple-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="eager" fetchpriority="high" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/hands-portrait-900.webp 900w, /images/hands-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/hands-portrait.jpg" alt="Close portrait of a couple holding hands" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/stone-portrait-900.webp 900w, /images/stone-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/chapel-portrait-900.webp 900w, /images/chapel-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/chapel-portrait.jpg" alt="Couple standing in the doorway of a woodland stone chapel" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame work-frame-wide" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/woodland-bubbles-900.webp 900w, /images/woodland-bubbles-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/mother-baby-close-900.webp 900w, /images/mother-baby-close-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-baby-close.jpg" alt="Mother holding her young daughter close in warm evening light" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/mother-baby-horse-900.webp 900w, /images/mother-baby-horse-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-baby-horse.jpg" alt="Mother and young daughter sharing a quiet moment beside a horse" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/mother-lifting-baby-900.webp 900w, /images/mother-lifting-baby-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-lifting-baby.jpg" alt="Mother joyfully lifting her baby into the autumn evening light" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/baby-autumn-field-900.webp 900w, /images/baby-autumn-field-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/baby-autumn-field.jpg" alt="Young child exploring a grassy field in a rust-colored knit outfit" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/woodland-walk-900.webp 900w, /images/woodland-walk-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/woodland-reach-warm-900.webp 900w, /images/woodland-reach-warm-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame">
+          <figure class="work-frame" data-reveal>
             <picture>
               <source type="image/webp" srcset="/images/woodland-together-900.webp 900w, /images/woodland-together-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
@@ -1296,7 +1361,7 @@
             <span class="about-mark-amp">&amp;</span>
             <span class="about-mark-w">W</span>
           </p>
-          <div class="about-copy">
+          <div class="about-copy" data-reveal>
             <p class="about-text">hi, I’m Shyanna and this is Shy &amp; Wild. I believe the best photos aren’t always the ones where everyone is looking at the camera. The best photos come in the in-between moments. The full of laughter, tender, shy, and wild moments.</p>
           </div>
         </div>
@@ -1307,16 +1372,18 @@
           <div class="testimonial-label">
             <p class="eyebrow" id="testimonial-title">Client words</p>
           </div>
-          <blockquote class="testimonial-quote">
-            <p class="testimonial-text">“I have absolutely loved having Shy capture pictures of my daughter Lainey! She has photographed her twice now, and both experiences have been wonderful. She is so patient, sweet, and great at making little ones feel comfortable, and the photos always turn out absolutely beautiful. You can tell how much care she puts into every session, and I’m so thankful to have these memories of my daughter to look back on. I would absolutely recommend her to anyone looking for a talented and personable photographer!”</p>
-            <footer class="testimonial-attribution">Emily</footer>
-          </blockquote>
+          <div class="testimonial-list">
+            <blockquote class="testimonial-quote" data-reveal>
+              <p class="testimonial-text">“I have absolutely loved having Shy capture pictures of my daughter Lainey! She has photographed her twice now, and both experiences have been wonderful. She is so patient, sweet, and great at making little ones feel comfortable, and the photos always turn out absolutely beautiful. You can tell how much care she puts into every session, and I’m so thankful to have these memories of my daughter to look back on. I would absolutely recommend her to anyone looking for a talented and personable photographer!”</p>
+              <footer class="testimonial-attribution">Emily</footer>
+            </blockquote>
+          </div>
         </div>
       </section>
 
       <section class="faq-section" id="faq" aria-labelledby="faq-title">
         <div class="shell faq-grid">
-          <div class="faq-heading">
+          <div class="faq-heading" data-reveal>
             <p class="eyebrow">Good to know</p>
             <h2 class="section-heading" id="faq-title">A few common questions.</h2>
           </div>
@@ -1362,6 +1429,7 @@
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
+        <a class="footer-link" href="/privacy">Privacy</a>
       </div>
     </footer>
 
@@ -1397,6 +1465,67 @@
         if (!trackedLink) return;
         trackEvent(trackedLink.dataset.track, { link_url: trackedLink.href, link_text: trackedLink.innerText.trim() });
       });
+
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const mobileMenuToggle = mobileMenu.querySelector(".menu-toggle");
+
+      const closeMobileMenu = () => {
+        mobileMenu.open = false;
+        document.body.classList.remove("menu-open");
+      };
+
+      mobileMenu.addEventListener("toggle", () => {
+        document.body.classList.toggle("menu-open", mobileMenu.open);
+      });
+      mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileMenu));
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileMenu.open) {
+          closeMobileMenu();
+          mobileMenuToggle.focus();
+        }
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 760 && mobileMenu.open) closeMobileMenu();
+      });
+
+      const navigationLinks = Array.from(document.querySelectorAll('.desktop-nav a[href^="#"], .mobile-menu a[href^="#"]'));
+      const navigationSections = [
+        { id: "home", element: document.querySelector(".hero") },
+        ...["services", "work", "about", "faq", "contact"].map((id) => ({ id, element: document.getElementById(id) })),
+      ];
+
+      const setActiveSection = (id) => {
+        navigationLinks.forEach((link) => {
+          if (link.getAttribute("href") === `#${id}`) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      };
+
+      let navigationUpdateQueued = false;
+      const updateActiveNavigation = () => {
+        const marker = window.scrollY + window.innerHeight * 0.35;
+        let current = "home";
+        navigationSections.forEach(({ id, element }) => {
+          if (element && element.offsetTop <= marker) current = id;
+        });
+        setActiveSection(current);
+        navigationUpdateQueued = false;
+      };
+      window.addEventListener("scroll", () => {
+        if (navigationUpdateQueued) return;
+        navigationUpdateQueued = true;
+        window.requestAnimationFrame(updateActiveNavigation);
+      }, { passive: true });
+      updateActiveNavigation();
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+      document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
 
       const lightbox = document.querySelector(".portfolio-lightbox");
       const lightboxImage = lightbox.querySelector(".lightbox-image");

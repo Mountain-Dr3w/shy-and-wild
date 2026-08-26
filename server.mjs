@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 const port = Number.parseInt(process.env.PORT ?? "3000", 10);
 const modulePath = fileURLToPath(import.meta.url);
 const indexPath = fileURLToPath(new URL("./index.html", import.meta.url));
+const notFoundPath = fileURLToPath(new URL("./404.html", import.meta.url));
 const publicPath = fileURLToPath(new URL("./public", import.meta.url));
 
 const contentTypes = {
@@ -14,7 +15,15 @@ const contentTypes = {
   ".png": "image/png",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
+  ".css": "text/css; charset=utf-8",
 };
+
+const pagePaths = new Map([
+  ["/family-photography", fileURLToPath(new URL("./family.html", import.meta.url))],
+  ["/couples-photography", fileURLToPath(new URL("./couples.html", import.meta.url))],
+  ["/motherhood-photography", fileURLToPath(new URL("./motherhood.html", import.meta.url))],
+  ["/privacy", fileURLToPath(new URL("./privacy.html", import.meta.url))],
+]);
 
 const seoFiles = {
   "/robots.txt": {
@@ -23,7 +32,7 @@ const seoFiles = {
   },
   "/sitemap.xml": {
     contentType: "application/xml; charset=utf-8",
-    body: '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://shyandwild.com/</loc></url>\n</urlset>\n',
+    body: '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://shyandwild.com/</loc></url>\n  <url><loc>https://shyandwild.com/family-photography</loc></url>\n  <url><loc>https://shyandwild.com/couples-photography</loc></url>\n  <url><loc>https://shyandwild.com/motherhood-photography</loc></url>\n  <url><loc>https://shyandwild.com/privacy</loc></url>\n</urlset>\n',
   },
 };
 
@@ -58,7 +67,7 @@ async function handleRequest(request, response) {
     return;
   }
 
-  if (pathname.startsWith("/images/")) {
+  if (pathname.startsWith("/images/") || pathname.startsWith("/styles/")) {
     let decodedPathname;
 
     try {
@@ -89,15 +98,28 @@ async function handleRequest(request, response) {
     const contentType = contentTypes[extname(assetPath)] ?? "application/octet-stream";
     response.writeHead(200, {
       "content-type": contentType,
-      "cache-control": "public, max-age=31536000, immutable",
+      "cache-control": pathname.startsWith("/styles/")
+        ? "no-cache"
+        : "public, max-age=31536000, immutable",
     });
     createReadStream(assetPath).pipe(response);
     return;
   }
 
+  const normalizedPagePath = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+  if (pagePaths.has(normalizedPagePath)) {
+    response.writeHead(200, {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-cache",
+    });
+    createReadStream(pagePaths.get(normalizedPagePath)).pipe(response);
+    return;
+  }
+
   if (pathname !== "/" && pathname !== "/index.html") {
-    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-    response.end("Not found");
+    response.writeHead(404, { "content-type": "text/html; charset=utf-8" });
+    createReadStream(notFoundPath).pipe(response);
     return;
   }
 

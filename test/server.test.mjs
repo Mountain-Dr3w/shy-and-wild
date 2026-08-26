@@ -61,6 +61,7 @@ test("serves crawl directives and a sitemap", async () => {
     assert.equal(sitemapResponse.status, 200);
     assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml/);
     assert.match(await sitemapResponse.text(), /<loc>https:\/\/shyandwild\.com\/<\/loc>/);
+    assert.match(await (await fetch(`${origin}/sitemap.xml`)).text(), /family-photography/);
   });
 });
 
@@ -77,5 +78,23 @@ test("serves responsive portfolio assets and interactive booking features", asyn
     const imageResponse = await fetch(`${origin}/images/woodland-couple-900.webp`);
     assert.equal(imageResponse.status, 200);
     assert.equal(imageResponse.headers.get("content-type"), "image/webp");
+  });
+});
+
+test("serves dedicated service, privacy, and branded not-found pages", async () => {
+  await withServer(async (origin) => {
+    for (const path of ["/family-photography", "/family-photography/", "/couples-photography", "/motherhood-photography", "/privacy"]) {
+      const response = await fetch(`${origin}${path}`);
+      assert.equal(response.status, 200);
+      assert.match(response.headers.get("content-type") ?? "", /^text\/html/);
+    }
+
+    const stylesResponse = await fetch(`${origin}/styles/site-pages.css`);
+    assert.equal(stylesResponse.status, 200);
+    assert.match(stylesResponse.headers.get("content-type") ?? "", /^text\/css/);
+
+    const missingResponse = await fetch(`${origin}/this-page-does-not-exist`);
+    assert.equal(missingResponse.status, 404);
+    assert.match(await missingResponse.text(), /This page wandered off/);
   });
 });

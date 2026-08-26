@@ -49,7 +49,7 @@
         "sameAs": ["https://www.facebook.com/profile.php?id=61593374291630"]
       }
     </script>
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="fall-event-schema">
       {
         "@context": "https://schema.org",
         "@type": "Event",
@@ -114,6 +114,8 @@
         font-family: "Newsreader", Georgia, serif;
         -webkit-font-smoothing: antialiased;
       }
+
+      body.lightbox-open { overflow: hidden; }
 
       body::after {
         position: fixed;
@@ -506,7 +508,11 @@
         line-height: 0;
         background: var(--bark);
         break-inside: avoid;
+        cursor: zoom-in;
       }
+
+      .work-frame:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
+      .work-frame picture { display: block; }
 
       .work-frame img {
         display: block;
@@ -517,6 +523,69 @@
       }
 
       .work-frame:hover img { filter: sepia(8%) saturate(100%) contrast(103%); }
+
+      .portfolio-lightbox {
+        width: 100vw;
+        max-width: none;
+        height: 100dvh;
+        max-height: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        color: var(--paper);
+        background: rgba(15, 10, 7, 0.96);
+      }
+
+      .portfolio-lightbox::backdrop { background: rgba(15, 10, 7, 0.96); }
+
+      .lightbox-layout {
+        width: 100%;
+        height: 100%;
+        padding: clamp(20px, 4vw, 56px);
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 18px;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .lightbox-image {
+        width: auto;
+        max-width: calc(100vw - 120px);
+        height: auto;
+        max-height: calc(100dvh - 130px);
+        object-fit: contain;
+        filter: none;
+      }
+
+      .lightbox-caption {
+        margin: 0;
+        color: var(--warm);
+        font: 300 18px/1.35 "Newsreader", Georgia, serif;
+        text-align: center;
+      }
+
+      .lightbox-button {
+        position: fixed;
+        z-index: 2;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(239, 229, 211, 0.52);
+        border-radius: 50%;
+        color: var(--paper);
+        background: rgba(26, 19, 14, 0.64);
+        font: 300 25px/1 "Newsreader", Georgia, serif;
+        cursor: pointer;
+      }
+
+      .lightbox-close { top: 20px; right: 20px; }
+      .lightbox-previous { top: 50%; left: 20px; transform: translateY(-50%); }
+      .lightbox-next { top: 50%; right: 20px; transform: translateY(-50%); }
+
+      .mobile-booking { display: none; }
 
       .about {
         background: var(--paper);
@@ -686,6 +755,35 @@
           text-align: center;
         }
 
+        body { padding-bottom: 76px; }
+
+        .mobile-booking {
+          position: fixed;
+          z-index: 19;
+          right: 16px;
+          bottom: 14px;
+          left: 16px;
+          min-height: 52px;
+          padding: 14px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid var(--paper);
+          color: var(--walnut);
+          background: var(--paper);
+          box-shadow: 0 10px 30px rgba(15, 10, 7, 0.32);
+          font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
+          letter-spacing: 0.14em;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+
+        .lightbox-layout { padding: 64px 16px 24px; }
+        .lightbox-image { max-width: 100%; max-height: calc(100dvh - 150px); }
+        .lightbox-button { width: 44px; height: 44px; }
+        .lightbox-previous { left: 10px; }
+        .lightbox-next { right: 10px; }
+
         .hero {
           min-height: calc(100dvh - 80px);
           padding-block: 72px 32px;
@@ -771,7 +869,7 @@
   </head>
   <body id="home">
     <aside class="announcement" aria-label="Current promotion">
-      <a class="announcement-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener"><span>Fall mini sessions · September 26</span><span>Book now</span></a>
+      <a class="announcement-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener" data-track="fall_mini_booking"><span>Fall mini sessions · September 26</span><span>Book now</span></a>
     </aside>
 
     <header class="site-header">
@@ -785,7 +883,7 @@
             <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener">Book a session</a></li>
+            <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking">Book a session</a></li>
           </ul>
         </nav>
 
@@ -798,7 +896,7 @@
               <li><a href="#work">Work</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener">Book a session</a></li>
+              <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking">Book a session</a></li>
             </ul>
           </nav>
         </details>
@@ -909,7 +1007,10 @@
       <section class="mini-session" id="fall-minis" aria-labelledby="fall-minis-title">
         <div class="shell mini-grid">
           <figure class="mini-flyer">
-            <img src="/images/fall-mini-sessions.jpg" alt="Fall mini sessions at Montgomery Bell State Park on September 26: 15 minutes, five images, $75" width="1600" height="1068" loading="eager" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/fall-mini-sessions-900.webp 900w, /images/fall-mini-sessions-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 58vw" />
+              <img src="/images/fall-mini-sessions.jpg" alt="Fall mini sessions at Montgomery Bell State Park on September 26: 15 minutes, five images, $75" width="1600" height="1068" loading="eager" decoding="async" />
+            </picture>
           </figure>
           <div class="mini-details">
             <p class="eyebrow">Limited seasonal sessions</p>
@@ -921,7 +1022,7 @@
               <li><span>Gallery</span><span>5 images</span></li>
               <li><span>Price</span><span>$75</span></li>
             </ul>
-            <a class="button-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener">Book on Pixieset</a>
+            <a class="button-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener" data-track="fall_mini_booking">Book on Pixieset</a>
           </div>
         </div>
       </section>
@@ -967,51 +1068,87 @@
 
         <div class="work-stream" aria-label="Selected portrait photography">
           <figure class="work-frame">
-            <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="eager" fetchpriority="high" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/woodland-couple-900.webp 900w, /images/woodland-couple-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="eager" fetchpriority="high" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/hands-portrait.jpg" alt="Close portrait of a couple holding hands" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/hands-portrait-900.webp 900w, /images/hands-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/hands-portrait.jpg" alt="Close portrait of a couple holding hands" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/stone-portrait-900.webp 900w, /images/stone-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/chapel-portrait.jpg" alt="Couple standing in the doorway of a woodland stone chapel" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/chapel-portrait-900.webp 900w, /images/chapel-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/chapel-portrait.jpg" alt="Couple standing in the doorway of a woodland stone chapel" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/woodland-bubbles-900.webp 900w, /images/woodland-bubbles-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/mother-baby-close.jpg" alt="Mother holding her young daughter close in warm evening light" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/mother-baby-close-900.webp 900w, /images/mother-baby-close-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/mother-baby-close.jpg" alt="Mother holding her young daughter close in warm evening light" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/mother-baby-horse.jpg" alt="Mother and young daughter sharing a quiet moment beside a horse" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/mother-baby-horse-900.webp 900w, /images/mother-baby-horse-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/mother-baby-horse.jpg" alt="Mother and young daughter sharing a quiet moment beside a horse" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/mother-lifting-baby.jpg" alt="Mother joyfully lifting her baby into the autumn evening light" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/mother-lifting-baby-900.webp 900w, /images/mother-lifting-baby-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/mother-lifting-baby.jpg" alt="Mother joyfully lifting her baby into the autumn evening light" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/baby-autumn-field.jpg" alt="Young child exploring a grassy field in a rust-colored knit outfit" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/baby-autumn-field-900.webp 900w, /images/baby-autumn-field-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/baby-autumn-field.jpg" alt="Young child exploring a grassy field in a rust-colored knit outfit" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/woodland-walk-900.webp 900w, /images/woodland-walk-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/woodland-reach-warm-900.webp 900w, /images/woodland-reach-warm-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <figure class="work-frame">
-            <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            <picture>
+              <source type="image/webp" srcset="/images/woodland-together-900.webp 900w, /images/woodland-together-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
           </figure>
         </div>
         </div>
@@ -1039,9 +1176,9 @@
           <div class="contact-copy">
             <p class="contact-text">For portrait bookings in Dickson and across Middle Tennessee, get in touch.</p>
             <div class="contact-links" aria-label="Contact links">
-              <a class="contact-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener"><span>Book a session</span><span>View availability</span></a>
-              <a class="contact-link" href="mailto:contact@shyandwild.com"><span>Email</span><span>contact@shyandwild.com</span></a>
-              <a class="contact-link" href="https://www.facebook.com/profile.php?id=61593374291630" aria-label="Shy and Wild Photography on Facebook"><span>Facebook</span><span>View profile</span></a>
+              <a class="contact-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking"><span>Book a session</span><span>View availability</span></a>
+              <a class="contact-link" href="mailto:contact@shyandwild.com" data-track="email_click"><span>Email</span><span>contact@shyandwild.com</span></a>
+              <a class="contact-link" href="https://www.facebook.com/profile.php?id=61593374291630" aria-label="Shy and Wild Photography on Facebook" data-track="facebook_click"><span>Facebook</span><span>View profile</span></a>
             </div>
           </div>
         </div>
@@ -1053,5 +1190,95 @@
         <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
       </div>
     </footer>
+
+    <a class="mobile-booking" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking">Book a session</a>
+
+    <dialog class="portfolio-lightbox" aria-label="Portfolio image viewer">
+      <div class="lightbox-layout">
+        <img class="lightbox-image" alt="" />
+        <p class="lightbox-caption" aria-live="polite"></p>
+      </div>
+      <button class="lightbox-button lightbox-close" type="button" aria-label="Close image viewer">×</button>
+      <button class="lightbox-button lightbox-previous" type="button" aria-label="Previous image">‹</button>
+      <button class="lightbox-button lightbox-next" type="button" aria-label="Next image">›</button>
+    </dialog>
+
+    <script>
+      const fallPromotionEnds = new Date("2026-09-27T00:00:00-05:00");
+
+      if (Date.now() >= fallPromotionEnds.getTime()) {
+        document.querySelector(".announcement")?.remove();
+        document.querySelector("#fall-minis")?.remove();
+        document.querySelector("#fall-event-schema")?.remove();
+      }
+
+      const trackEvent = (name, details = {}) => {
+        window.dispatchEvent(new CustomEvent("site:analytics", { detail: { name, ...details } }));
+        if (typeof window.gtag === "function") {
+          window.gtag("event", name, details);
+        }
+      };
+
+      document.addEventListener("click", (event) => {
+        const trackedLink = event.target.closest("[data-track]");
+        if (!trackedLink) return;
+        trackEvent(trackedLink.dataset.track, { link_url: trackedLink.href, link_text: trackedLink.innerText.trim() });
+      });
+
+      const lightbox = document.querySelector(".portfolio-lightbox");
+      const lightboxImage = lightbox.querySelector(".lightbox-image");
+      const lightboxCaption = lightbox.querySelector(".lightbox-caption");
+      const portfolioFrames = Array.from(document.querySelectorAll(".work-frame"));
+      let activeImageIndex = 0;
+      let lightboxTrigger = null;
+
+      const showPortfolioImage = (index) => {
+        activeImageIndex = (index + portfolioFrames.length) % portfolioFrames.length;
+        const sourceImage = portfolioFrames[activeImageIndex].querySelector("img");
+        lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
+        lightboxImage.alt = sourceImage.alt;
+        lightboxCaption.textContent = sourceImage.alt;
+      };
+
+      const openLightbox = (index, trigger) => {
+        lightboxTrigger = trigger;
+        showPortfolioImage(index);
+        lightbox.showModal();
+        document.body.classList.add("lightbox-open");
+        trackEvent("portfolio_lightbox_open", { image_name: lightboxImage.alt, image_index: index + 1 });
+      };
+
+      const closeLightbox = () => lightbox.close();
+
+      portfolioFrames.forEach((frame, index) => {
+        const description = frame.querySelector("img").alt;
+        frame.tabIndex = 0;
+        frame.setAttribute("role", "button");
+        frame.setAttribute("aria-label", `View larger image: ${description}`);
+        frame.addEventListener("click", () => openLightbox(index, frame));
+        frame.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openLightbox(index, frame);
+          }
+        });
+      });
+
+      lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+      lightbox.querySelector(".lightbox-previous").addEventListener("click", () => showPortfolioImage(activeImageIndex - 1));
+      lightbox.querySelector(".lightbox-next").addEventListener("click", () => showPortfolioImage(activeImageIndex + 1));
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      lightbox.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") showPortfolioImage(activeImageIndex - 1);
+        if (event.key === "ArrowRight") showPortfolioImage(activeImageIndex + 1);
+      });
+      lightbox.addEventListener("close", () => {
+        document.body.classList.remove("lightbox-open");
+        lightboxImage.removeAttribute("src");
+        lightboxTrigger?.focus();
+      });
+    </script>
   </body>
 </html>

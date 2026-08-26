@@ -63,3 +63,19 @@ test("serves crawl directives and a sitemap", async () => {
     assert.match(await sitemapResponse.text(), /<loc>https:\/\/shyandwild\.com\/<\/loc>/);
   });
 });
+
+test("serves responsive portfolio assets and interactive booking features", async () => {
+  await withServer(async (origin) => {
+    const homeResponse = await fetch(origin);
+    const home = await homeResponse.text();
+    assert.match(home, /class="portfolio-lightbox"/);
+    assert.match(home, /class="mobile-booking"/);
+    assert.match(home, /data-track="full_session_booking"/);
+    assert.match(home, /fallPromotionEnds/);
+    assert.match(home, /woodland-couple-900\.webp 900w/);
+
+    const imageResponse = await fetch(`${origin}/images/woodland-couple-900.webp`);
+    assert.equal(imageResponse.status, 200);
+    assert.equal(imageResponse.headers.get("content-type"), "image/webp");
+  });
+});

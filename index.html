@@ -543,8 +543,7 @@
         height: 100%;
         padding: clamp(20px, 4vw, 56px);
         display: grid;
-        grid-template-rows: 1fr auto;
-        gap: 18px;
+        grid-template-rows: 1fr;
         align-items: center;
         justify-items: center;
       }
@@ -556,13 +555,6 @@
         max-height: calc(100dvh - 130px);
         object-fit: contain;
         filter: none;
-      }
-
-      .lightbox-caption {
-        margin: 0;
-        color: var(--warm);
-        font: 300 18px/1.35 "Newsreader", Georgia, serif;
-        text-align: center;
       }
 
       .lightbox-button {
@@ -1196,7 +1188,6 @@
     <dialog class="portfolio-lightbox" aria-label="Portfolio image viewer">
       <div class="lightbox-layout">
         <img class="lightbox-image" alt="" />
-        <p class="lightbox-caption" aria-live="polite"></p>
       </div>
       <button class="lightbox-button lightbox-close" type="button" aria-label="Close image viewer">×</button>
       <button class="lightbox-button lightbox-previous" type="button" aria-label="Previous image">‹</button>
@@ -1227,7 +1218,6 @@
 
       const lightbox = document.querySelector(".portfolio-lightbox");
       const lightboxImage = lightbox.querySelector(".lightbox-image");
-      const lightboxCaption = lightbox.querySelector(".lightbox-caption");
       const portfolioFrames = Array.from(document.querySelectorAll(".work-frame"));
       let activeImageIndex = 0;
       let lightboxTrigger = null;
@@ -1237,7 +1227,6 @@
         const sourceImage = portfolioFrames[activeImageIndex].querySelector("img");
         lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
         lightboxImage.alt = sourceImage.alt;
-        lightboxCaption.textContent = sourceImage.alt;
       };
 
       const openLightbox = (index, trigger) => {

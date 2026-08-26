@@ -49,6 +49,40 @@
         "sameAs": ["https://www.facebook.com/profile.php?id=61593374291630"]
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Shy & Wild Fall Mini Sessions",
+        "description": "A 15-minute fall portrait mini session with five edited images for $75.",
+        "startDate": "2026-09-26",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Montgomery Bell State Park",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "TN",
+            "addressCountry": "US"
+          }
+        },
+        "image": "https://shyandwild.com/images/fall-mini-sessions.jpg",
+        "url": "https://shyandwild.com/#fall-minis",
+        "offers": {
+          "@type": "Offer",
+          "price": "75",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": "https://shyandwild.pixieset.com/booking/fall-minis"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Shy & Wild Photography",
+          "url": "https://shyandwild.com/"
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
@@ -120,8 +154,32 @@
 
       #work,
       #services,
+      #fall-minis,
       #about,
       #contact { scroll-margin-top: 96px; }
+
+      .announcement {
+        position: relative;
+        z-index: 21;
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .announcement-link {
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px var(--page-gutter);
+        font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.13em;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .announcement-link span:last-child { text-decoration: underline; text-underline-offset: 3px; }
 
       .header-inner {
         min-height: 96px;
@@ -262,6 +320,76 @@
         font: 300 clamp(52px, 7vw, 96px) / 0.95 "Newsreader", Georgia, serif;
         letter-spacing: -0.045em;
       }
+
+      .mini-session {
+        padding-block: clamp(72px, 9vw, 124px);
+        background: var(--bark);
+      }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
+        gap: clamp(36px, 6vw, 88px);
+        align-items: center;
+      }
+
+      .mini-flyer {
+        margin: 0;
+        border: 1px solid var(--sepia);
+        background: var(--walnut);
+      }
+
+      .mini-flyer img { width: 100%; height: auto; object-fit: contain; }
+
+      .mini-details .eyebrow { margin: 0 0 16px; }
+
+      .mini-title {
+        margin: 0;
+        color: var(--paper);
+        font: 300 clamp(48px, 6vw, 78px) / 0.95 "Newsreader", Georgia, serif;
+        letter-spacing: -0.045em;
+      }
+
+      .mini-meta {
+        margin: 32px 0 0;
+        padding: 0;
+        border-top: 1px solid var(--sepia);
+        list-style: none;
+      }
+
+      .mini-meta li {
+        padding-block: 15px;
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        border-bottom: 1px solid var(--sepia);
+        font: 400 12px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .mini-meta span:first-child { color: var(--umber); }
+      .mini-meta span:last-child { color: var(--paper); text-align: right; }
+
+      .button-link {
+        min-height: 54px;
+        margin-top: 32px;
+        padding: 16px 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--paper);
+        color: var(--walnut);
+        background: var(--paper);
+        font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 160ms ease, background-color 160ms ease;
+      }
+
+      .button-link:hover,
+      .button-link:focus-visible { color: var(--paper); background: transparent; }
 
       .services {
         background: var(--paper);
@@ -584,6 +712,8 @@
         .contact-copy { grid-column: 1 / 5; }
 
         .services-copy { margin-top: 36px; }
+        .mini-grid { grid-template-columns: 1fr; }
+        .mini-details { order: -1; }
         .service-list { grid-template-columns: 1fr; }
         .service-item { min-height: 0; padding-inline: 0; }
         .service-item + .service-item {
@@ -607,6 +737,7 @@
         .contact-copy { margin-top: 56px; }
         #work,
         #services,
+        #fall-minis,
         #about,
         #contact { scroll-margin-top: 80px; }
 
@@ -619,6 +750,10 @@
     </style>
   </head>
   <body id="home">
+    <aside class="announcement" aria-label="Current promotion">
+      <a class="announcement-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener"><span>Fall mini sessions · September 26</span><span>Book now</span></a>
+    </aside>
+
     <header class="site-header">
       <div class="shell header-inner">
         <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home">SHY <em>&amp;</em> WILD</a>
@@ -746,6 +881,26 @@
             <span><em>&amp;</em> Wild</span>
           </h1>
           <p class="hero-subtitle">Portrait photography · Dickson, Tennessee</p>
+        </div>
+      </section>
+
+      <section class="mini-session" id="fall-minis" aria-labelledby="fall-minis-title">
+        <div class="shell mini-grid">
+          <figure class="mini-flyer">
+            <img src="/images/fall-mini-sessions.jpg" alt="Fall mini sessions at Montgomery Bell State Park on September 26: 15 minutes, five images, $75" width="1600" height="1068" loading="eager" decoding="async" />
+          </figure>
+          <div class="mini-details">
+            <p class="eyebrow">Limited seasonal sessions</p>
+            <h2 class="mini-title" id="fall-minis-title">Fall minis are booking now.</h2>
+            <ul class="mini-meta">
+              <li><span>Date</span><span><time datetime="2026-09-26">September 26</time></span></li>
+              <li><span>Location</span><span>Montgomery Bell State Park</span></li>
+              <li><span>Session</span><span>15 minutes</span></li>
+              <li><span>Gallery</span><span>5 images</span></li>
+              <li><span>Price</span><span>$75</span></li>
+            </ul>
+            <a class="button-link" href="https://shyandwild.pixieset.com/booking/fall-minis" target="_blank" rel="noopener">Book on Pixieset</a>
+          </div>
         </div>
       </section>
 

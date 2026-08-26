@@ -83,6 +83,46 @@
         }
       }
     </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where is Shy & Wild Photography based?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shy & Wild Photography is based in Dickson, Tennessee and serves White Bluff, Burns, McEwen, Charlotte, Fairview, Nashville, and surrounding Middle Tennessee communities."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What kinds of portrait sessions are available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shy & Wild offers family, couples, and motherhood portrait sessions centered on honest connection and unscripted moments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book a photography session?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use any Book a Session button on the Shy & Wild website to view availability and reserve a full portrait session securely through Pixieset."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What can I expect from a Shy & Wild session?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sessions are relaxed and story-driven, with room for movement, connection, laughter, quiet tenderness, and the natural moments that happen in between posed photographs."
+            }
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
@@ -158,6 +198,7 @@
       #services,
       #fall-minis,
       #about,
+      #faq,
       #contact { scroll-margin-top: 96px; }
 
       .announcement {
@@ -645,6 +686,57 @@
         align-items: end;
       }
 
+      .faq-section {
+        padding-block: clamp(88px, 11vw, 150px);
+        border-top: 1px solid var(--sepia);
+        background: var(--walnut);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        align-items: start;
+      }
+
+      .faq-heading { grid-column: 1 / 6; position: sticky; top: 128px; }
+      .faq-list { grid-column: 7 / 13; border-top: 1px solid var(--sepia); }
+
+      .faq-item { border-bottom: 1px solid var(--sepia); }
+
+      .faq-question {
+        min-height: 84px;
+        padding: 24px 44px 24px 0;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: var(--paper);
+        font: 300 clamp(21px, 2.2vw, 29px) / 1.2 "Newsreader", Georgia, serif;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .faq-question::-webkit-details-marker { display: none; }
+      .faq-question::after {
+        position: absolute;
+        top: 50%;
+        right: 2px;
+        content: "+";
+        color: var(--umber);
+        font: 300 25px/1 "Newsreader", Georgia, serif;
+        transform: translateY(-50%);
+      }
+
+      .faq-item[open] .faq-question::after { content: "−"; }
+
+      .faq-answer {
+        max-width: 590px;
+        margin: 0;
+        padding: 0 44px 28px 0;
+        color: var(--warm);
+        font: 300 19px/1.5 "Newsreader", Georgia, serif;
+      }
+
       .contact-title { grid-column: 1 / 8; }
       .contact-copy { grid-column: 9 / 13; padding-bottom: 7px; }
 
@@ -810,6 +902,7 @@
 
         .about-grid,
         .services-intro,
+        .faq-grid,
         .contact-grid {
           grid-template-columns: repeat(4, minmax(0, 1fr));
           column-gap: 16px;
@@ -818,6 +911,8 @@
         .about-copy,
         .services-heading,
         .services-copy,
+        .faq-heading,
+        .faq-list,
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
 
@@ -845,10 +940,13 @@
         }
 
         .contact-copy { margin-top: 56px; }
+        .faq-heading { position: static; margin-bottom: 48px; }
+        .faq-question { min-height: 76px; font-size: 23px; }
         #work,
         #services,
         #fall-minis,
         #about,
+        #faq,
         #contact { scroll-margin-top: 80px; }
 
       }
@@ -1155,6 +1253,33 @@
           </p>
           <div class="about-copy">
             <p class="about-text">hi, I’m Shyanna and this is Shy &amp; Wild. I believe the best photos aren’t always the ones where everyone is looking at the camera. The best photos come in the in-between moments. The full of laughter, tender, shy, and wild moments.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section" id="faq" aria-labelledby="faq-title">
+        <div class="shell faq-grid">
+          <div class="faq-heading">
+            <p class="eyebrow">Good to know</p>
+            <h2 class="section-heading" id="faq-title">A few common questions.</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary class="faq-question">Where are you based?</summary>
+              <p class="faq-answer">Shy &amp; Wild is based in Dickson, Tennessee and serves White Bluff, Burns, McEwen, Charlotte, Fairview, Nashville, and surrounding Middle Tennessee communities.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question">What kinds of sessions do you offer?</summary>
+              <p class="faq-answer">I photograph families, couples, and motherhood, focusing on honest connection and the beautifully unscripted moments in between.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question">How do I book a session?</summary>
+              <p class="faq-answer">Choose any Book a Session button on this site to view availability and reserve your full portrait session securely through Pixieset.</p>
+            </details>
+            <details class="faq-item">
+              <summary class="faq-question">What can I expect during our session?</summary>
+              <p class="faq-answer">A relaxed, story-driven experience with room for movement, connection, laughter, quiet tenderness, and the natural moments that happen between posed photographs.</p>
+            </details>
           </div>
         </div>
       </section>

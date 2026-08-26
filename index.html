@@ -230,6 +230,20 @@
 
       .nav-list a:hover,
       .nav-list a:focus-visible { color: var(--paper); }
+
+      .nav-list .booking-link {
+        padding: 11px 17px;
+        border: 1px solid rgba(239, 229, 211, 0.58);
+        color: var(--paper);
+        transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+      }
+
+      .nav-list .booking-link:hover,
+      .nav-list .booking-link:focus-visible {
+        border-color: var(--paper);
+        color: var(--walnut);
+        background: var(--paper);
+      }
       .mobile-menu { display: none; }
 
       .hero {
@@ -666,6 +680,12 @@
           font-size: 14px;
         }
 
+        .mobile-menu .nav-list .booking-link {
+          margin-top: 12px;
+          padding: 15px 18px;
+          text-align: center;
+        }
+
         .hero {
           min-height: calc(100dvh - 80px);
           padding-block: 72px 32px;
@@ -765,6 +785,7 @@
             <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener">Book a session</a></li>
           </ul>
         </nav>
 
@@ -777,6 +798,7 @@
               <li><a href="#work">Work</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener">Book a session</a></li>
             </ul>
           </nav>
         </details>

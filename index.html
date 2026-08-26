@@ -692,6 +692,47 @@
         background: var(--walnut);
       }
 
+      .testimonial-section {
+        padding-block: clamp(88px, 11vw, 150px);
+        border-top: 1px solid rgba(58, 45, 33, 0.28);
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        align-items: start;
+      }
+
+      .testimonial-label { grid-column: 1 / 4; }
+
+      .testimonial-label .eyebrow {
+        margin-top: 8px;
+        color: var(--sepia);
+      }
+
+      .testimonial-quote {
+        grid-column: 5 / 13;
+        margin: 0;
+      }
+
+      .testimonial-text {
+        margin: 0;
+        color: var(--walnut);
+        font: 300 clamp(28px, 3.5vw, 46px) / 1.18 "Newsreader", Georgia, serif;
+        letter-spacing: -0.025em;
+      }
+
+      .testimonial-attribution {
+        margin: 36px 0 0;
+        color: var(--sepia);
+        font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
       .faq-grid {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -902,6 +943,7 @@
 
         .about-grid,
         .services-intro,
+        .testimonial-grid,
         .faq-grid,
         .contact-grid {
           grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -911,12 +953,15 @@
         .about-copy,
         .services-heading,
         .services-copy,
+        .testimonial-label,
+        .testimonial-quote,
         .faq-heading,
         .faq-list,
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
 
         .services-copy { margin-top: 36px; }
+        .testimonial-label { margin-bottom: 36px; }
         .mini-grid { grid-template-columns: 1fr; }
         .mini-details { order: -1; }
         .service-list { grid-template-columns: 1fr; }
@@ -1254,6 +1299,18 @@
           <div class="about-copy">
             <p class="about-text">hi, I’m Shyanna and this is Shy &amp; Wild. I believe the best photos aren’t always the ones where everyone is looking at the camera. The best photos come in the in-between moments. The full of laughter, tender, shy, and wild moments.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="testimonial-section" aria-labelledby="testimonial-title">
+        <div class="shell testimonial-grid">
+          <div class="testimonial-label">
+            <p class="eyebrow" id="testimonial-title">Client words</p>
+          </div>
+          <blockquote class="testimonial-quote">
+            <p class="testimonial-text">“I have absolutely loved having Shy capture pictures of my daughter Lainey! She has photographed her twice now, and both experiences have been wonderful. She is so patient, sweet, and great at making little ones feel comfortable, and the photos always turn out absolutely beautiful. You can tell how much care she puts into every session, and I’m so thankful to have these memories of my daughter to look back on. I would absolutely recommend her to anyone looking for a talented and personable photographer!”</p>
+            <footer class="testimonial-attribution">Motherhood client</footer>
+          </blockquote>
         </div>
       </section>
 

@@ -3,8 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Shy & Wild Photography" />
-    <title>Shy & Wild Photography</title>
+    <meta name="description" content="Dickson, Tennessee portrait photographer capturing honest connection, tender stories, and beautifully unscripted moments across Middle Tennessee." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#1a130e" />
+    <link rel="canonical" href="https://shyandwild.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shy & Wild Photography" />
+    <meta property="og:title" content="Dickson TN Portrait Photographer | Shy & Wild Photography" />
+    <meta property="og:description" content="Honest, story-driven portrait photography in Dickson and across Middle Tennessee." />
+    <meta property="og:url" content="https://shyandwild.com/" />
+    <meta property="og:image" content="https://shyandwild.com/images/woodland-couple.jpg" />
+    <meta property="og:image:alt" content="A couple standing together in a green woodland clearing" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dickson TN Portrait Photographer | Shy & Wild Photography" />
+    <meta name="twitter:description" content="Honest, story-driven portrait photography in Dickson and across Middle Tennessee." />
+    <meta name="twitter:image" content="https://shyandwild.com/images/woodland-couple.jpg" />
+    <title>Dickson TN Portrait Photographer | Shy &amp; Wild</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Shy & Wild Photography",
+        "url": "https://shyandwild.com/",
+        "image": "https://shyandwild.com/images/woodland-couple.jpg",
+        "description": "Honest, story-driven portrait photography based in Dickson, Tennessee and serving Middle Tennessee.",
+        "email": "contact@shyandwild.com",
+        "areaServed": [
+          { "@type": "City", "name": "Dickson, Tennessee" },
+          { "@type": "City", "name": "White Bluff, Tennessee" },
+          { "@type": "City", "name": "Burns, Tennessee" },
+          { "@type": "City", "name": "McEwen, Tennessee" },
+          { "@type": "City", "name": "Charlotte, Tennessee" },
+          { "@type": "City", "name": "Fairview, Tennessee" },
+          { "@type": "City", "name": "Nashville, Tennessee" }
+        ],
+        "sameAs": ["https://www.facebook.com/profile.php?id=61593374291630"]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
@@ -220,127 +255,53 @@
 
       .work-section {
         position: relative;
-        margin: 0;
-        padding: 0;
+        padding-block: clamp(88px, 10vw, 144px);
         background: var(--walnut);
         overflow: hidden;
       }
 
       .work-heading {
-        position: absolute;
-        z-index: 2;
-        top: clamp(34px, 5vw, 72px);
-        left: var(--page-gutter);
-        margin: 0;
+        margin-bottom: clamp(32px, 5vw, 64px);
         color: var(--paper);
-        text-shadow: 0 2px 24px rgba(26, 19, 14, 0.72);
       }
 
       .work-heading .eyebrow {
-        margin: 0;
-        color: var(--paper);
+        margin: 0 0 14px;
+        color: var(--umber);
       }
 
       .work-stream {
-        display: flex;
-        flex-direction: row;
-        gap: 0;
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-auto-flow: dense;
+        gap: clamp(16px, 2.2vw, 32px);
         margin: 0;
         padding: 0;
-        height: clamp(560px, 78svh, 880px);
-        overflow-x: auto;
-        overflow-y: hidden;
-        overscroll-behavior-inline: contain;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
       }
-
-      .work-stream::-webkit-scrollbar { display: none; }
 
       figure { margin: 0; }
 
       .work-frame {
         position: relative;
-        flex: 0 0 auto;
-        width: auto;
-        height: 100%;
+        grid-column: span 5;
+        aspect-ratio: 4 / 5;
         overflow: hidden;
         line-height: 0;
         background: var(--bark);
-        scroll-snap-align: start;
       }
 
-      .work-frame:first-child::after {
-        position: absolute;
-        inset: 0 0 auto;
-        height: min(42%, 360px);
-        pointer-events: none;
-        content: "";
-        background: linear-gradient(to bottom, rgba(26, 19, 14, 0.68), transparent);
-      }
+      .work-frame:nth-child(4n + 1) { grid-column: span 7; aspect-ratio: 7 / 5; }
+      .work-frame:nth-child(4n + 4) { grid-column: span 7; aspect-ratio: 7 / 5; }
 
       .work-frame img {
         display: block;
-        width: auto;
+        width: 100%;
         height: 100%;
-        max-width: none;
         object-fit: cover;
+        transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
       }
 
-      .work-controls {
-        position: absolute;
-        z-index: 3;
-        right: var(--page-gutter);
-        bottom: clamp(24px, 4vw, 54px);
-        display: flex;
-        gap: 10px;
-      }
-
-      .work-arrow {
-        display: grid;
-        width: 52px;
-        height: 52px;
-        padding: 0;
-        place-items: center;
-        border: 1px solid rgba(244, 237, 220, 0.52);
-        border-radius: 50%;
-        color: var(--paper);
-        background: rgba(26, 19, 14, 0.5);
-        box-shadow: 0 8px 28px rgba(15, 10, 7, 0.2);
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-        transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease, opacity 180ms ease;
-      }
-
-      .work-arrow:hover {
-        border-color: var(--paper);
-        background: rgba(26, 19, 14, 0.76);
-        transform: translateY(-2px);
-      }
-
-      .work-arrow:focus-visible {
-        outline: 2px solid var(--paper);
-        outline-offset: 3px;
-      }
-
-      .work-arrow:disabled {
-        opacity: 0;
-        cursor: default;
-        pointer-events: none;
-        transform: none;
-      }
-
-      .work-arrow svg {
-        width: 21px;
-        height: 21px;
-        fill: none;
-        stroke: currentColor;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 1.5;
-      }
+      .work-frame:hover img { transform: scale(1.025); filter: sepia(8%) saturate(100%) contrast(103%); }
 
       .about {
         background: var(--paper);
@@ -546,20 +507,12 @@
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
 
-        .work-heading {
-          top: 28px;
-          left: var(--page-gutter);
-        }
-
-        .work-stream { height: clamp(430px, 72svh, 660px); }
-        .work-controls {
-          right: var(--page-gutter);
-          bottom: 20px;
-        }
-        .work-arrow {
-          width: 46px;
-          height: 46px;
-        }
+        .work-section { padding-block: 80px; }
+        .work-stream { grid-template-columns: 1fr; gap: 16px; }
+        .work-frame,
+        .work-frame:nth-child(4n + 1),
+        .work-frame:nth-child(4n + 4) { grid-column: 1; aspect-ratio: 4 / 5; }
+        .work-frame:nth-child(3n + 1) { aspect-ratio: 4 / 3; }
 
         .about-grid { min-height: auto; padding-block: 96px; }
 
@@ -579,7 +532,6 @@
 
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        .work-stream { scroll-behavior: auto; }
         body::after { animation: none; }
       }
     </style>
@@ -709,27 +661,20 @@
             <span>Shy</span>
             <span><em>&amp;</em> Wild</span>
           </h1>
-          <p class="hero-subtitle">Portraits and stories</p>
+          <p class="hero-subtitle">Portrait photography · Dickson, Tennessee</p>
         </div>
       </section>
 
       <section class="work-section" id="work" aria-labelledby="work-title">
+        <div class="shell">
         <div class="work-heading">
-          <p class="eyebrow" id="work-title">Stories</p>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-heading" id="work-title">Stories in the in-between.</h2>
         </div>
 
-        <div class="work-controls" aria-label="Story navigation">
-          <button class="work-arrow" type="button" data-work-direction="previous" aria-label="Previous story image">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" /></svg>
-          </button>
-          <button class="work-arrow" type="button" data-work-direction="next" aria-label="Next story image">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" /></svg>
-          </button>
-        </div>
-
-        <div class="work-stream" role="region" aria-label="Stories photo filmstrip" tabindex="0">
+        <div class="work-stream" aria-label="Selected portrait photography">
           <figure class="work-frame">
-            <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="lazy" decoding="async" />
+            <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="eager" fetchpriority="high" decoding="async" />
           </figure>
 
           <figure class="work-frame">
@@ -759,7 +704,7 @@
           <figure class="work-frame">
             <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
           </figure>
-
+        </div>
         </div>
       </section>
 
@@ -783,7 +728,7 @@
             <h2 class="section-heading" id="contact-title">Start here.</h2>
           </div>
           <div class="contact-copy">
-            <p class="contact-text">For bookings and questions, get in touch.</p>
+            <p class="contact-text">For portrait bookings in Dickson and across Middle Tennessee, get in touch.</p>
             <div class="contact-links" aria-label="Contact links">
               <a class="contact-link" href="mailto:contact@shyandwild.com"><span>Email</span><span>contact@shyandwild.com</span></a>
               <a class="contact-link" href="https://www.facebook.com/profile.php?id=61593374291630" aria-label="Shy and Wild Photography on Facebook"><span>Facebook</span><span>View profile</span></a>
@@ -798,50 +743,5 @@
         <p class="footer-wordmark">SHY &amp; WILD PORTRAITS AND STORIES</p>
       </div>
     </footer>
-    <script>
-      const workStream = document.querySelector(".work-stream");
-      const workFrames = Array.from(document.querySelectorAll(".work-frame"));
-      const previousWork = document.querySelector('[data-work-direction="previous"]');
-      const nextWork = document.querySelector('[data-work-direction="next"]');
-
-      const updateWorkArrows = () => {
-        const maxScroll = workStream.scrollWidth - workStream.clientWidth;
-        previousWork.disabled = workStream.scrollLeft <= 2;
-        nextWork.disabled = workStream.scrollLeft >= maxScroll - 2;
-      };
-
-      const moveWork = (direction) => {
-        const currentLeft = workStream.scrollLeft;
-        const frameOffsets = workFrames.map((frame) => frame.offsetLeft);
-        let targetIndex;
-
-        if (direction > 0) {
-          targetIndex = frameOffsets.findIndex((offset) => offset > currentLeft + 4);
-          if (targetIndex === -1) targetIndex = workFrames.length - 1;
-        } else {
-          targetIndex = 0;
-          for (let index = frameOffsets.length - 1; index >= 0; index -= 1) {
-            if (frameOffsets[index] < currentLeft - 4) {
-              targetIndex = index;
-              break;
-            }
-          }
-        }
-
-        workStream.scrollTo({ left: frameOffsets[targetIndex], behavior: "smooth" });
-      };
-
-      previousWork.addEventListener("click", () => moveWork(-1));
-      nextWork.addEventListener("click", () => moveWork(1));
-      workStream.addEventListener("scroll", updateWorkArrows, { passive: true });
-      workStream.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-          event.preventDefault();
-          moveWork(event.key === "ArrowRight" ? 1 : -1);
-        }
-      });
-      window.addEventListener("resize", updateWorkArrows);
-      updateWorkArrows();
-    </script>
   </body>
 </html>

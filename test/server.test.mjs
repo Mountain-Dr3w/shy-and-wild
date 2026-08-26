@@ -15,8 +15,11 @@ async function withServer(run) {
     assert.equal(typeof address, "object");
     await run(`http://127.0.0.1:${address.port}`);
   } finally {
-    server.close();
-    await once(server, "close");
+    const closed = new Promise((resolve, reject) => {
+      server.close((error) => error ? reject(error) : resolve());
+    });
+    server.closeAllConnections();
+    await closed;
   }
 }
 
@@ -45,5 +48,18 @@ test("ignores query strings for health checks and static assets", async () => {
     const imageResponse = await fetch(`${origin}/images/woodland-couple.jpg?cache=facebook`);
     assert.equal(imageResponse.status, 200);
     assert.equal(imageResponse.headers.get("content-type"), "image/jpeg");
+  });
+});
+
+test("serves crawl directives and a sitemap", async () => {
+  await withServer(async (origin) => {
+    const robotsResponse = await fetch(`${origin}/robots.txt`);
+    assert.equal(robotsResponse.status, 200);
+    assert.match(await robotsResponse.text(), /Sitemap: https:\/\/shyandwild\.com\/sitemap\.xml/);
+
+    const sitemapResponse = await fetch(`${origin}/sitemap.xml`);
+    assert.equal(sitemapResponse.status, 200);
+    assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml/);
+    assert.match(await sitemapResponse.text(), /<loc>https:\/\/shyandwild\.com\/<\/loc>/);
   });
 });

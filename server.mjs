@@ -16,6 +16,17 @@ const contentTypes = {
   ".webp": "image/webp",
 };
 
+const seoFiles = {
+  "/robots.txt": {
+    contentType: "text/plain; charset=utf-8",
+    body: "User-agent: *\nAllow: /\nSitemap: https://shyandwild.com/sitemap.xml\n",
+  },
+  "/sitemap.xml": {
+    contentType: "application/xml; charset=utf-8",
+    body: '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://shyandwild.com/</loc></url>\n</urlset>\n',
+  },
+};
+
 export function createAppServer() {
   return createServer(handleRequest);
 }
@@ -34,6 +45,16 @@ async function handleRequest(request, response) {
   if (pathname === "/health") {
     response.writeHead(200, { "content-type": "application/json; charset=utf-8" });
     response.end(JSON.stringify({ status: "ok" }));
+    return;
+  }
+
+  if (seoFiles[pathname]) {
+    const seoFile = seoFiles[pathname];
+    response.writeHead(200, {
+      "content-type": seoFile.contentType,
+      "cache-control": "public, max-age=3600",
+    });
+    response.end(seoFile.body);
     return;
   }
 

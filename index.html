@@ -28,6 +28,15 @@
         "image": "https://shyandwild.com/images/woodland-couple.jpg",
         "description": "Honest, story-driven portrait photography based in Dickson, Tennessee and serving Middle Tennessee.",
         "email": "contact@shyandwild.com",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Portrait photography services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Family photography" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couples photography" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motherhood photography" } }
+          ]
+        },
         "areaServed": [
           { "@type": "City", "name": "Dickson, Tennessee" },
           { "@type": "City", "name": "White Bluff, Tennessee" },
@@ -110,6 +119,7 @@
       }
 
       #work,
+      #services,
       #about,
       #contact { scroll-margin-top: 96px; }
 
@@ -253,6 +263,73 @@
         letter-spacing: -0.045em;
       }
 
+      .services {
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .services-intro {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 28px;
+        align-items: end;
+      }
+
+      .services-heading { grid-column: 1 / 8; }
+
+      .services-copy {
+        grid-column: 9 / 13;
+        margin: 0 0 6px;
+        font: 300 clamp(21px, 2.1vw, 28px) / 1.3 "Newsreader", Georgia, serif;
+      }
+
+      .services .eyebrow { color: var(--sepia); }
+      .services .section-heading { color: var(--walnut); }
+
+      .service-list {
+        margin-top: clamp(56px, 8vw, 104px);
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid rgba(58, 45, 33, 0.28);
+        border-bottom: 1px solid rgba(58, 45, 33, 0.28);
+      }
+
+      .service-item {
+        min-height: 260px;
+        padding: clamp(28px, 4vw, 52px) clamp(20px, 3vw, 40px);
+      }
+
+      .service-item + .service-item { border-left: 1px solid rgba(58, 45, 33, 0.28); }
+
+      .service-number {
+        margin: 0 0 48px;
+        color: var(--umber);
+        font: 400 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.16em;
+      }
+
+      .service-title {
+        margin: 0;
+        color: var(--walnut);
+        font: 300 clamp(34px, 3.5vw, 48px) / 1 "Newsreader", Georgia, serif;
+        letter-spacing: -0.035em;
+      }
+
+      .service-description {
+        margin: 18px 0 0;
+        color: var(--sepia);
+        font: 300 19px/1.4 "Newsreader", Georgia, serif;
+      }
+
+      .service-area {
+        max-width: 850px;
+        margin: clamp(48px, 7vw, 88px) 0 0;
+        color: var(--sepia);
+        font: 300 clamp(20px, 2.2vw, 28px) / 1.4 "Newsreader", Georgia, serif;
+      }
+
+      .service-area strong { color: var(--walnut); font-weight: 500; }
+
       .work-section {
         position: relative;
         padding-block: clamp(88px, 10vw, 144px);
@@ -271,10 +348,8 @@
       }
 
       .work-stream {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        grid-auto-flow: dense;
-        gap: clamp(16px, 2.2vw, 32px);
+        column-count: 2;
+        column-gap: clamp(16px, 2.2vw, 32px);
         margin: 0;
         padding: 0;
       }
@@ -283,25 +358,23 @@
 
       .work-frame {
         position: relative;
-        grid-column: span 5;
-        aspect-ratio: 4 / 5;
+        width: 100%;
+        margin: 0 0 clamp(16px, 2.2vw, 32px);
         overflow: hidden;
         line-height: 0;
         background: var(--bark);
+        break-inside: avoid;
       }
-
-      .work-frame:nth-child(4n + 1) { grid-column: span 7; aspect-ratio: 7 / 5; }
-      .work-frame:nth-child(4n + 4) { grid-column: span 7; aspect-ratio: 7 / 5; }
 
       .work-frame img {
         display: block;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
+        height: auto;
+        object-fit: contain;
+        transition: filter 300ms ease;
       }
 
-      .work-frame:hover img { transform: scale(1.025); filter: sepia(8%) saturate(100%) contrast(103%); }
+      .work-frame:hover img { filter: sepia(8%) saturate(100%) contrast(103%); }
 
       .about {
         background: var(--paper);
@@ -498,21 +571,29 @@
         .hero-subtitle { margin: 24px 0 48px; }
 
         .about-grid,
+        .services-intro,
         .contact-grid {
           grid-template-columns: repeat(4, minmax(0, 1fr));
           column-gap: 16px;
         }
 
         .about-copy,
+        .services-heading,
+        .services-copy,
         .contact-title,
         .contact-copy { grid-column: 1 / 5; }
 
+        .services-copy { margin-top: 36px; }
+        .service-list { grid-template-columns: 1fr; }
+        .service-item { min-height: 0; padding-inline: 0; }
+        .service-item + .service-item {
+          border-top: 1px solid rgba(58, 45, 33, 0.28);
+          border-left: 0;
+        }
+        .service-number { margin-bottom: 32px; }
+
         .work-section { padding-block: 80px; }
-        .work-stream { grid-template-columns: 1fr; gap: 16px; }
-        .work-frame,
-        .work-frame:nth-child(4n + 1),
-        .work-frame:nth-child(4n + 4) { grid-column: 1; aspect-ratio: 4 / 5; }
-        .work-frame:nth-child(3n + 1) { aspect-ratio: 4 / 3; }
+        .work-stream { column-count: 1; column-gap: 0; }
 
         .about-grid { min-height: auto; padding-block: 96px; }
 
@@ -525,6 +606,7 @@
 
         .contact-copy { margin-top: 56px; }
         #work,
+        #services,
         #about,
         #contact { scroll-margin-top: 80px; }
 
@@ -544,6 +626,7 @@
         <nav class="desktop-nav" aria-label="Primary navigation">
           <ul class="nav-list">
             <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -555,6 +638,7 @@
           <nav aria-label="Mobile navigation">
             <ul class="nav-list">
               <li><a href="#home">Home</a></li>
+              <li><a href="#services">Services</a></li>
               <li><a href="#work">Work</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
@@ -662,6 +746,38 @@
             <span><em>&amp;</em> Wild</span>
           </h1>
           <p class="hero-subtitle">Portrait photography · Dickson, Tennessee</p>
+        </div>
+      </section>
+
+      <section class="services section" id="services" aria-labelledby="services-title">
+        <div class="shell">
+          <div class="services-intro">
+            <div class="services-heading">
+              <p class="eyebrow">Portrait sessions</p>
+              <h2 class="section-heading" id="services-title">Photographs that feel like you.</h2>
+            </div>
+            <p class="services-copy">Honest, story-driven portraits with room for real connection, quiet tenderness, and all the beautifully unscripted moments in between.</p>
+          </div>
+
+          <div class="service-list" aria-label="Photography services">
+            <article class="service-item">
+              <p class="service-number">01</p>
+              <h3 class="service-title">Families</h3>
+              <p class="service-description">The closeness, laughter, movement, and little details that tell the story of the season your family is in right now.</p>
+            </article>
+            <article class="service-item">
+              <p class="service-number">02</p>
+              <h3 class="service-title">Couples</h3>
+              <p class="service-description">Relaxed portraits centered on the way you naturally connect—warm, playful, tender, and entirely your own.</p>
+            </article>
+            <article class="service-item">
+              <p class="service-number">03</p>
+              <h3 class="service-title">Motherhood</h3>
+              <p class="service-description">A loving record of the bond, soft gestures, and fleeting everyday moments shared between mother and child.</p>
+            </article>
+          </div>
+
+          <p class="service-area"><strong>Based in Dickson, Tennessee</strong> and serving families throughout White Bluff, Burns, McEwen, Charlotte, Fairview, Nashville, and the surrounding Middle Tennessee area.</p>
         </div>
       </section>
 

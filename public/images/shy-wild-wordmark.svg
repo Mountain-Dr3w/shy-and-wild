@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 84" role="img" aria-labelledby="title desc">
+  <title id="title">Shy &amp; Wild</title>
+  <desc id="desc">Shy and Wild portraits and stories wordmark</desc>
+  <g fill="#efe5d3">
+    <text x="2" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="48" letter-spacing="-2.5">Shy</text>
+    <text x="88" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="35" font-style="italic" fill="#cbbca3">&amp;</text>
+    <text x="124" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="48" letter-spacing="-2.5">Wild</text>
+    <text x="3" y="75" font-family="Arial, sans-serif" font-size="8" letter-spacing="2.7" fill="#8a7a64">PORTRAITS AND STORIES</text>
+  </g>
+</svg>

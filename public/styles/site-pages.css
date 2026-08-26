@@ -20,7 +20,7 @@ img { display: block; width: 100%; height: auto; }
 .shell { width: min(100%, 1280px); margin: 0 auto; padding-inline: var(--gutter); }
 .page-header { border-bottom: 1px solid var(--sepia); }
 .header-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.wordmark { color: var(--paper); font-size: 18px; letter-spacing: .18em; text-decoration: none; font-variant-caps: all-small-caps; }
+.wordmark { color: var(--paper); font-family: Georgia, serif; font-size: 22px; letter-spacing: -.045em; text-decoration: none; }
 .header-links { display: flex; align-items: center; gap: 24px; }
 .header-links a { color: var(--warm); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
 .header-links .book { padding: 12px 16px; border: 1px solid var(--paper); color: var(--paper); }

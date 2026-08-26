@@ -6,6 +6,7 @@
     <meta name="description" content="Dickson, Tennessee portrait photographer capturing honest connection, tender stories, and beautifully unscripted moments across Middle Tennessee." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#1a130e" />
+    <link rel="icon" href="/images/shy-wild-monogram.svg" type="image/svg+xml" />
     <link rel="canonical" href="https://shyandwild.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Shy & Wild Photography" />
@@ -252,18 +253,12 @@
       }
 
       .wordmark {
-        color: var(--paper);
-        font: 500 18px/1 "Newsreader", Georgia, serif;
-        font-variant-caps: all-small-caps;
-        font-feature-settings: "smcp" 1, "c2sc" 1;
-        letter-spacing: 0.2em;
+        width: clamp(178px, 17vw, 232px);
+        display: block;
         text-decoration: none;
       }
 
-      .wordmark em {
-        font-weight: 400;
-        font-style: normal;
-      }
+      .wordmark img { width: 100%; height: auto; }
 
       .nav-list {
         margin: 0;
@@ -1071,7 +1066,7 @@
 
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home">SHY <em>&amp;</em> WILD</a>
+        <a class="wordmark" href="#home" aria-label="Shy and Wild Photography, home"><img src="/images/shy-wild-wordmark.svg" alt="" width="320" height="84" /></a>
 
         <nav class="desktop-nav" aria-label="Primary navigation">
           <ul class="nav-list">

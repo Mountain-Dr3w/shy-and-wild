@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Shy &amp; Wild monogram</title>
+  <desc id="desc">S and W botanical monogram</desc>
+  <rect width="128" height="128" rx="22" fill="#1a130e"/>
+  <circle cx="64" cy="64" r="47" fill="none" stroke="#8a7a64" stroke-width="1.5"/>
+  <path d="M87 19c16 2 25 12 27 28-12-5-21-1-27 8 1-14 1-25 0-36ZM41 109c-16-2-25-12-27-28 12 5 21 1 27-8-1 14-1 25 0 36Z" fill="none" stroke="#8a7a64" stroke-width="1.5"/>
+  <text x="64" y="79" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" letter-spacing="-5" fill="#efe5d3">S<tspan font-size="28" font-style="italic" fill="#cbbca3">&amp;</tspan>W</text>
+</svg>

@@ -522,6 +522,22 @@
         padding: clamp(28px, 4vw, 52px) clamp(20px, 3vw, 40px);
       }
 
+      .service-image {
+        aspect-ratio: 4 / 5;
+        margin: 0 0 30px;
+        overflow: hidden;
+        background: rgba(58, 45, 33, 0.12);
+      }
+
+      .service-image img {
+        transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 300ms ease;
+      }
+
+      .service-item:hover .service-image img {
+        transform: scale(1.025);
+        filter: sepia(8%) saturate(100%) contrast(103%);
+      }
+
       .service-item + .service-item { border-left: 1px solid rgba(58, 45, 33, 0.28); }
 
       .service-number {
@@ -570,6 +586,43 @@
         color: var(--umber);
       }
 
+      .gallery-tabs {
+        position: sticky;
+        z-index: 3;
+        top: 96px;
+        margin: 0 0 clamp(28px, 4vw, 48px);
+        padding: 10px;
+        display: flex;
+        gap: 8px;
+        border: 1px solid var(--sepia);
+        background: rgba(26, 19, 14, 0.94);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .gallery-tab {
+        min-height: 46px;
+        flex: 1;
+        padding: 12px 18px;
+        border: 1px solid transparent;
+        color: var(--umber);
+        background: transparent;
+        font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+      }
+
+      .gallery-tab:hover,
+      .gallery-tab:focus-visible { color: var(--paper); }
+
+      .gallery-tab[aria-selected="true"] {
+        border-color: var(--paper);
+        color: var(--walnut);
+        background: var(--paper);
+      }
+
       .work-stream {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -592,6 +645,8 @@
       }
 
       .work-frame-wide { grid-column: 1 / -1; }
+
+      .work-frame[hidden] { display: none; }
 
       .work-frame:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
       .work-frame picture { display: block; }
@@ -1027,6 +1082,14 @@
         .service-number { margin-bottom: 32px; }
 
         .work-section { padding-block: 80px; }
+        .gallery-tabs {
+          top: 80px;
+          margin-inline: calc(var(--page-gutter) * -1);
+          padding-inline: var(--page-gutter);
+          overflow-x: auto;
+          border-inline: 0;
+        }
+        .gallery-tab { min-width: 130px; }
         .work-stream { grid-template-columns: 1fr; }
         .work-frame-wide { grid-column: 1; }
 
@@ -1232,18 +1295,36 @@
           <div class="service-list" aria-label="Photography services">
             <article class="service-item" data-reveal>
               <p class="service-number">01</p>
+              <figure class="service-image">
+                <picture>
+                  <source type="image/webp" srcset="/images/woodland-bubbles-900.webp 900w, /images/woodland-bubbles-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 28vw" />
+                  <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
               <h3 class="service-title">Families</h3>
               <p class="service-description">The closeness, laughter, movement, and little details that tell the story of the season your family is in right now.</p>
               <a class="contact-link" href="/family-photography"><span>Explore families</span><span>View service</span></a>
             </article>
             <article class="service-item" data-reveal>
               <p class="service-number">02</p>
+              <figure class="service-image">
+                <picture>
+                  <source type="image/webp" srcset="/images/stone-portrait-900.webp 900w, /images/stone-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 28vw" />
+                  <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
               <h3 class="service-title">Couples</h3>
               <p class="service-description">Relaxed portraits centered on the way you naturally connect—warm, playful, tender, and entirely your own.</p>
               <a class="contact-link" href="/couples-photography"><span>Explore couples</span><span>View service</span></a>
             </article>
             <article class="service-item" data-reveal>
               <p class="service-number">03</p>
+              <figure class="service-image">
+                <picture>
+                  <source type="image/webp" srcset="/images/mother-baby-close-900.webp 900w, /images/mother-baby-close-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 28vw" />
+                  <img src="/images/mother-baby-close.jpg" alt="Mother holding her young daughter close in warm evening light" width="1602" height="2400" loading="lazy" decoding="async" />
+                </picture>
+              </figure>
               <h3 class="service-title">Motherhood</h3>
               <p class="service-description">A loving record of the bond, soft gestures, and fleeting everyday moments shared between mother and child.</p>
               <a class="contact-link" href="/motherhood-photography"><span>Explore motherhood</span><span>View service</span></a>
@@ -1261,85 +1342,91 @@
           <h2 class="section-heading" id="work-title">Stories in the in-between.</h2>
         </div>
 
-        <div class="work-stream" aria-label="Selected portrait photography">
-          <figure class="work-frame work-frame-wide" data-reveal>
+        <div class="gallery-tabs" role="tablist" aria-label="Portfolio categories">
+          <button class="gallery-tab" id="families-tab" type="button" role="tab" aria-selected="true" aria-controls="portfolio-gallery" data-gallery-tab="families">Families</button>
+          <button class="gallery-tab" id="couples-tab" type="button" role="tab" aria-selected="false" aria-controls="portfolio-gallery" data-gallery-tab="couples" tabindex="-1">Couples</button>
+          <button class="gallery-tab" id="motherhood-tab" type="button" role="tab" aria-selected="false" aria-controls="portfolio-gallery" data-gallery-tab="motherhood" tabindex="-1">Motherhood</button>
+        </div>
+
+        <div class="work-stream" id="portfolio-gallery" role="tabpanel" aria-labelledby="families-tab" aria-live="polite">
+          <figure class="work-frame work-frame-wide" data-gallery="couples" hidden>
             <picture>
               <source type="image/webp" srcset="/images/woodland-couple-900.webp 900w, /images/woodland-couple-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-couple.jpg" alt="Couple standing together in a green woodland clearing" width="2400" height="1602" loading="eager" fetchpriority="high" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="couples" hidden>
             <picture>
               <source type="image/webp" srcset="/images/hands-portrait-900.webp 900w, /images/hands-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/hands-portrait.jpg" alt="Close portrait of a couple holding hands" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="couples" hidden>
             <picture>
               <source type="image/webp" srcset="/images/stone-portrait-900.webp 900w, /images/stone-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/stone-portrait.jpg" alt="Couple embracing beside a stone wall in the woods" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="couples" hidden>
             <picture>
               <source type="image/webp" srcset="/images/chapel-portrait-900.webp 900w, /images/chapel-portrait-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/chapel-portrait.jpg" alt="Couple standing in the doorway of a woodland stone chapel" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame work-frame-wide" data-reveal>
+          <figure class="work-frame work-frame-wide" data-gallery="families">
             <picture>
               <source type="image/webp" srcset="/images/woodland-bubbles-900.webp 900w, /images/woodland-bubbles-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-bubbles.jpg" alt="Young child reaching toward bubbles in a sunlit woodland" width="2400" height="1602" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="motherhood" hidden>
             <picture>
               <source type="image/webp" srcset="/images/mother-baby-close-900.webp 900w, /images/mother-baby-close-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-baby-close.jpg" alt="Mother holding her young daughter close in warm evening light" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="motherhood" hidden>
             <picture>
               <source type="image/webp" srcset="/images/mother-baby-horse-900.webp 900w, /images/mother-baby-horse-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-baby-horse.jpg" alt="Mother and young daughter sharing a quiet moment beside a horse" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="motherhood" hidden>
             <picture>
               <source type="image/webp" srcset="/images/mother-lifting-baby-900.webp 900w, /images/mother-lifting-baby-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/mother-lifting-baby.jpg" alt="Mother joyfully lifting her baby into the autumn evening light" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="families">
             <picture>
               <source type="image/webp" srcset="/images/baby-autumn-field-900.webp 900w, /images/baby-autumn-field-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/baby-autumn-field.jpg" alt="Young child exploring a grassy field in a rust-colored knit outfit" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="families">
             <picture>
               <source type="image/webp" srcset="/images/woodland-walk-900.webp 900w, /images/woodland-walk-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-walk.jpg" alt="Young child walking barefoot through a wooded clearing" width="1564" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="families">
             <picture>
               <source type="image/webp" srcset="/images/woodland-reach-warm-900.webp 900w, /images/woodland-reach-warm-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-reach-warm.jpg" alt="Young child pointing toward bubbles in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
             </picture>
           </figure>
 
-          <figure class="work-frame" data-reveal>
+          <figure class="work-frame" data-gallery="families">
             <picture>
               <source type="image/webp" srcset="/images/woodland-together-900.webp 900w, /images/woodland-together-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
@@ -1522,9 +1609,49 @@
       }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
       document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
 
+      const galleryTabs = Array.from(document.querySelectorAll("[data-gallery-tab]"));
+      const galleryPanel = document.querySelector("#portfolio-gallery");
+      const allPortfolioFrames = Array.from(document.querySelectorAll(".work-frame"));
+      let portfolioFrames = [];
+
+      const selectGallery = (category, moveFocus = false) => {
+        const selectedTab = galleryTabs.find((tab) => tab.dataset.galleryTab === category);
+        if (!selectedTab) return;
+
+        galleryTabs.forEach((tab) => {
+          const isSelected = tab === selectedTab;
+          tab.setAttribute("aria-selected", String(isSelected));
+          tab.tabIndex = isSelected ? 0 : -1;
+        });
+
+        allPortfolioFrames.forEach((frame) => {
+          const isVisible = frame.dataset.gallery === category;
+          frame.hidden = !isVisible;
+          frame.tabIndex = isVisible ? 0 : -1;
+        });
+
+        portfolioFrames = allPortfolioFrames.filter((frame) => !frame.hidden);
+        galleryPanel.setAttribute("aria-labelledby", selectedTab.id);
+        if (moveFocus) selectedTab.focus();
+        trackEvent("portfolio_category_view", { category });
+      };
+
+      galleryTabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => selectGallery(tab.dataset.galleryTab));
+        tab.addEventListener("keydown", (event) => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = index;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + galleryTabs.length) % galleryTabs.length;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % galleryTabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = galleryTabs.length - 1;
+          selectGallery(galleryTabs[nextIndex].dataset.galleryTab, true);
+        });
+      });
+
       const lightbox = document.querySelector(".portfolio-lightbox");
       const lightboxImage = lightbox.querySelector(".lightbox-image");
-      const portfolioFrames = Array.from(document.querySelectorAll(".work-frame"));
       let activeImageIndex = 0;
       let lightboxTrigger = null;
 
@@ -1545,19 +1672,20 @@
 
       const closeLightbox = () => lightbox.close();
 
-      portfolioFrames.forEach((frame, index) => {
+      allPortfolioFrames.forEach((frame) => {
         const description = frame.querySelector("img").alt;
-        frame.tabIndex = 0;
         frame.setAttribute("role", "button");
         frame.setAttribute("aria-label", `View larger image: ${description}`);
-        frame.addEventListener("click", () => openLightbox(index, frame));
+        frame.addEventListener("click", () => openLightbox(portfolioFrames.indexOf(frame), frame));
         frame.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            openLightbox(index, frame);
+            openLightbox(portfolioFrames.indexOf(frame), frame);
           }
         });
       });
+
+      selectGallery("families");
 
       lightbox.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
       lightbox.querySelector(".lightbox-previous").addEventListener("click", () => showPortfolioImage(activeImageIndex - 1));

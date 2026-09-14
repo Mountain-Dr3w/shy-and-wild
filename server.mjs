@@ -19,6 +19,10 @@ const contentTypes = {
 };
 
 const pagePaths = new Map([
+  ["/services", fileURLToPath(new URL("./services.html", import.meta.url))],
+  ["/portfolio", fileURLToPath(new URL("./portfolio.html", import.meta.url))],
+  ["/about", fileURLToPath(new URL("./about.html", import.meta.url))],
+  ["/contact", fileURLToPath(new URL("./contact.html", import.meta.url))],
   ["/family-photography", fileURLToPath(new URL("./family.html", import.meta.url))],
   ["/couples-photography", fileURLToPath(new URL("./couples.html", import.meta.url))],
   ["/motherhood-photography", fileURLToPath(new URL("./motherhood.html", import.meta.url))],
@@ -32,7 +36,7 @@ const seoFiles = {
   },
   "/sitemap.xml": {
     contentType: "application/xml; charset=utf-8",
-    body: '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://shyandwild.com/</loc></url>\n  <url><loc>https://shyandwild.com/family-photography</loc></url>\n  <url><loc>https://shyandwild.com/couples-photography</loc></url>\n  <url><loc>https://shyandwild.com/motherhood-photography</loc></url>\n  <url><loc>https://shyandwild.com/privacy</loc></url>\n</urlset>\n',
+    body: '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://shyandwild.com/</loc></url>\n  <url><loc>https://shyandwild.com/services</loc></url>\n  <url><loc>https://shyandwild.com/portfolio</loc></url>\n  <url><loc>https://shyandwild.com/about</loc></url>\n  <url><loc>https://shyandwild.com/contact</loc></url>\n  <url><loc>https://shyandwild.com/family-photography</loc></url>\n  <url><loc>https://shyandwild.com/couples-photography</loc></url>\n  <url><loc>https://shyandwild.com/motherhood-photography</loc></url>\n  <url><loc>https://shyandwild.com/privacy</loc></url>\n</urlset>\n',
   },
 };
 

@@ -83,7 +83,7 @@ test("serves responsive portfolio assets and interactive booking features", asyn
 
 test("serves dedicated service, privacy, and branded not-found pages", async () => {
   await withServer(async (origin) => {
-    for (const path of ["/family-photography", "/family-photography/", "/couples-photography", "/motherhood-photography", "/privacy"]) {
+    for (const path of ["/services", "/portfolio", "/about", "/contact", "/family-photography", "/family-photography/", "/couples-photography", "/motherhood-photography", "/privacy"]) {
       const response = await fetch(`${origin}${path}`);
       assert.equal(response.status, 200);
       assert.match(response.headers.get("content-type") ?? "", /^text\/html/);
@@ -92,6 +92,10 @@ test("serves dedicated service, privacy, and branded not-found pages", async () 
     const stylesResponse = await fetch(`${origin}/styles/site-pages.css`);
     assert.equal(stylesResponse.status, 200);
     assert.match(stylesResponse.headers.get("content-type") ?? "", /^text\/css/);
+
+    const newPortraitResponse = await fetch(`${origin}/images/family-sunset-900.webp`);
+    assert.equal(newPortraitResponse.status, 200);
+    assert.equal(newPortraitResponse.headers.get("content-type"), "image/webp");
 
     const missingResponse = await fetch(`${origin}/this-page-does-not-exist`);
     assert.equal(missingResponse.status, 404);

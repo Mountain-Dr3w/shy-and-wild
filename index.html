@@ -386,6 +386,8 @@
 
       .section { padding-block: clamp(88px, 11vw, 150px); }
 
+      #home #main-content > section:not(.hero) { display: none; }
+
       .section-heading {
         margin: 0;
         color: var(--paper);
@@ -1133,11 +1135,11 @@
 
         <nav class="desktop-nav" aria-label="Primary navigation">
           <ul class="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/" aria-current="page">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking">Book a session</a></li>
           </ul>
         </nav>
@@ -1146,11 +1148,11 @@
           <summary class="menu-toggle">Menu</summary>
           <nav aria-label="Mobile navigation">
             <ul class="nav-list">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#work">Work</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/" aria-current="page">Home</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/portfolio">Portfolio</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
               <li><a class="booking-link" href="https://shyandwild.pixieset.com/booking/full-session" target="_blank" rel="noopener" data-track="full_session_booking">Book a session</a></li>
             </ul>
           </nav>
@@ -1430,6 +1432,41 @@
             <picture>
               <source type="image/webp" srcset="/images/woodland-together-900.webp 900w, /images/woodland-together-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
               <img src="/images/woodland-together.jpg" alt="Two young children sharing a quiet moment beside a stool in a wooded clearing" width="1602" height="2400" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+
+          <figure class="work-frame" data-gallery="families">
+            <picture>
+              <source type="image/webp" srcset="/images/cowboy-hat-baby-900.webp 900w, /images/cowboy-hat-baby-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/cowboy-hat-baby.jpg" alt="Young child in denim overalls sitting in the grass beneath an oversized cowboy hat" width="3581" height="5364" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+
+          <figure class="work-frame" data-gallery="families">
+            <picture>
+              <source type="image/webp" srcset="/images/toddler-truck-900.webp 900w, /images/toddler-truck-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/toddler-truck.jpg" alt="Young child in denim overalls standing beside a truck and cowboy hat" width="4016" height="6016" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+
+          <figure class="work-frame" data-gallery="families">
+            <picture>
+              <source type="image/webp" srcset="/images/siblings-sunset-900.webp 900w, /images/siblings-sunset-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/siblings-sunset.jpg" alt="Older brother smiling with his baby sister in a sunlit field" width="3739" height="5601" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+
+          <figure class="work-frame" data-gallery="families">
+            <picture>
+              <source type="image/webp" srcset="/images/baby-sunflower-knit-900.webp 900w, /images/baby-sunflower-knit-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/baby-sunflower-knit.jpg" alt="Smiling baby in a handmade sunflower top sitting in a glowing field" width="4016" height="6016" loading="lazy" decoding="async" />
+            </picture>
+          </figure>
+
+          <figure class="work-frame" data-gallery="families">
+            <picture>
+              <source type="image/webp" srcset="/images/family-sunset-900.webp 900w, /images/family-sunset-1600.webp 1600w" sizes="(max-width: 760px) calc(100vw - 40px), 46vw" />
+              <img src="/images/family-sunset.jpg" alt="Family of four gathered together beside a fallen tree at sunset" width="3848" height="5764" loading="lazy" decoding="async" />
             </picture>
           </figure>
         </div>

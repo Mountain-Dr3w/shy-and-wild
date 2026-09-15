@@ -412,9 +412,10 @@
       .home-preview-photo::after {
         position: absolute;
         z-index: 2;
-        right: clamp(-30px, -2vw, -12px);
-        bottom: 7%;
-        width: clamp(80px, 9vw, 126px);
+        top: clamp(-22px, -2vw, -12px);
+        right: clamp(-16px, -1.5vw, -8px);
+        bottom: auto;
+        width: clamp(68px, 7vw, 98px);
         aspect-ratio: 506 / 760;
         pointer-events: none;
         background: url("/images/pressed-flower-magnet.png?v=2") center / contain no-repeat;
@@ -423,10 +424,11 @@
         transform: rotate(7deg);
       }
       .home-preview-photo:nth-child(2)::after {
+        top: clamp(-18px, -1.5vw, -10px);
         right: auto;
-        bottom: 5%;
-        left: clamp(-28px, -2vw, -10px);
-        width: clamp(90px, 10vw, 145px);
+        bottom: auto;
+        left: clamp(-14px, -1vw, -6px);
+        width: clamp(72px, 8vw, 106px);
         aspect-ratio: 640 / 760;
         background-image: url("/images/woodland-mushroom-magnet.png?v=2");
         transform: rotate(-6deg);

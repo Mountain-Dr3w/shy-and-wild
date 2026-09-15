@@ -139,6 +139,9 @@
         --umber: #8a7a64;
         --paper: #efe5d3;
         --warm: #cbbca3;
+        --fern: #4f6549;
+        --moss: #768267;
+        --sage-paper: #e2e3ca;
         --page-width: 1360px;
         --page-gutter: clamp(20px, 4.5vw, 64px);
         background: var(--walnut);
@@ -390,9 +393,24 @@
       #home #main-content > section:not(.hero):not(.home-preview):not(.testimonial-section) { display: none; }
 
       .home-preview {
+        isolation: isolate;
+        overflow: hidden;
         padding-block: clamp(72px, 9vw, 120px);
-        background: var(--paper);
+        background: var(--sage-paper);
         color: var(--walnut);
+      }
+
+      .home-preview::after {
+        position: absolute;
+        z-index: -1;
+        right: clamp(-90px, -4vw, -30px);
+        bottom: -90px;
+        width: clamp(260px, 32vw, 470px);
+        aspect-ratio: 420 / 520;
+        background: url("/images/botanical-sprig.svg") center / contain no-repeat;
+        content: "";
+        opacity: .32;
+        transform: rotate(7deg);
       }
 
       .home-preview-grid {
@@ -406,10 +424,10 @@
       .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
       .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
       .home-preview-copy { padding-left: clamp(8px, 2vw, 28px); }
-      .home-preview-copy .eyebrow { color: var(--sepia); }
+      .home-preview-copy .eyebrow { color: var(--fern); }
       .home-preview-copy h2 { margin: 16px 0 24px; color: var(--walnut); font: 300 clamp(44px, 5vw, 72px)/.95 "Newsreader", Georgia, serif; letter-spacing: -.04em; }
       .home-preview-copy p { margin: 0; font: 300 clamp(20px, 2vw, 27px)/1.4 "Newsreader", Georgia, serif; }
-      .home-preview-copy .button-link { color: var(--paper); background: var(--walnut); border-color: var(--walnut); }
+      .home-preview-copy .button-link { color: var(--paper); background: var(--fern); border-color: var(--fern); }
 
       .section-heading {
         margin: 0;
@@ -811,10 +829,24 @@
       }
 
       .testimonial-section {
+        isolation: isolate;
+        overflow: hidden;
         padding-block: clamp(72px, 8vw, 112px);
-        border-top: 1px solid rgba(58, 45, 33, 0.28);
-        background: var(--paper);
+        border-top: 1px solid rgba(79, 101, 73, 0.34);
+        background: #d2d7ba;
         color: var(--walnut);
+      }
+
+      .testimonial-section::after {
+        position: absolute;
+        z-index: -1;
+        bottom: -18px;
+        left: clamp(-30px, 3vw, 48px);
+        width: clamp(190px, 24vw, 320px);
+        aspect-ratio: 360 / 260;
+        background: url("/images/mushroom-cluster.svg") center / contain no-repeat;
+        content: "";
+        opacity: .38;
       }
 
       .testimonial-grid {
@@ -830,7 +862,7 @@
 
       .testimonial-label .eyebrow {
         margin-top: 8px;
-        color: var(--sepia);
+        color: var(--fern);
       }
 
       .testimonial-quote {

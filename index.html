@@ -409,33 +409,22 @@
 
       .home-preview-photo { position: relative; margin: 0; overflow: visible; background: var(--bark); }
       .home-preview-photo picture { display: block; height: 100%; overflow: hidden; }
-      .home-preview-photo::after {
+      .home-preview-photo:first-child::after {
         position: absolute;
         z-index: 2;
-        top: clamp(-22px, -2vw, -12px);
-        right: clamp(-16px, -1.5vw, -8px);
-        bottom: auto;
-        width: clamp(68px, 7vw, 98px);
+        right: clamp(-30px, -2vw, -14px);
+        bottom: -28px;
+        width: clamp(104px, 11vw, 148px);
         aspect-ratio: 506 / 760;
         pointer-events: none;
         background: url("/images/pressed-flower-magnet.png?v=2") center / contain no-repeat;
         content: "";
-        filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .34));
-        transform: rotate(7deg);
-      }
-      .home-preview-photo:nth-child(2)::after {
-        top: clamp(-18px, -1.5vw, -10px);
-        right: auto;
-        bottom: auto;
-        left: clamp(-14px, -1vw, -6px);
-        width: clamp(72px, 8vw, 106px);
-        aspect-ratio: 640 / 760;
-        background-image: url("/images/woodland-mushroom-magnet.png?v=2");
-        transform: rotate(-6deg);
+        filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .27));
+        transform: rotate(5deg);
       }
       .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
       .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
-      .home-preview-copy { padding-left: clamp(8px, 2vw, 28px); }
+      .home-preview-copy { position: relative; isolation: isolate; padding-left: clamp(8px, 2vw, 28px); }
       .home-preview-copy .eyebrow { color: var(--fern); }
       .home-preview-copy h2 { margin: 16px 0 24px; color: var(--walnut); font: 300 clamp(44px, 5vw, 72px)/.95 "Newsreader", Georgia, serif; letter-spacing: -.04em; }
       .home-preview-copy p { margin: 0; font: 300 clamp(20px, 2vw, 27px)/1.4 "Newsreader", Georgia, serif; }

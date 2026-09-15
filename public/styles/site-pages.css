@@ -36,8 +36,8 @@ img { display: block; width: 100%; height: auto; }
 .page-intro { grid-column: 8 / 13; margin: 36px 0 0; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.3; }
 .feature-image { position: relative; background: var(--bark); }
 .feature-image img { max-height: 86vh; object-fit: contain; }
-.feature-image::after { position: absolute; right: clamp(14px,3vw,44px); bottom: clamp(14px,3vw,38px); width: clamp(92px,10vw,148px); aspect-ratio: 640/760; pointer-events: none; background: url("/images/woodland-mushroom-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 8px 6px rgba(5,12,6,.26)); transform: rotate(4deg); }
-.page-content { padding-block: clamp(76px, 10vw, 132px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; }
+.feature-image::after { position: absolute; right: clamp(16px,4vw,56px); bottom: -32px; width: clamp(112px,12vw,158px); aspect-ratio: 640/760; pointer-events: none; background: url("/images/woodland-mushroom-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 9px 7px rgba(5,12,6,.27)); transform: rotate(4deg); }
+.page-content { position: relative; isolation: isolate; padding-block: clamp(76px, 10vw, 132px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; }
 .page-content h2 { grid-column: 1 / 6; margin: 0; color: var(--paper); font-size: clamp(42px, 6vw, 78px); font-weight: 400; line-height: .95; letter-spacing: -.04em; }
 .content-copy { grid-column: 7 / 13; }
 .content-copy p { margin: 0 0 24px; font-size: 21px; line-height: 1.5; }
@@ -54,12 +54,12 @@ img { display: block; width: 100%; height: auto; }
 .error-copy { max-width: 520px; font-size: 22px; line-height: 1.45; }
 .page-lead { max-width: 760px; margin: 0; font-size: clamp(21px,2.4vw,31px); line-height: 1.4; }
 .page-section { padding-block: clamp(64px,8vw,112px); border-top: 1px solid var(--sepia); }
-.card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+.card-grid { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; }
 .page-card { position: relative; display: block; padding: 12px; border: 1px solid rgba(238,233,216,.45); text-decoration: none; background: var(--parchment); box-shadow: 0 18px 42px rgba(5,12,6,.22); }
-.page-card::before { position: absolute; z-index: 3; top: 4px; left: 50%; width: 66px; height: 18px; background: rgba(216,201,169,.72); content: ""; box-shadow: 0 1px 2px rgba(39,34,25,.14); transform: translateX(-50%) rotate(-2deg); }
-.page-card::after { position: absolute; z-index: 2; right: -10px; top: -22px; width: clamp(66px,6.5vw,94px); aspect-ratio: 506/760; pointer-events: none; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 7px 5px rgba(5,12,6,.24)); transform: rotate(6deg); }
-.page-card:nth-child(even)::after { right: auto; left: -10px; top: -20px; width: clamp(72px,7vw,100px); aspect-ratio: 640/760; background-image: url("/images/woodland-mushroom-magnet.png?v=2"); transform: rotate(-5deg); }
-.page-card-image { aspect-ratio: 4/5; overflow: hidden; border-radius: 48% 48% 0 0 / 11% 11% 0 0; }
+.page-card:first-child::after,.page-card:last-child::after { position: absolute; z-index: 3; pointer-events: none; content: ""; filter: drop-shadow(0 10px 7px rgba(5,12,6,.28)); }
+.page-card:first-child::after { top: 24px; right: -42px; width: clamp(112px,12vw,158px); aspect-ratio: 506/760; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; transform: rotate(5deg); }
+.page-card:last-child::after { bottom: 30px; left: -46px; width: clamp(120px,13vw,170px); aspect-ratio: 640/760; background: url("/images/woodland-mushroom-magnet.png?v=2") center/contain no-repeat; transform: rotate(-5deg); }
+.page-card-image { aspect-ratio: 4/5; overflow: hidden; border: 1px solid rgba(67,81,62,.22); }
 .page-card-image img { height: 100%; object-fit: cover; transition: transform .5s ease; }
 .page-card:hover img { transform: scale(1.025); }
 .page-card-copy { position: relative; padding: 28px 16px 18px; }
@@ -78,9 +78,10 @@ img { display: block; width: 100%; height: auto; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { height: 100%; object-fit: cover; }
 .about-photo-stack { position: relative; display: grid; align-items: start; }
-.about-photo-stack::after { position: absolute; right: clamp(-18px,-2vw,-8px); top: clamp(-26px,-2vw,-14px); width: clamp(78px,9vw,124px); aspect-ratio: 506/760; pointer-events: none; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 8px 6px rgba(5,12,6,.25)); transform: rotate(5deg); }
+.about-photo-stack::after { position: absolute; right: clamp(-34px,-3vw,-18px); bottom: -34px; width: clamp(112px,13vw,164px); aspect-ratio: 506/760; pointer-events: none; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 9px 7px rgba(5,12,6,.27)); transform: rotate(5deg); }
 .about-photo-stack .about-photo { width: 100%; aspect-ratio: 2 / 3; }
 .about-photo-stack .about-photo-primary img { object-position: center; }
+.about-story { position: relative; isolation: isolate; }
 .about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }
 .about-story > p:not(.about-copy-large) { margin: 24px 0 0; font-size: 20px; line-height: 1.55; }
 .about-belief { color: var(--walnut); background: var(--paper); }
@@ -115,9 +116,10 @@ img { display: block; width: 100%; height: auto; }
   .about-belief-grid > .page-kicker,.about-travel-grid > .page-kicker { margin-bottom: 8px; }
   .portfolio-tabs { overflow-x: auto; }
   .portfolio-tab { min-width: 120px; }
-  .feature-image::after { right: 10px; bottom: 10px; width: 88px; }
-  .page-card::after { right: -4px; top: -14px; width: 68px; }
-  .page-card:nth-child(even)::after { right: -4px; left: auto; top: -14px; width: 72px; }
-  .about-photo-stack::after { right: -5px; top: -16px; width: 82px; }
+  .feature-image::after { right: 12px; bottom: -20px; width: 104px; }
+  .card-grid { gap: 28px; }
+  .page-card:first-child::after { top: 18px; right: -12px; width: 118px; }
+  .page-card:last-child::after { bottom: 22px; left: -12px; width: 126px; }
+  .about-photo-stack::after { right: -8px; bottom: -22px; width: 108px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

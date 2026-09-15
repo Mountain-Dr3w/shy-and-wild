@@ -15,7 +15,8 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background-color: var(--walnut); background-image: radial-gradient(circle at 18% 12%, rgba(120,134,107,.1), transparent 28%), radial-gradient(circle at 82% 62%, rgba(82,104,73,.08), transparent 32%); color: var(--warm); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-width: 320px; background-color: var(--walnut); background-image: radial-gradient(circle at 18% 12%, rgba(120,134,107,.12), transparent 28%), radial-gradient(circle at 82% 62%, rgba(82,104,73,.1), transparent 32%); color: var(--warm); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
+body::before { position: fixed; z-index: 30; inset: 0; pointer-events: none; content: ""; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); mix-blend-mode: soft-light; }
 a { color: inherit; }
 img { display: block; width: 100%; height: auto; }
 .skip-link { position: fixed; z-index: 20; top: 12px; left: 12px; padding: 12px 16px; color: var(--walnut); background: var(--paper); transform: translateY(-160%); }
@@ -26,7 +27,7 @@ img { display: block; width: 100%; height: auto; }
 .wordmark { color: var(--paper); font-family: Georgia, serif; font-size: 22px; letter-spacing: -.045em; text-decoration: none; }
 .header-links { display: flex; align-items: center; gap: 24px; }
 .header-links a { color: var(--warm); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
-.header-links .book { padding: 12px 16px; border: 1px solid var(--paper); color: var(--paper); }
+.header-links .book { padding: 12px 18px; border: 1px solid var(--paper); border-radius: 999px; color: var(--paper); }
 .header-links a[aria-current="page"] { color: var(--paper); }
 .wordmark img { width: 200px; height: auto; }
 .page-hero { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(84px, 13vw, 180px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; align-items: end; }
@@ -35,12 +36,12 @@ img { display: block; width: 100%; height: auto; }
 .page-intro { grid-column: 8 / 13; margin: 36px 0 0; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.3; }
 .feature-image { position: relative; background: var(--bark); }
 .feature-image img { max-height: 86vh; object-fit: contain; }
-.feature-image::after { position: absolute; right: clamp(16px,5vw,76px); bottom: clamp(-42px,-3vw,-24px); width: clamp(118px,15vw,220px); aspect-ratio: 633/760; pointer-events: none; background: url("/images/woodland-mushroom-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 10px 8px rgba(5,12,6,.34)); transform: rotate(7deg); }
+.feature-image::after { position: absolute; right: clamp(16px,5vw,76px); bottom: clamp(-42px,-3vw,-24px); width: clamp(118px,15vw,220px); aspect-ratio: 640/760; pointer-events: none; background: url("/images/woodland-mushroom-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 10px 8px rgba(5,12,6,.28)); transform: rotate(5deg); }
 .page-content { padding-block: clamp(76px, 10vw, 132px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; }
 .page-content h2 { grid-column: 1 / 6; margin: 0; color: var(--paper); font-size: clamp(42px, 6vw, 78px); font-weight: 400; line-height: .95; letter-spacing: -.04em; }
 .content-copy { grid-column: 7 / 13; }
 .content-copy p { margin: 0 0 24px; font-size: 21px; line-height: 1.5; }
-.button { margin-top: 20px; padding: 16px 22px; display: inline-flex; border: 1px solid var(--paper); color: var(--walnut); background: var(--paper); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .14em; text-decoration: none; text-transform: uppercase; }
+.button { margin-top: 20px; padding: 16px 24px; display: inline-flex; border: 1px solid var(--paper); border-radius: 999px; color: var(--walnut); background: var(--paper); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
 .page-footer { padding-block: 42px; border-top: 1px solid var(--sepia); background: rgba(16,24,17,.54); }
 .page-footer-inner { display: flex; justify-content: space-between; gap: 24px; color: var(--umber); font-family: Arial, sans-serif; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
 .legal { max-width: 760px; padding-block: clamp(64px, 9vw, 120px); }
@@ -54,15 +55,16 @@ img { display: block; width: 100%; height: auto; }
 .page-lead { max-width: 760px; margin: 0; font-size: clamp(21px,2.4vw,31px); line-height: 1.4; }
 .page-section { padding-block: clamp(64px,8vw,112px); border-top: 1px solid var(--sepia); }
 .card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
-.page-card { position: relative; display: block; padding: 12px; border: 1px solid var(--sepia); text-decoration: none; background: var(--bark); box-shadow: 0 16px 40px rgba(8,14,8,.16); }
-.page-card::after { position: absolute; z-index: 2; right: -16px; top: 46%; width: clamp(94px,10vw,148px); aspect-ratio: 760/633; pointer-events: none; background: url("/images/pressed-flower-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 8px 6px rgba(5,12,6,.3)); transform: rotate(9deg); }
-.page-card:nth-child(even)::after { right: auto; left: -18px; top: 42%; width: clamp(82px,9vw,126px); aspect-ratio: 633/760; background-image: url("/images/woodland-mushroom-magnet.png"); transform: rotate(-8deg); }
+.page-card { position: relative; display: block; padding: 12px; border: 1px solid rgba(238,233,216,.45); text-decoration: none; background: var(--parchment); box-shadow: 0 18px 42px rgba(5,12,6,.22); }
+.page-card::before { position: absolute; z-index: 3; top: 4px; left: 50%; width: 66px; height: 18px; background: rgba(216,201,169,.72); content: ""; box-shadow: 0 1px 2px rgba(39,34,25,.14); transform: translateX(-50%) rotate(-2deg); }
+.page-card::after { position: absolute; z-index: 2; right: -16px; top: 43%; width: clamp(78px,8vw,118px); aspect-ratio: 506/760; pointer-events: none; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 8px 6px rgba(5,12,6,.26)); transform: rotate(7deg); }
+.page-card:nth-child(even)::after { right: auto; left: -18px; top: 42%; width: clamp(82px,9vw,126px); aspect-ratio: 640/760; background-image: url("/images/woodland-mushroom-magnet.png?v=2"); transform: rotate(-6deg); }
 .page-card-image { aspect-ratio: 4/5; overflow: hidden; border-radius: 48% 48% 0 0 / 11% 11% 0 0; }
 .page-card-image img { height: 100%; object-fit: cover; transition: transform .5s ease; }
 .page-card:hover img { transform: scale(1.025); }
 .page-card-copy { position: relative; padding: 28px 16px 18px; }
-.page-card-copy h2 { margin: 0; color: var(--paper); font-size: clamp(32px,4vw,48px); font-weight: 400; }
-.page-card-copy p { margin: 12px 0 0; font-size: 18px; line-height: 1.45; }
+.page-card-copy h2 { margin: 0; color: var(--walnut); font-size: clamp(32px,4vw,48px); font-weight: 400; }
+.page-card-copy p { margin: 12px 0 0; color: var(--sepia); font-size: 18px; line-height: 1.45; }
 .portfolio-tabs { position: sticky; z-index: 5; top: 0; padding-block: 12px; display: flex; gap: 8px; background: rgba(26,19,14,.95); }
 .portfolio-tab { min-height: 46px; flex: 1; padding: 12px; border: 1px solid var(--sepia); color: var(--warm); background: transparent; font: 11px Arial,sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
 .portfolio-tab[aria-selected="true"] { color: var(--walnut); background: var(--paper); border-color: var(--paper); }
@@ -76,7 +78,7 @@ img { display: block; width: 100%; height: auto; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { height: 100%; object-fit: cover; }
 .about-photo-stack { position: relative; display: grid; align-items: start; }
-.about-photo-stack::after { position: absolute; right: clamp(-34px,-3vw,-18px); bottom: 8%; width: clamp(130px,17vw,220px); aspect-ratio: 760/633; pointer-events: none; background: url("/images/pressed-flower-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 9px 7px rgba(5,12,6,.32)); transform: rotate(8deg); }
+.about-photo-stack::after { position: absolute; right: clamp(-34px,-3vw,-18px); bottom: 6%; width: clamp(105px,14vw,180px); aspect-ratio: 506/760; pointer-events: none; background: url("/images/pressed-flower-magnet.png?v=2") center/contain no-repeat; content: ""; filter: drop-shadow(0 9px 7px rgba(5,12,6,.28)); transform: rotate(6deg); }
 .about-photo-stack .about-photo { width: 100%; aspect-ratio: 2 / 3; }
 .about-photo-stack .about-photo-primary img { object-position: center; }
 .about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }

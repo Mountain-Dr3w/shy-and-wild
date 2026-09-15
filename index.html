@@ -142,6 +142,9 @@
         --fern: #4f6549;
         --moss: #768267;
         --sage-paper: #e2e3ca;
+        --petal: #d7aea9;
+        --butter: #dec98f;
+        --berry: #70484f;
         --page-width: 1360px;
         --page-gutter: clamp(20px, 4.5vw, 64px);
         background: var(--walnut);
@@ -396,7 +399,10 @@
         isolation: isolate;
         overflow: hidden;
         padding-block: clamp(72px, 9vw, 120px);
-        background: var(--sage-paper);
+        background:
+          radial-gradient(circle at 10% 18%, rgba(255, 255, 255, .4) 0 2px, transparent 2.5px),
+          linear-gradient(135deg, var(--sage-paper), #d9ddc4);
+        background-size: 34px 34px, auto;
         color: var(--walnut);
       }
 
@@ -407,14 +413,38 @@
         align-items: center;
       }
 
-      .home-preview-photo { margin: 0; overflow: hidden; background: var(--bark); }
-      .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
-      .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
+      .home-preview-photo {
+        margin: 0;
+        overflow: hidden;
+        border: 5px solid rgba(255, 252, 242, .78);
+        background: var(--bark);
+        box-shadow: 0 18px 44px rgba(47, 57, 40, .16);
+      }
+      .home-preview-photo:first-child { aspect-ratio: 4 / 5; border-radius: 48% 48% 18px 18px; }
+      .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; border-radius: 18px 18px 46% 46%; }
       .home-preview-copy { padding-left: clamp(8px, 2vw, 28px); }
-      .home-preview-copy .eyebrow { color: var(--fern); }
+      .home-preview-copy .eyebrow {
+        width: fit-content;
+        margin: 0;
+        padding: 8px 13px 7px;
+        border: 1px solid rgba(112, 72, 79, .22);
+        border-radius: 999px;
+        color: var(--berry);
+        background: rgba(215, 174, 169, .34);
+      }
       .home-preview-copy h2 { margin: 16px 0 24px; color: var(--walnut); font: 300 clamp(44px, 5vw, 72px)/.95 "Newsreader", Georgia, serif; letter-spacing: -.04em; }
       .home-preview-copy p { margin: 0; font: 300 clamp(20px, 2vw, 27px)/1.4 "Newsreader", Georgia, serif; }
-      .home-preview-copy .button-link { color: var(--paper); background: var(--fern); border-color: var(--fern); }
+      .home-preview-copy .button-link {
+        border-color: var(--fern);
+        border-radius: 999px;
+        color: var(--paper);
+        background: var(--fern);
+        box-shadow: 4px 4px 0 var(--butter);
+        transform: translate(0);
+        transition: color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+      .home-preview-copy .button-link:hover,
+      .home-preview-copy .button-link:focus-visible { box-shadow: 1px 1px 0 var(--butter); transform: translate(3px, 3px); }
 
       .section-heading {
         margin: 0;
@@ -820,7 +850,7 @@
         overflow: hidden;
         padding-block: clamp(72px, 8vw, 112px);
         border-top: 1px solid rgba(79, 101, 73, 0.34);
-        background: #d2d7ba;
+        background: linear-gradient(120deg, #d2d7ba 0 58%, #ddd5bc 100%);
         color: var(--walnut);
       }
 
@@ -836,14 +866,27 @@
       .testimonial-label { grid-column: 1 / 4; }
 
       .testimonial-label .eyebrow {
+        width: fit-content;
         margin-top: 8px;
+        padding: 8px 13px 7px;
+        border: 1px solid rgba(112, 72, 79, .2);
+        border-radius: 999px;
         color: var(--fern);
+        background: rgba(239, 229, 211, .44);
       }
 
       .testimonial-quote {
         margin: 0;
-        padding-bottom: 36px;
-        border-bottom: 1px solid rgba(58, 45, 33, 0.28);
+        padding: clamp(24px, 3vw, 38px);
+        border: 1px solid rgba(112, 72, 79, .17);
+        border-radius: 8px 42px 8px 42px;
+        background: rgba(246, 240, 223, .54);
+        box-shadow: 8px 8px 0 rgba(215, 174, 169, .34);
+      }
+
+      .testimonial-quote:nth-child(even) {
+        border-radius: 42px 8px 42px 8px;
+        box-shadow: 8px 8px 0 rgba(222, 201, 143, .38);
       }
 
       .testimonial-text {

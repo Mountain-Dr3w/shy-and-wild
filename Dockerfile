@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 RUN apt-get update \
-  && apt-get install --only-upgrade -y libpcre2-8-0 \
+  && apt-get install --only-upgrade -y libpcre2-8-0=10.42-1+deb12u1 \
   && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libpcre2-8-0)" ge "10.42-1+deb12u1" \
   && rm -rf /var/lib/apt/lists/*
 

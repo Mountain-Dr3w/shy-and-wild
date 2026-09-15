@@ -420,7 +420,21 @@
         background: url("/images/pressed-flower-magnet.png?v=2") center / contain no-repeat;
         content: "";
         filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .27));
-        transform: rotate(5deg);
+        transform: rotate(-52deg);
+        transform-origin: 55% 55%;
+      }
+      .home-preview-photo:nth-child(2)::after {
+        position: absolute;
+        z-index: 2;
+        top: -24px;
+        right: -24px;
+        width: clamp(96px, 10vw, 138px);
+        aspect-ratio: 640 / 760;
+        pointer-events: none;
+        background: url("/images/woodland-mushroom-magnet.png?v=2") center / contain no-repeat;
+        content: "";
+        filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .27));
+        transform: rotate(17deg);
       }
       .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
       .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }

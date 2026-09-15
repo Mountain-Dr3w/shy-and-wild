@@ -386,7 +386,29 @@
 
       .section { padding-block: clamp(88px, 11vw, 150px); }
 
-      #home #main-content > section:not(.hero) { display: none; }
+      #home #main-content > section:not(.hero):not(.home-preview) { display: none; }
+
+      .home-preview {
+        padding-block: clamp(72px, 9vw, 120px);
+        background: var(--paper);
+        color: var(--walnut);
+      }
+
+      .home-preview-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr);
+        gap: clamp(18px, 3vw, 42px);
+        align-items: center;
+      }
+
+      .home-preview-photo { margin: 0; overflow: hidden; background: var(--bark); }
+      .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
+      .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
+      .home-preview-copy { padding-left: clamp(8px, 2vw, 28px); }
+      .home-preview-copy .eyebrow { color: var(--sepia); }
+      .home-preview-copy h2 { margin: 16px 0 24px; color: var(--walnut); font: 300 clamp(44px, 5vw, 72px)/.95 "Newsreader", Georgia, serif; letter-spacing: -.04em; }
+      .home-preview-copy p { margin: 0; font: 300 clamp(20px, 2vw, 27px)/1.4 "Newsreader", Georgia, serif; }
+      .home-preview-copy .button-link { color: var(--paper); background: var(--walnut); border-color: var(--walnut); }
 
       .section-heading {
         margin: 0;
@@ -1051,6 +1073,9 @@
         .hero-title em { margin-left: 0.08em; }
         .hero-subtitle { margin: 24px 0 48px; }
 
+        .home-preview-grid { grid-template-columns: 1fr 1fr; }
+        .home-preview-copy { grid-column: 1 / -1; padding: 28px 0 0; }
+
         .about-grid,
         .services-intro,
         .testimonial-grid,
@@ -1258,6 +1283,23 @@
             <span><em>&amp;</em> Wild</span>
           </h1>
           <p class="hero-subtitle">Portrait photography · Dickson, Tennessee</p>
+        </div>
+      </section>
+
+      <section class="home-preview" aria-labelledby="home-about-title">
+        <div class="shell home-preview-grid">
+          <figure class="home-preview-photo">
+            <picture><source type="image/webp" srcset="/images/family-sunset-900.webp 900w, /images/family-sunset-1600.webp 1600w"><img src="/images/family-sunset.jpg" alt="Family of four gathered together at sunset" loading="lazy"></picture>
+          </figure>
+          <figure class="home-preview-photo">
+            <picture><source type="image/webp" srcset="/images/cowboy-hat-baby-900.webp 900w, /images/cowboy-hat-baby-1600.webp 1600w"><img src="/images/cowboy-hat-baby.jpg" alt="Young child beneath an oversized cowboy hat" loading="lazy"></picture>
+          </figure>
+          <div class="home-preview-copy">
+            <p class="eyebrow">About me</p>
+            <h2 id="home-about-title">Hi, I’m Shyanna.</h2>
+            <p>I photograph the laughter, tenderness, and beautifully unscripted moments that feel most like you.</p>
+            <a class="button-link" href="/about">Meet your photographer</a>
+          </div>
         </div>
       </section>
 

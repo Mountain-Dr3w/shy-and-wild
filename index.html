@@ -144,6 +144,7 @@
         --sage-paper: #ded8c4;
         --rosewood: #5d3531;
         --clay: #a87758;
+        --deckle: polygon(1% 1%,8% 0,15% 1%,23% .2%,31% 1%,39% 0,48% .8%,57% .1%,66% 1%,75% .2%,84% 1%,93% .1%,99% 1%,100% 8%,99.2% 17%,100% 27%,99% 37%,100% 47%,99.2% 57%,100% 67%,99% 77%,100% 88%,99% 99%,91% 100%,82% 99.2%,73% 100%,64% 99%,55% 100%,46% 99.2%,37% 100%,28% 99%,19% 100%,9% 99.2%,1% 100%,0 91%,.8% 81%,0 71%,1% 61%,0 51%,.8% 41%,0 31%,1% 21%,0 11%);
         --page-width: 1360px;
         --page-gutter: clamp(20px, 4.5vw, 64px);
         background: var(--walnut);
@@ -410,35 +411,8 @@
         align-items: center;
       }
 
-      .home-preview-photo { position: relative; margin: 0; overflow: visible; background: var(--bark); }
+      .home-preview-photo { position: relative; margin: 0; overflow: visible; padding: clamp(7px,1vw,12px); background: #e7dcc9; clip-path: var(--deckle); filter: drop-shadow(0 14px 18px rgba(32,23,17,.22)); }
       .home-preview-photo picture { display: block; height: 100%; overflow: hidden; }
-      .home-preview-photo:first-child::after {
-        position: absolute;
-        z-index: 2;
-        right: clamp(-30px, -2vw, -14px);
-        bottom: -28px;
-        width: clamp(104px, 11vw, 148px);
-        aspect-ratio: 506 / 760;
-        pointer-events: none;
-        background: url("/images/pressed-flower-magnet.png?v=2") center / contain no-repeat;
-        content: "";
-        filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .27));
-        transform: rotate(-30deg);
-        transform-origin: 55% 55%;
-      }
-      .home-preview-photo:nth-child(2)::after {
-        position: absolute;
-        z-index: 2;
-        top: -24px;
-        right: -24px;
-        width: clamp(96px, 10vw, 138px);
-        aspect-ratio: 640 / 760;
-        pointer-events: none;
-        background: url("/images/woodland-mushroom-magnet.png?v=2") center / contain no-repeat;
-        content: "";
-        filter: drop-shadow(0 9px 7px rgba(18, 27, 17, .27));
-        transform: rotate(17deg);
-      }
       .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
       .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
       .home-preview-copy { position: relative; isolation: isolate; padding-left: clamp(8px, 2vw, 28px); }

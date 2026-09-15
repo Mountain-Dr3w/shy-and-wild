@@ -3,9 +3,14 @@ FROM node:24-bookworm-slim
 ENV NODE_ENV=production
 ENV PORT=3000
 
+RUN apt-get update \
+  && apt-get install --only-upgrade -y libpcre2-8-0 \
+  && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libpcre2-8-0)" ge "10.42-1+deb12u1" \
+  && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-COPY --chown=node:node package.json server.mjs index.html ./
+COPY --chown=node:node package.json server.mjs *.html ./
 COPY --chown=node:node public ./public
 
 USER node

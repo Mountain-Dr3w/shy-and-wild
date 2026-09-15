@@ -79,10 +79,11 @@ img { display: block; width: 100%; height: auto; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { height: 100%; object-fit: cover; }
 .about-photo-stack { display: grid; align-items: start; padding: clamp(9px,1.2vw,15px); background: var(--parchment) url("/images/antique-paper-texture.jpg") center/500px auto repeat; clip-path: var(--deckle); filter: drop-shadow(0 14px 20px rgba(15,12,8,.24)); }
-.about-photo-stack .about-photo { width: 100%; aspect-ratio: 2 / 3; }
+.about-photo-stack .about-photo { width: auto; min-width: 0; margin: 0; aspect-ratio: 2 / 3; overflow: hidden; }
+.about-photo-stack .about-photo picture { display: block; width: 100%; height: 100%; }
 .about-photo-stack .about-photo-primary img { object-position: center; }
 .about-story { position: relative; isolation: isolate; }
-.about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }
+.about-copy-large { margin: 0; color: var(--warm); font-size: 21px; line-height: 1.55; }
 .about-story > p:not(.about-copy-large) { margin: 24px 0 0; font-size: 20px; line-height: 1.55; }
 .about-belief { color: var(--walnut); background: var(--parchment); }
 .about-belief-grid,.about-travel-grid { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(36px,7vw,96px); }
@@ -97,7 +98,7 @@ img { display: block; width: 100%; height: auto; }
 .about-detail-grid p { margin: 0; font-size: 19px; line-height: 1.5; }
 .about-travel { padding-block: clamp(72px,9vw,128px); color: var(--walnut); background: var(--parchment); }
 .about-travel .page-kicker { color: var(--sepia); }
-.about-travel .button { color: var(--paper); background: var(--walnut); border-color: var(--walnut); }
+.about-travel .button { color: var(--paper); background: var(--rosewood); border-color: #b59685; box-shadow: 4px 4px 0 rgba(168,119,88,.35); }
 @media (max-width: 760px) {
   .header-inner { align-items: flex-start; padding-block: 20px; }
   .header-links { max-width: 220px; flex-wrap: wrap; justify-content: flex-end; gap: 12px 18px; }

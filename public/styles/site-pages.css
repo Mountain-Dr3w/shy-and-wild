@@ -70,6 +70,21 @@ img { display: block; width: 100%; height: auto; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { object-fit: cover; }
 .about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }
+.about-story > p:not(.about-copy-large) { margin: 24px 0 0; font-size: 20px; line-height: 1.55; }
+.about-belief { color: var(--walnut); background: var(--paper); }
+.about-belief-grid,.about-travel-grid { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(36px,7vw,96px); }
+.about-belief .page-kicker { color: var(--sepia); }
+.about-belief h2,.about-life h2,.about-travel h2 { margin: 0; font-size: clamp(42px,6vw,76px); font-weight: 400; line-height: .98; letter-spacing: -.04em; }
+.about-belief-grid > div > p,.about-travel-grid > div > p { max-width: 720px; margin: 24px 0 0; font-size: 21px; line-height: 1.55; }
+.about-life-heading { max-width: 780px; margin-bottom: clamp(48px,7vw,82px); }
+.about-life-heading .page-kicker { margin-bottom: 18px; }
+.about-detail-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid var(--sepia); border-left: 1px solid var(--sepia); }
+.about-detail-grid article { padding: clamp(28px,4vw,48px); border-right: 1px solid var(--sepia); border-bottom: 1px solid var(--sepia); }
+.about-detail-grid h3 { margin: 0 0 18px; color: var(--paper); font-size: 28px; font-weight: 400; }
+.about-detail-grid p { margin: 0; font-size: 19px; line-height: 1.5; }
+.about-travel { padding-block: clamp(72px,9vw,128px); color: var(--walnut); background: var(--paper); }
+.about-travel .page-kicker { color: var(--sepia); }
+.about-travel .button { color: var(--paper); background: var(--walnut); border-color: var(--walnut); }
 @media (max-width: 760px) {
   .header-inner { align-items: flex-start; padding-block: 20px; }
   .header-links { max-width: 220px; flex-wrap: wrap; justify-content: flex-end; gap: 12px 18px; }
@@ -83,6 +98,8 @@ img { display: block; width: 100%; height: auto; }
   .content-copy { margin-top: 38px; }
   .page-footer-inner { display: grid; }
   .card-grid,.portfolio-grid,.about-layout { grid-template-columns: 1fr; }
+  .about-belief-grid,.about-travel-grid,.about-detail-grid { grid-template-columns: 1fr; }
+  .about-belief-grid > .page-kicker,.about-travel-grid > .page-kicker { margin-bottom: 8px; }
   .portfolio-tabs { overflow-x: auto; }
   .portfolio-tab { min-width: 120px; }
 }

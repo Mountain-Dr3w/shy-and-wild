@@ -400,19 +400,6 @@
         color: var(--walnut);
       }
 
-      .home-preview::after {
-        position: absolute;
-        z-index: -1;
-        right: clamp(-90px, -4vw, -30px);
-        bottom: -90px;
-        width: clamp(260px, 32vw, 470px);
-        aspect-ratio: 420 / 520;
-        background: url("/images/botanical-sprig.svg?v=2") center / contain no-repeat;
-        content: "";
-        opacity: .32;
-        transform: rotate(7deg);
-      }
-
       .home-preview-grid {
         display: grid;
         grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 4fr);
@@ -835,18 +822,6 @@
         border-top: 1px solid rgba(79, 101, 73, 0.34);
         background: #d2d7ba;
         color: var(--walnut);
-      }
-
-      .testimonial-section::after {
-        position: absolute;
-        z-index: -1;
-        bottom: -18px;
-        left: clamp(-30px, 3vw, 48px);
-        width: clamp(190px, 24vw, 320px);
-        aspect-ratio: 360 / 260;
-        background: url("/images/mushroom-cluster.svg?v=2") center / contain no-repeat;
-        content: "";
-        opacity: .38;
       }
 
       .testimonial-grid {

@@ -69,9 +69,10 @@ img { display: block; width: 100%; height: auto; }
 .about-layout { padding-block: clamp(64px,8vw,112px); display: grid; grid-template-columns: 5fr 6fr; gap: clamp(36px,7vw,96px); align-items: center; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { height: 100%; object-fit: cover; }
-.about-photo-stack { display: grid; align-items: end; }
-.about-photo-stack .about-photo { grid-area: 1 / 1; width: 82%; }
-.about-photo-stack .about-photo-secondary { width: 58%; margin: 0 0 -12% auto; border: 10px solid var(--walnut); }
+.about-photo-stack { display: grid; gap: 20px; align-items: start; }
+.about-photo-stack .about-photo { width: 100%; aspect-ratio: 2 / 3; }
+.about-photo-stack .about-photo-primary img { object-position: center; }
+.about-photo-stack .about-photo-secondary { width: 72%; margin: 0 0 0 auto; }
 .about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }
 .about-story > p:not(.about-copy-large) { margin: 24px 0 0; font-size: 20px; line-height: 1.55; }
 .about-belief { color: var(--walnut); background: var(--paper); }

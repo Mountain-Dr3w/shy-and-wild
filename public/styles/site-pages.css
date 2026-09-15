@@ -6,13 +6,16 @@
   --umber: #89927a;
   --paper: #eee9d8;
   --warm: #cdd0bb;
+  --fern: #526849;
+  --meadow: #78866b;
+  --parchment: #e7e2cd;
   --gutter: clamp(20px, 5vw, 72px);
   background: var(--walnut);
   color: var(--paper);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: var(--walnut); color: var(--warm); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-width: 320px; background-color: var(--walnut); background-image: radial-gradient(circle at 18% 12%, rgba(120,134,107,.1), transparent 28%), radial-gradient(circle at 82% 62%, rgba(82,104,73,.08), transparent 32%); color: var(--warm); font-family: Georgia, serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
 img { display: block; width: 100%; height: auto; }
 .skip-link { position: fixed; z-index: 20; top: 12px; left: 12px; padding: 12px 16px; color: var(--walnut); background: var(--paper); transform: translateY(-160%); }
@@ -27,18 +30,18 @@ img { display: block; width: 100%; height: auto; }
 .header-links a[aria-current="page"] { color: var(--paper); }
 .wordmark img { width: 200px; height: auto; }
 .page-hero { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(84px, 13vw, 180px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; align-items: end; }
-.page-hero::after { position: absolute; z-index: -1; right: clamp(-80px,2vw,24px); bottom: -100px; width: clamp(240px,30vw,420px); aspect-ratio: 420/520; background: url("/images/botanical-sprig.svg?v=2") center/contain no-repeat; content: ""; opacity: .22; transform: rotate(8deg); }
 .page-kicker { grid-column: 1 / 5; margin: 0; color: var(--umber); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
 .page-title { grid-column: 1 / 10; margin: 20px 0 0; font-size: clamp(64px, 10vw, 132px); font-weight: 400; line-height: .88; letter-spacing: -.055em; }
 .page-intro { grid-column: 8 / 13; margin: 36px 0 0; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.3; }
-.feature-image { background: var(--bark); }
+.feature-image { position: relative; background: var(--bark); }
 .feature-image img { max-height: 86vh; object-fit: contain; }
+.feature-image::after { position: absolute; right: clamp(16px,5vw,76px); bottom: clamp(-42px,-3vw,-24px); width: clamp(118px,15vw,220px); aspect-ratio: 633/760; pointer-events: none; background: url("/images/woodland-mushroom-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 10px 8px rgba(5,12,6,.34)); transform: rotate(7deg); }
 .page-content { padding-block: clamp(76px, 10vw, 132px); display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 28px; }
 .page-content h2 { grid-column: 1 / 6; margin: 0; color: var(--paper); font-size: clamp(42px, 6vw, 78px); font-weight: 400; line-height: .95; letter-spacing: -.04em; }
 .content-copy { grid-column: 7 / 13; }
 .content-copy p { margin: 0 0 24px; font-size: 21px; line-height: 1.5; }
 .button { margin-top: 20px; padding: 16px 22px; display: inline-flex; border: 1px solid var(--paper); color: var(--walnut); background: var(--paper); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: .14em; text-decoration: none; text-transform: uppercase; }
-.page-footer { padding-block: 42px; border-top: 1px solid var(--sepia); background-image: linear-gradient(rgba(23,32,24,.9),rgba(23,32,24,.9)),url("/images/botanical-sprig.svg?v=2"); background-position: center,right -80px bottom -190px; background-size: auto,260px auto; background-repeat: repeat,no-repeat; }
+.page-footer { padding-block: 42px; border-top: 1px solid var(--sepia); background: rgba(16,24,17,.54); }
 .page-footer-inner { display: flex; justify-content: space-between; gap: 24px; color: var(--umber); font-family: Arial, sans-serif; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
 .legal { max-width: 760px; padding-block: clamp(64px, 9vw, 120px); }
 .legal h1 { margin: 0 0 42px; color: var(--paper); font-size: clamp(54px, 8vw, 96px); font-weight: 400; }
@@ -51,7 +54,9 @@ img { display: block; width: 100%; height: auto; }
 .page-lead { max-width: 760px; margin: 0; font-size: clamp(21px,2.4vw,31px); line-height: 1.4; }
 .page-section { padding-block: clamp(64px,8vw,112px); border-top: 1px solid var(--sepia); }
 .card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
-.page-card { display: block; padding: 12px; border: 1px solid var(--sepia); text-decoration: none; background: var(--bark); box-shadow: 0 16px 40px rgba(8,14,8,.16); }
+.page-card { position: relative; display: block; padding: 12px; border: 1px solid var(--sepia); text-decoration: none; background: var(--bark); box-shadow: 0 16px 40px rgba(8,14,8,.16); }
+.page-card::after { position: absolute; z-index: 2; right: -16px; top: 46%; width: clamp(94px,10vw,148px); aspect-ratio: 760/633; pointer-events: none; background: url("/images/pressed-flower-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 8px 6px rgba(5,12,6,.3)); transform: rotate(9deg); }
+.page-card:nth-child(even)::after { right: auto; left: -18px; top: 42%; width: clamp(82px,9vw,126px); aspect-ratio: 633/760; background-image: url("/images/woodland-mushroom-magnet.png"); transform: rotate(-8deg); }
 .page-card-image { aspect-ratio: 4/5; overflow: hidden; border-radius: 48% 48% 0 0 / 11% 11% 0 0; }
 .page-card-image img { height: 100%; object-fit: cover; transition: transform .5s ease; }
 .page-card:hover img { transform: scale(1.025); }
@@ -70,7 +75,8 @@ img { display: block; width: 100%; height: auto; }
 .about-layout { padding-block: clamp(64px,8vw,112px); display: grid; grid-template-columns: 5fr 6fr; gap: clamp(36px,7vw,96px); align-items: center; }
 .about-photo { aspect-ratio: 4/5; background: var(--bark); }
 .about-photo img { height: 100%; object-fit: cover; }
-.about-photo-stack { display: grid; align-items: start; }
+.about-photo-stack { position: relative; display: grid; align-items: start; }
+.about-photo-stack::after { position: absolute; right: clamp(-34px,-3vw,-18px); bottom: 8%; width: clamp(130px,17vw,220px); aspect-ratio: 760/633; pointer-events: none; background: url("/images/pressed-flower-magnet.png") center/contain no-repeat; content: ""; filter: drop-shadow(0 9px 7px rgba(5,12,6,.32)); transform: rotate(8deg); }
 .about-photo-stack .about-photo { width: 100%; aspect-ratio: 2 / 3; }
 .about-photo-stack .about-photo-primary img { object-position: center; }
 .about-copy-large { color: var(--paper); font-size: clamp(29px,4vw,52px); line-height: 1.18; }
@@ -107,5 +113,9 @@ img { display: block; width: 100%; height: auto; }
   .about-belief-grid > .page-kicker,.about-travel-grid > .page-kicker { margin-bottom: 8px; }
   .portfolio-tabs { overflow-x: auto; }
   .portfolio-tab { min-width: 120px; }
+  .feature-image::after { right: 10px; width: 112px; }
+  .page-card::after { right: -6px; width: 104px; }
+  .page-card:nth-child(even)::after { right: -6px; left: auto; }
+  .about-photo-stack::after { right: -8px; width: 130px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

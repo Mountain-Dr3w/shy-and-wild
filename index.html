@@ -133,15 +133,17 @@
     <style>
       :root {
         color-scheme: dark;
-        --walnut: #1a130e;
-        --bark: #241a11;
-        --sepia: #3a2d21;
-        --umber: #8a7a64;
-        --paper: #efe5d3;
-        --warm: #cbbca3;
-        --fern: #4f6549;
-        --moss: #768267;
-        --sage-paper: #e2e3ca;
+        --walnut: #201711;
+        --bark: #30231c;
+        --sepia: #655342;
+        --umber: #9b876f;
+        --paper: #eee7da;
+        --warm: #d8cbb9;
+        --fern: #454a35;
+        --moss: #6f7658;
+        --sage-paper: #ded8c4;
+        --rosewood: #5d3531;
+        --clay: #a87758;
         --page-width: 1360px;
         --page-gutter: clamp(20px, 4.5vw, 64px);
         background: var(--walnut);
@@ -212,7 +214,7 @@
         top: 0;
         width: 100%;
         isolation: isolate;
-        background: rgba(26, 19, 14, 0.94);
+        background: rgba(32, 23, 17, 0.95);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
       }
@@ -396,7 +398,8 @@
         isolation: isolate;
         overflow: hidden;
         padding-block: clamp(72px, 9vw, 120px);
-        background: var(--sage-paper);
+        background-color: var(--sage-paper);
+        background-image: radial-gradient(circle at 18% 20%, rgba(255,255,255,.26), transparent 24%), linear-gradient(135deg, rgba(111,118,88,.08), transparent 48%);
         color: var(--walnut);
       }
 
@@ -439,10 +442,10 @@
       .home-preview-photo:first-child { aspect-ratio: 4 / 5; }
       .home-preview-photo:nth-child(2) { aspect-ratio: 3 / 4; margin-top: 22%; }
       .home-preview-copy { position: relative; isolation: isolate; padding-left: clamp(8px, 2vw, 28px); }
-      .home-preview-copy .eyebrow { color: var(--fern); }
+      .home-preview-copy .eyebrow { color: var(--rosewood); }
       .home-preview-copy h2 { margin: 16px 0 24px; color: var(--walnut); font: 300 clamp(44px, 5vw, 72px)/.95 "Newsreader", Georgia, serif; letter-spacing: -.04em; }
       .home-preview-copy p { margin: 0; font: 300 clamp(20px, 2vw, 27px)/1.4 "Newsreader", Georgia, serif; }
-      .home-preview-copy .button-link { color: var(--paper); background: var(--fern); border-color: var(--fern); }
+      .home-preview-copy .button-link { color: var(--paper); background: var(--rosewood); border-color: #b59685; border-radius: 999px; box-shadow: 4px 4px 0 rgba(168,119,88,.35); }
 
       .section-heading {
         margin: 0;
@@ -847,9 +850,9 @@
         isolation: isolate;
         overflow: hidden;
         padding-block: clamp(72px, 8vw, 112px);
-        border-top: 1px solid rgba(79, 101, 73, 0.34);
-        background: #d2d7ba;
-        color: var(--walnut);
+        border-top: 1px solid rgba(238,231,218,.18);
+        background: var(--fern);
+        color: var(--paper);
       }
 
       .testimonial-grid {
@@ -865,25 +868,25 @@
 
       .testimonial-label .eyebrow {
         margin-top: 8px;
-        color: var(--fern);
+        color: #c7b69d;
       }
 
       .testimonial-quote {
         margin: 0;
         padding-bottom: 36px;
-        border-bottom: 1px solid rgba(58, 45, 33, 0.28);
+        border-bottom: 1px solid rgba(238,231,218,.24);
       }
 
       .testimonial-text {
         margin: 0;
-        color: var(--walnut);
+        color: var(--paper);
         font: 300 clamp(22px, 2.6vw, 34px) / 1.3 "Newsreader", Georgia, serif;
         letter-spacing: -0.015em;
       }
 
       .testimonial-attribution {
         margin: 28px 0 0;
-        color: var(--sepia);
+        color: #c7b69d;
         font: 500 11px/1.4 "Archivo", system-ui, sans-serif;
         letter-spacing: 0.15em;
         text-transform: uppercase;
